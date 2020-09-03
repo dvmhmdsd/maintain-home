@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
 
-import { userController } from "./business-logic-layer";
+import { userController } from "./controllers";
 
 require("dotenv").config();
 
