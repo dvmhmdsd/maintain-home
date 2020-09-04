@@ -1,0 +1,24 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  flex-direction: column;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.7rem
+}
+
+img {
+  max-width: 50%;
+  position: relative;
+  left: 8%;
+}
+
+@media (max-width: 600) {
+  img {
+    max-width: 100%
+  }
+}
