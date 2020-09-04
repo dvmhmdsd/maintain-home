@@ -9,6 +9,10 @@ class ErrorHandler extends Error {
     }
 }
 exports.ErrorHandler = ErrorHandler;
+/**
+ * @param err The error that will be sent to the client
+ * @param res The response object that will send the error to the client
+ */
 const handleError = (err, res) => {
     const { statusCode, message } = err;
     console.log(err);
