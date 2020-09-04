@@ -1,5 +1,6 @@
 <mat-sidenav-container class="maintain-sidenav-container">
   <mat-sidenav
+    *ngIf="showLayout"
     #sideNav
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [fixedInViewport]="mobileQuery.matches"
@@ -34,7 +35,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar class="maintain-toolbar">
+    <mat-toolbar *ngIf="showLayout" class="maintain-toolbar">
       <button
         *ngIf="!isDrawerOpened"
         mat-icon-button
