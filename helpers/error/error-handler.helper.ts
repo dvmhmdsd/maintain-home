@@ -1,4 +1,5 @@
 import { Response } from "express";
+
 class ErrorHandler extends Error {
   statusCode: number;
   message: string;
@@ -15,10 +16,10 @@ class ErrorHandler extends Error {
  */
 const handleError = (
   err: { statusCode: number; message: string },
-  res: Response
+  res?: Response
 ) => {
-  const { statusCode, message } = err;
-  console.log(err);
+  const { statusCode = 500, message } = err;
+  console.log(err)
   res.status(statusCode).json({
     msg: message,
   });

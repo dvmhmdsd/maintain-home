@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import { ErrorHandler } from "../helpers/error/error-handler.helper";
 
 export default class CoreService {
-  db: any;
-  name: string;
+  protected _db: any;
+  protected _name: string;
 
   constructor() {
     this.initialize = this.initialize.bind(this);
@@ -13,14 +14,14 @@ export default class CoreService {
     this.deleteRecord = this.deleteRecord.bind(this);
   }
 
-  initialize(Model: any, name: string) {
-    this.db = Model;
-    this.name = name;
+  initialize(Model: mongoose.Model<mongoose.Document>, name: string) {
+    this._db = Model;
+    this._name = name;
   }
 
   async listRecords(req: Request, res: Response, next: any) {
     try {
-      let records = await this.db.find({});
+      const records = await this._db.find({});
       res.json(records);
       next();
     } catch (error) {
@@ -30,7 +31,7 @@ export default class CoreService {
 
   async createRecord(req: Request, res: Response, next: any) {
     try {
-      let newRecord = await this.db.create({
+      const newRecord = await this._db.create({
         ...req.body,
       });
       res.json(newRecord);
@@ -44,7 +45,7 @@ export default class CoreService {
     const { id } = req.params;
 
     try {
-      let updatedRecord = await this.db.findByIdAndUpdate(
+      const updatedRecord = await this._db.findByIdAndUpdate(
         id,
         { ...req.body },
         { new: true }
@@ -64,13 +65,13 @@ export default class CoreService {
     const { id } = req.params;
 
     try {
-      let bookToBeDeleted = await this.db.findByIdAndRemove(id);
+      const bookToBeDeleted = await this._db.findByIdAndRemove(id);
 
       if (!bookToBeDeleted) {
         throw new ErrorHandler(404, "The Item you want to delete is not found");
       }
       res.json({
-        msg: `${this.name} has been deleted successfully!`,
+        msg: `${this._name} has been deleted successfully!`,
       });
       next();
     } catch (error) {

@@ -19,13 +19,13 @@ class CoreService {
         this.deleteRecord = this.deleteRecord.bind(this);
     }
     initialize(Model, name) {
-        this.db = Model;
-        this.name = name;
+        this._db = Model;
+        this._name = name;
     }
     listRecords(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let records = yield this.db.find({});
+                const records = yield this._db.find({});
                 res.json(records);
                 next();
             }
@@ -37,7 +37,7 @@ class CoreService {
     createRecord(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let newRecord = yield this.db.create(Object.assign({}, req.body));
+                const newRecord = yield this._db.create(Object.assign({}, req.body));
                 res.json(newRecord);
                 next();
             }
@@ -50,7 +50,7 @@ class CoreService {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             try {
-                let updatedRecord = yield this.db.findByIdAndUpdate(id, Object.assign({}, req.body), { new: true });
+                const updatedRecord = yield this._db.findByIdAndUpdate(id, Object.assign({}, req.body), { new: true });
                 if (!updatedRecord) {
                     throw new error_handler_helper_1.ErrorHandler(404, "The Item you want to update is not found");
                 }
@@ -66,12 +66,12 @@ class CoreService {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             try {
-                let bookToBeDeleted = yield this.db.findByIdAndRemove(id);
+                const bookToBeDeleted = yield this._db.findByIdAndRemove(id);
                 if (!bookToBeDeleted) {
                     throw new error_handler_helper_1.ErrorHandler(404, "The Item you want to delete is not found");
                 }
                 res.json({
-                    msg: `${this.name} has been deleted successfully!`,
+                    msg: `${this._name} has been deleted successfully!`,
                 });
                 next();
             }
