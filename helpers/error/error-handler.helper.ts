@@ -20,7 +20,7 @@ const handleError = (
   });
 };
 
-export default {
+export {
   ErrorHandler,
   handleError,
 };

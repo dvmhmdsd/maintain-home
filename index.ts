@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
 import { userController } from "./controllers";
-import { handleError } from "./helpers/error-handler.helper";
+import { handleError } from "./helpers/error/error-handler.helper";
 import dotenv from "dotenv";
 
 class App {
@@ -15,7 +15,10 @@ class App {
   constructor() {
     dotenv.config();
     this.setupDbConnection();
+    this.init();
+  }
 
+  private init() {
     this.app.use(express.json());
     this.app.use(cors());
 

@@ -17,7 +17,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const controllers_1 = require("./controllers");
-const error_handler_helper_1 = require("./helpers/error-handler.helper");
+const error_handler_helper_1 = require("./helpers/error/error-handler.helper");
 const dotenv_1 = __importDefault(require("dotenv"));
 class App {
     constructor() {
@@ -27,6 +27,9 @@ class App {
         ];
         dotenv_1.default.config();
         this.setupDbConnection();
+        this.init();
+    }
+    init() {
         this.app.use(express_1.default.json());
         this.app.use(cors_1.default());
         if (process.env.NODE_ENV === "production") {
