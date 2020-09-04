@@ -2,10 +2,9 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
-
 import { userController } from "./controllers";
-
-require("dotenv").config();
+import { handleError } from "./helpers/error-handler.helper";
+import dotenv from "dotenv";
 
 class App {
   private app = express();
@@ -14,7 +13,9 @@ class App {
   ];
 
   constructor() {
+    dotenv.config();
     this.setupDbConnection();
+
     this.app.use(express.json());
     this.app.use(cors());
 
@@ -27,10 +28,12 @@ class App {
       });
     }
 
+    this.registerControllers();
+    this.app.use((err: any, req: Request, res: Response, next: any) => {
+      handleError(err, res);
+    });
     // disable the X-Powered-By header instead of using helmet
     this.app.disable("x-powered-by");
-
-    this.registerControllers();
   }
 
   private async setupDbConnection() {
@@ -41,6 +44,7 @@ class App {
         useFindAndModify: false,
         useCreateIndex: true,
       });
+
       console.log("Connected to DB");
     } catch (error) {
       console.log(error);

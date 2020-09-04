@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build:watch": "tsc -w",
+    "build:watch": "tsc -w --copy-files",
     "start": "pm2-runtime start ecosystem.config.js --env production",
-    "dev-start": "npm run build && concurrently \"nodemon\" \"cd dashboard/ && ng serve\"",
-    "back-dev-start": "concurrently 'npm run build:watch' 'cd dist/ && nodemon' && cd .."
+    "start:dev": "npm run build && concurrently \"nodemon\" \"cd dashboard/ && ng serve\"",
+    "back-start:dev": "concurrently \"tsc -w --copy-files\" \"cd dist/ && nodemon\" && cd .."
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,md}": [
