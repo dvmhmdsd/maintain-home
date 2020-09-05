@@ -1,1 +1,28 @@
-<p>login works!</p>
+<section class="login-container">
+  <img src="assets/imgs/login.png" width="500" alt="" />
+
+  <mat-card>
+    <form [formGroup]="loginForm">
+      <mat-form-field>
+        <mat-label>اسم المستخدم *</mat-label>
+        <input
+          matInput
+          placeholder="مثال: orchi123"
+          formControlName="username"
+        />
+        <mat-error *ngIf="loginForm.get('username').hasError('required')">
+          اسم المستخدم مطلوب
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>كلمة السر *</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="loginForm.get('password').hasError('required')">
+          كلمة السر مطلوبة
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-button mat-raised-button [disabled]="!loginForm.valid">تسجيل الدخول</button>
+    </form>
+  </mat-card>
+</section>

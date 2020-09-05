@@ -20,7 +20,7 @@ $dashboard-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$dashboard-theme: mat-dark-theme((
+$dashboard-theme: mat-light-theme((
   color: (
     primary: $dashboard-primary,
     accent: $dashboard-accent,
