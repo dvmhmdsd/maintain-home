@@ -12,7 +12,7 @@ import { UserTypes } from "../../CONSTANTS/enums/user-types.enum";
 const authorizeSuperAdmin = (req: any, res: Response, next: any) => {
   if (!req.user || req.user.type !== UserTypes.SUPER_ADMIN) {
     throw new ErrorHandler(
-      401,
+      403,
       "You are not authorized to perform this action !"
     );
   }

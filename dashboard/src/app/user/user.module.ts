@@ -6,7 +6,7 @@ import { UserComponent } from './user.component';
 import { LoginComponent, DialogData } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { UsersListComponent } from './users-list/users-list.component';
+import { UsersListComponent, DialogRemove } from './users-list/users-list.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { UsersService } from '../services/users.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     ProfileComponent,
     CreateUserComponent,
     UsersListComponent,
-    DialogData
+    DialogData,
+    DialogRemove
   ],
   imports: [
     CommonModule,

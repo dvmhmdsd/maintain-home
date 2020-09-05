@@ -1,0 +1,31 @@
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="!success || !loading">
+    <h2>هل أنت متأكد ؟</h2>
+
+    <p>هذا الإجراء لا يمكن الرجوع عنه</p>
+  </div>
+  <div *ngIf="success">
+    <p>تم حذف المستخدم بنجاح</p>
+  </div>
+  <div *ngIf="error">
+    <p>
+      حدث خطأ أثناء حذف المستخدم، من فضلك حاول مرة أخري أو قم بالاتصال بالدعم
+    </p>
+  </div>
+  <div *ngIf="loading">
+    <p>
+      يتم حذف المستخدم ...
+    </p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="!success || !loading">
+  <button mat-button mat-dialog-close (click)="closeDialog()">إلغاء</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="removeUser()"
+  >
+    تأكيد
+  </button>
+</mat-dialog-actions>

@@ -6,13 +6,30 @@
 
   h2 {
     font-size: 2rem;
+    margin-bottom: 0;
   }
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
 }
 
 .list-table-container {
   position: relative;
   max-height: 400px;
   overflow: auto;
+
+  div {
+    text-align: center;
+    margin-top: 5rem;
+    font-weight: bold;
+    img {
+      width: 220px
+    }
+  }
 }
 
 table {

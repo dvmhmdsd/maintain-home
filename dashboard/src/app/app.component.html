@@ -33,6 +33,7 @@
         <a
           mat-list-item
           *ngIf="nav.superOnly && user.type === userTypes.SUPER_ADMIN"
+          (click)="mobileQuery.matches && toggleSideNav()"
           [routerLink]="nav.path"
           routerLinkActive="link-active"
         >
