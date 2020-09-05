@@ -18,6 +18,15 @@ export default class UserService extends CoreService {
     this.getUserProfileData = this.getUserProfileData.bind(this);
   }
 
+  async listRecords(req: Request, res: Response, next: any) {
+    try {
+      const records = await this._db.find({}, "name type username image");
+      res.json(records);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getUserProfileData(req: Request, res: Response, next: any) {
     const { id } = req.params;
     try {
@@ -54,7 +63,6 @@ export default class UserService extends CoreService {
         image: newUser.image,
         username: newUser.username,
       });
-      next();
     } catch (error) {
       next(error);
     }

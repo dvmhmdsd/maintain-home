@@ -8,21 +8,26 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UsersService {
+  baseUrl = `${environment.BACKEND_URL}/users`;
   constructor(private http: HttpClient) {}
 
+  getUsers() {
+    return this.http.get(`${this.baseUrl}/list`)
+  }
+
   login(loginData: LoginVM) {
-    return this.http.post(`${environment.BACKEND_URL}/users/login`, loginData);
+    return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
   register(registrationData: UserVM) {
-    return this.http.post(`${environment.BACKEND_URL}/users/new`, registrationData);
+    return this.http.post(`${this.baseUrl}/new`, registrationData);
   }
 
   updateUserData(userId: string, userData: UserVM) {
-    return this.http.put(`${environment.BACKEND_URL}/users/${userId}`, userData);
+    return this.http.put(`${this.baseUrl}/${userId}`, userData);
   }
 
   deleteUser(userId: string) {
-    return this.http.delete(`${environment.BACKEND_URL}/users/${userId}`);
+    return this.http.delete(`${this.baseUrl}/${userId}`);
   }
 }

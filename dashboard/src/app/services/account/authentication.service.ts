@@ -1,3 +1,4 @@
+import { UserTypes } from './../../../../../CONSTANTS/enums/user-types.enum';
 import { IUser } from './../../../../../CONSTANTS/interfaces/user.interface';
 import { Injectable } from '@angular/core';
 
@@ -5,6 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthenticationService {
+  userTypes = UserTypes
   constructor() {}
 
   isUserAuthenticated() {
@@ -15,7 +17,7 @@ export class AuthenticationService {
 
   isUserSuper() {
     let user: IUser = JSON.parse(localStorage.getItem('user'));
-    if (user && user.type === 'Super Admin') return true;
+    if (user && user.type === this.userTypes.SUPER_ADMIN) return true;
     else return false;
   }
 }

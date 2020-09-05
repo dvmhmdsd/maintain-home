@@ -88,8 +88,9 @@ mat-icon {
   margin-left: 0.6rem;
 }
 
-.link-active {
-  background-color: rgba($color: #fff, $alpha: 0.04);
+.link-active,
+.link-active:focus {
+  background-color: rgba($color: #fff, $alpha: 0.1);
 }
 
 .spacer {

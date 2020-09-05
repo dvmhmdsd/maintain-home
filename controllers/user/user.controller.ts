@@ -6,7 +6,7 @@ const server = express.Router();
 
 const userService = new UserService();
 
-server.get("/list", verifyToken, userService.listRecords);
+server.get("/list", verifyToken, authorizeSuperAdmin, userService.listRecords);
 server.get("/logout", verifyToken, userService.logout);
 server.get("/:id", verifyToken, userService.getUserProfileData);
 server.post("/new", verifyToken, authorizeSuperAdmin, userService.createRecord);

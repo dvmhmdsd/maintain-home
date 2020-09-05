@@ -1,5 +1,7 @@
+import { UserTypes } from './../../../CONSTANTS/enums/user-types.enum';
+import { IUser } from './../../../CONSTANTS/interfaces/user.interface';
 import { AuthenticationService } from './services/account/authentication.service';
-import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Events } from './services/events.service';
 import { Router } from '@angular/router';
@@ -10,17 +12,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild("sideNav") sideNav: any;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+  user: IUser;
 
   isDrawerOpened: boolean;
   showLayout: boolean;
 
   navList = [
     { path: '/home', label: 'الصفحة الرئيسية', icon: 'dashboard' },
-    { path: '/user/list', label: 'قائمة المديرين', icon: 'supervisor_account' },
-    { path: '/user/new', label: 'إضافة مدير جديد', icon: 'create' },
+    { path: '/user/list', label: 'قائمة المديرين', icon: 'supervisor_account', superOnly: true },
+    { path: '/user/new', label: 'إضافة مدير جديد', icon: 'create', superOnly: true },
   ];
+
+  userTypes = UserTypes
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -39,17 +45,27 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.events.subscribe('showLayout', (val) => (this.showLayout = true));
+    this.events.subscribe('showLayout', (val) => {
+      this.showLayout = true;
+      this.isDrawerOpened = this.mobileQuery.matches ? false : true;
+    });
     this.events.subscribe('unAuthorizedUser', (val) => {
       console.log(val);
       if (val) {
         this.logout();
       }
     });
+
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  toggleSideNav() {
+    this.sideNav.toggle();
+    this.isDrawerOpened = !this.isDrawerOpened;
   }
 
   logout() {

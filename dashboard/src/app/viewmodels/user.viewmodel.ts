@@ -3,4 +3,5 @@ export class UserVM {
   username: string;
   image: string;
   name: string;
+  type: string;
 }

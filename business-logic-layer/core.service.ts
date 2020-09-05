@@ -23,7 +23,6 @@ export default class CoreService {
     try {
       const records = await this._db.find({});
       res.json(records);
-      next();
     } catch (error) {
       next(error);
     }
@@ -35,7 +34,6 @@ export default class CoreService {
         ...req.body,
       });
       res.json(newRecord);
-      next();
     } catch (error) {
       next(error);
     }
@@ -55,7 +53,6 @@ export default class CoreService {
         throw new ErrorHandler(404, "The Item you want to update is not found");
       }
       res.json(updatedRecord);
-      next();
     } catch (error) {
       next(error);
     }
@@ -73,7 +70,6 @@ export default class CoreService {
       res.json({
         msg: `${this._name} has been deleted successfully!`,
       });
-      next();
     } catch (error) {
       next(error);
     }

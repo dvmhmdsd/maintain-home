@@ -9,38 +9,43 @@
     <header class="sidenav-intro">
       <div class="sidenav-header">
         <h1 class="maintain-app-name">لوحة التحكم</h1>
-        <button
-          mat-icon-button
-          (click)="sideNav.toggle(); isDrawerOpened = !isDrawerOpened"
-        >
+        <button mat-icon-button (click)="toggleSideNav()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
       <section class="sidenav-user">
+        <!-- <img [src]="!!user ? user.image : 'assets/imgs/avatar.png'" alt="" /> -->
         <img src="assets/imgs/avatar.png" alt="" />
-        <p>Mohamed</p>
+        <p>{{ !!user ? user.name : "Admin" }}</p>
       </section>
     </header>
     <mat-nav-list>
-      <a
-        mat-list-item
-        *ngFor="let nav of navList"
-        [routerLink]="nav.path"
-        routerLinkActive="link-active"
-      >
-        <mat-icon>{{ nav.icon }}</mat-icon>
-        {{ nav.label }}
-      </a>
+      <span *ngFor="let nav of navList">
+        <a
+          mat-list-item
+          *ngIf="!nav.superOnly"
+          [routerLink]="nav.path"
+          routerLinkActive="link-active"
+        >
+          <mat-icon>{{ nav.icon }}</mat-icon>
+          {{ nav.label }}
+        </a>
+        <a
+          mat-list-item
+          *ngIf="nav.superOnly && user.type === userTypes.SUPER_ADMIN"
+          [routerLink]="nav.path"
+          routerLinkActive="link-active"
+        >
+          <mat-icon>{{ nav.icon }}</mat-icon>
+          {{ nav.label }}
+        </a>
+      </span>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar *ngIf="showLayout" class="maintain-toolbar">
-      <button
-        *ngIf="!isDrawerOpened"
-        mat-icon-button
-        (click)="sideNav.toggle(); isDrawerOpened = !isDrawerOpened"
-      >
+      <button *ngIf="!isDrawerOpened" mat-icon-button (click)="toggleSideNav()">
         <mat-icon>menu</mat-icon>
       </button>
       <span class="spacer"></span>
