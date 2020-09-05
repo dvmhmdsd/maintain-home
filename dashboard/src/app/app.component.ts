@@ -4,7 +4,7 @@ import { AuthenticationService } from './services/account/authentication.service
 import { Component, ChangeDetectorRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Events } from './services/events.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -57,6 +57,15 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.user = JSON.parse(localStorage.getItem("user"));
+
+    this.router.events.forEach(event => {
+      if (event instanceof NavigationEnd) {
+        if (event.url == "/home") {
+          this.user = JSON.parse(localStorage.getItem("user"));
+        }
+      }
+    })
+
   }
 
   ngOnDestroy(): void {

@@ -1,1 +1,67 @@
-<p>create-user works!</p>
+<section class="create-form-container">
+  <h2>أضف مديرًا جديدًا</h2>
+  <mat-card>
+    <form [formGroup]="userForm">
+      <mat-form-field>
+        <mat-label>اسم المستخدم *</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="userForm.get('name').hasError('required')">
+          اسم المستخدم مطلوب
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>الإسم المميز *</mat-label>
+        <input
+          matInput
+          placeholder="مثال: orchi123"
+          formControlName="username"
+        />
+        <mat-error *ngIf="userForm.get('username').hasError('required')">
+          الإسم المميز مطلوب
+        </mat-error>
+        <mat-error *ngIf="userForm.get('username').hasError('used')">
+          هذا الإسم مستخدم بالفعل
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>كلمة السر *</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="userForm.get('password').hasError('required')">
+          كلمة السر مطلوبة
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>تأكيد كلمة السر *</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        <mat-error
+          *ngIf="userForm.get('confirmPassword').hasError('required')"
+        >
+          تأكيد كلمة السر مطلوب
+        </mat-error>
+        <mat-error
+          *ngIf="userForm.get('confirmPassword').hasError('compare')"
+        >
+          كلمتا السر غير متطابقتان
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>نوع المدير</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of userTypes" [value]="type.value">
+            {{ type.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-button
+        mat-raised-button
+        [disabled]="!userForm.valid"
+        (click)="createUser()"
+      >
+        إضافة
+      </button>
+    </form>
+  </mat-card>
+</section>

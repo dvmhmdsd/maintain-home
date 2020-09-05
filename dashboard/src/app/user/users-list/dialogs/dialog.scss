@@ -1,0 +1,13 @@
+mat-form-field {
+  margin-bottom: 1.3rem;
+  width: 100%;
+}
+
+button {
+  background-color: rgba($color: #1e2129, $alpha: 0.93);
+  color: #fff;
+
+  &:hover {
+    background-color: #1e2129;
+  }
+}

@@ -22,7 +22,7 @@
   max-height: 400px;
   overflow: auto;
 
-  div {
+  div.no-users-img {
     text-align: center;
     margin-top: 5rem;
     font-weight: bold;
@@ -86,7 +86,7 @@ table {
   max-width: 124px;
 }
 
-img {
+.list-table-container div img.user-img {
   width: 90px;
   border-radius: 50%;
 }

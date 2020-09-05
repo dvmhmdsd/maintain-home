@@ -1,7 +1,7 @@
 export class UserVM {
-  password: string;
+  password?: string;
   username: string;
-  image: string;
+  image?: string;
   name: string;
-  type: string;
+  type?: string;
 }

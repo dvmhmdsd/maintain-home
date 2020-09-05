@@ -1,0 +1,57 @@
+<mat-dialog-content class="mat-typography">
+  <section *ngIf="success">
+    <h2>تم التحديث بنجاح</h2>
+  </section>
+  <section *ngIf="error">
+    <h2>حدث خطأ أثناء التحديث</h2>
+  </section>
+  <section *ngIf="loading">
+    <h2>يتم التحديث الآن ...</h2>
+  </section>
+  <section *ngIf="!success && !loading && !error" class="create-form-container">
+    <h2>تعديل</h2>
+    <form [formGroup]="userForm">
+      <mat-form-field>
+        <mat-label>اسم المستخدم *</mat-label>
+        <input matInput formControlName="name" [value]="data.user.name" />
+        <mat-error *ngIf="userForm.get('name').hasError('required')">
+          اسم المستخدم مطلوب
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>الإسم المميز *</mat-label>
+        <input
+          matInput
+          placeholder="مثال: orchi123"
+          formControlName="username"
+          [value]="data.user.username"
+        />
+        <mat-error *ngIf="userForm.get('username').hasError('required')">
+          الإسم المميز مطلوب
+        </mat-error>
+        <mat-error *ngIf="userForm.get('username').hasError('used')">
+          هذا الإسم مستخدم بالفعل
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>نوع المدير</mat-label>
+        <mat-select formControlName="type" [value]="data.user.type">
+          <!-- [compareWith]="data.user.type" -->
+          <mat-option *ngFor="let type of userTypes" [value]="type.value">
+            {{ type.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-button
+        mat-raised-button
+        [disabled]="!userForm.valid"
+        (click)="updateUser()"
+      >
+        تعديل
+      </button>
+    </form>
+  </section>
+</mat-dialog-content>

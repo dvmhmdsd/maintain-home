@@ -68,6 +68,27 @@ export default class UserService extends CoreService {
     }
   }
 
+  async updateRecord(req: Request, res: Response, next: any) {
+    const { id } = req.params;
+
+    try {
+      const updatedRecord = await this._db.findByIdAndUpdate(
+        id,
+        { ...req.body },
+        { new: true }
+      );
+
+      
+      if (!updatedRecord) {
+        throw new ErrorHandler(404, "The Item you want to update is not found");
+      }
+      let { username, name, type } = updatedRecord
+      res.json({ username, name, type });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   private async checkUserExistence(username: string, res: Response, next: any) {
     try {
       const users = await this._db.find({ username });

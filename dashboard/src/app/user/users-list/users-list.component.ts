@@ -5,6 +5,7 @@ import {
   Inject,
   TemplateRef,
 } from '@angular/core';
+import { UserTypes } from './../../../../../CONSTANTS/enums/user-types.enum';
 import { IUser } from './../../../../../CONSTANTS/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 import {
@@ -12,6 +13,9 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserVM } from 'src/app/viewmodels/user.viewmodel';
+import { Events } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-users-list',
@@ -20,13 +24,22 @@ import {
 })
 export class UsersListComponent implements AfterViewInit {
   user: IUser;
+  userTypes = UserTypes;
   isLoadingResults = true;
   isFailed: boolean;
   displayedColumns: string[] = ['image', 'name', 'type', '_id'];
   data: IUser[] = [];
 
-  constructor(private usersService: UsersService, public dialog: MatDialog) {}
+  constructor(
+    private usersService: UsersService,
+    public dialog: MatDialog,
+    private events: Events
+  ) {}
   ngAfterViewInit(): void {
+    this.listUsers()
+  }
+
+  listUsers() {
     this.usersService.getUsers().subscribe(
       (res: IUser[]) => {
         this.isLoadingResults = false;
@@ -43,21 +56,35 @@ export class UsersListComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
+
+    this.events.subscribe('userUpdated', (res) => {
+      // let itemToBeReplacedPosition;
+      // for (let [index, item] of this.data.entries()) {
+      //   if (res._id === item._id) {
+      //     itemToBeReplacedPosition = index;
+      //     break;
+      //   }
+      // }
+      // this.data.splice(itemToBeReplacedPosition, 1, res);
+      // this.data = this.data
+      this.listUsers()
+    });
   }
 
-  openDialog(actionType: string, userIDToBeRemoved: string) {
+  openDialog(actionType: string, user: IUser) {
     let DialogComponent = actionType === 'remove' ? DialogRemove : DialogEdit;
 
     let dialogRef = this.dialog.open(DialogComponent, {
       data: {
-        userId: userIDToBeRemoved,
+        user,
+        userId: user._id,
         usersService: this.usersService,
       },
     });
 
-    dialogRef.afterClosed().subscribe((res: string) => {
-      if (res && res !== 'close') {
-        this.data = this.data.filter((item) => item._id !== userIDToBeRemoved);
+    dialogRef.afterClosed().subscribe((res: string | IUser) => {
+      if (res && res === 'remove') {
+        this.data = this.data.filter((item) => item._id !== user._id);
       }
     });
   }
@@ -71,6 +98,13 @@ export class DialogRemove {
   success?: boolean;
   loading?: boolean;
   error?: boolean;
+  user: IUser;
+
+  userForm?: FormGroup;
+  userTypes = [
+    { text: 'مدير بكامل الصلاحيات', value: 'Super' },
+    { text: 'مدير عادي', value: 'Admin' },
+  ];
   constructor(
     @Inject(UsersService) public usersService?: UsersService,
     @Inject(MAT_DIALOG_DATA) public data?: any,
@@ -93,26 +127,77 @@ export class DialogRemove {
     );
   }
 
+  updateUser() {}
+
   closeDialog() {
-    this.dialogRef.close('close');
+    this.dialogRef.close('remove');
   }
 }
 
 @Component({
   selector: 'dialog-edit',
   templateUrl: './dialogs/dialog-edit.html',
+  styleUrls: ['./dialogs/dialog.scss'],
 })
 export class DialogEdit {
   success?: boolean;
   loading?: boolean;
   error?: boolean;
+  user: IUser;
+
+  userForm?: FormGroup;
+  userTypes = [{ text: 'مدير بكامل الصلاحيات', value: 'Super' }];
   constructor(
+    private events?: Events,
     @Inject(UsersService) public usersService?: UsersService,
     @Inject(MAT_DIALOG_DATA) public data?: any,
     public dialogRef?: MatDialogRef<DialogRemove>
-  ) {}
+  ) {
+    this.userForm = new FormGroup({
+      name: new FormControl(data.name, Validators.required),
+      username: new FormControl(data.username, Validators.required),
+      type: new FormControl(data.type),
+    });
+    this.userForm.get('name').setValue(data.user.name);
+    this.userForm.get('username').setValue(data.user.username);
+    this.userForm.get('type').setValue(data.user.type);
+  }
+  removeUser() {}
+
+  updateUser() {
+    let userData = new UserVM();
+    if (this.userForm.valid) {
+      userData = {
+        name: this.userForm.get('name').value,
+        username: this.userForm.get('username').value,
+        type: this.userForm.get('type').value,
+      };
+
+      this.loading = true;
+      this.usersService.updateUserData(this.data.userId, userData).subscribe(
+        (res: any) => {
+          this.success = true;
+          this.loading = false;
+          this.error = false;
+
+          this.user = res;
+          this.user._id = this.data.userId;
+          this.events.publish('userUpdated', this.user);
+        },
+        (err) => {
+          if (err.status === 400) {
+            this.userForm.controls['username'].setErrors({ used: true });
+          } else {
+            this.success = false;
+            this.loading = false;
+            this.error = true;
+          }
+        }
+      );
+    }
+  }
 
   closeDialog() {
-    this.dialogRef.close(this.data.user._id);
+    this.dialogRef.close(this.user);
   }
 }
