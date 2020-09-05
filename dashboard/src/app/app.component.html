@@ -14,8 +14,10 @@
         </button>
       </div>
       <section class="sidenav-user">
-        <!-- <img [src]="!!user ? user.image : 'assets/imgs/avatar.png'" alt="" /> -->
-        <img src="assets/imgs/avatar.png" alt="" />
+        <a routerLink="/user/profile">
+          <!-- <img [src]="!!user ? user.image : 'assets/imgs/avatar.png'" alt="" /> -->
+          <img src="assets/imgs/avatar.png" alt="" />
+        </a>
         <p>{{ !!user ? user.name : "Admin" }}</p>
       </section>
     </header>
@@ -54,7 +56,7 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <a routerLink="/profile" mat-menu-item>الصفحة الشخصية</a>
+        <a routerLink="/user/profile" mat-menu-item>الصفحة الشخصية</a>
         <button mat-menu-item (click)="logout()">تسجيل الخروج</button>
       </mat-menu>
     </mat-toolbar>

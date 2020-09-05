@@ -31,7 +31,7 @@
 
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>النوع</th>
-        <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.type === "Super" ? "مدير بكامل الصلاحيات" : "مدير عادي" }}</td>
       </ng-container>
 
       <ng-container matColumnDef="image">

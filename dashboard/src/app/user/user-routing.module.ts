@@ -11,7 +11,7 @@ import { UserComponent } from './user.component';
 const routes: Routes = [
   { path: '', component: UserComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'new', component: CreateUserComponent, canActivate: [SuperGuard] },
   { path: 'list', component: UsersListComponent, canActivate: [SuperGuard] },
 ];

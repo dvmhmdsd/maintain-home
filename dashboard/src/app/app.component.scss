@@ -44,6 +44,9 @@
 .sidenav-user {
   margin: 1rem;
   text-align: center;
+  p {
+    text-transform: capitalize;
+  }
 }
 
 .sidenav-user img {
