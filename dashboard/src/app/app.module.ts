@@ -19,7 +19,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 // import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,13 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
     // MatFormFieldModule,
     // MatInputModule,
+    MatDialogModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
@@ -43,7 +47,12 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatExpansionModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

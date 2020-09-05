@@ -1,3 +1,4 @@
+import { SuperGuard } from './../services/account/super.guard';
 import { UsersListComponent } from './users-list/users-list.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -11,8 +12,8 @@ const routes: Routes = [
   { path: '', component: UserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile/:id', component: ProfileComponent },
-  { path: 'new', component: CreateUserComponent },
-  { path: 'list', component: UsersListComponent },
+  { path: 'new', component: CreateUserComponent, canActivate: [SuperGuard] },
+  { path: 'list', component: UsersListComponent, canActivate: [SuperGuard] },
 ];
 
 @NgModule({

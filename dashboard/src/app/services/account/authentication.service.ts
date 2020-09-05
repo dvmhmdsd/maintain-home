@@ -15,7 +15,7 @@ export class AuthenticationService {
 
   isUserSuper() {
     let user: IUser = JSON.parse(localStorage.getItem('user'));
-    if (user && user.type === 'Super') return true;
+    if (user && user.type === 'Super Admin') return true;
     else return false;
   }
 }

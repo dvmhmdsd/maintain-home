@@ -77,6 +77,11 @@ mat-sidenav {
 
 mat-nav-list {
   padding-top: 0;
+  color: inherit;
+}
+
+.mat-list-item {
+  color: #fff !important
 }
 
 mat-icon {

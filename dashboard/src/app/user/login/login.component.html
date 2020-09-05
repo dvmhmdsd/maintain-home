@@ -22,7 +22,15 @@
         </mat-error>
       </mat-form-field>
 
-      <button type="submit" mat-button mat-raised-button [disabled]="!loginForm.valid">تسجيل الدخول</button>
+      <button
+        type="submit"
+        mat-button
+        mat-raised-button
+        [disabled]="!loginForm.valid"
+        (click)="login()"
+      >
+        تسجيل الدخول
+      </button>
     </form>
   </mat-card>
 </section>

@@ -8,7 +8,7 @@
     "build": "tsc && nodemon",
     "postbuild": "cd dist/ && nodemon && cd ..",
     "start": "pm2-runtime start ecosystem.config.js --env production",
-    "start:dev": "npm run build && concurrently \"nodemon\" \"cd dashboard/ && ng serve\" && cd ..",
+    "start:dev": "concurrently \"nodemon\" \"cd dashboard/ && ng serve\" && cd ..",
     "back-start:dev": "npm run build",
     "copy-files": "copyfiles -e ./tsconfig.json -e ./tslint.json ./*.js ./*.json .env dist/"
   },

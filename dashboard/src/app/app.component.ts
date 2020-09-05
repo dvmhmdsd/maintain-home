@@ -39,6 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.events.subscribe('showLayout', (val) => (this.showLayout = true));
     this.events.subscribe('unAuthorizedUser', (val) => {
       console.log(val);
       if (val) {
@@ -53,6 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logout() {
     localStorage.clear();
+    this.showLayout = false;
     this.router.navigate(['/user/login']);
   }
 }
