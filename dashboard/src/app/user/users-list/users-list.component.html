@@ -1,5 +1,5 @@
 <div class="list-container mat-elevation-z8">
-  <header class="list-header">
+  <header class="list-header" *ngIf="!isLoadingResults">
     <h2>قائمة المديرين</h2>
     <a routerLink="/user/new" mat-raised-button color="primary">
       <mat-icon>add</mat-icon>

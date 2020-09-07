@@ -1,1 +1,64 @@
-<p>profile works!</p>
+<div class="profile-container">
+  <mat-card>
+    <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!editMode">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-flat-button (click)="toggleEditMode()">
+        <mat-icon>edit</mat-icon>
+        تعديل
+      </button>
+    </mat-menu>
+    <section class="user-image">
+      <!-- <img [src]="!!user ? user.image : 'assets/imgs/avatar.png'" alt="" /> -->
+      <img src="assets/imgs/avatar.png" alt="" />
+      <section *ngIf="editMode" class="file-upload-overlay" (click)="fileInput.click()">
+        <mat-icon>add</mat-icon>
+      </section>
+    </section>
+
+    <section *ngIf="!editMode" class="user-data">
+      <h2>{{ user.name }}</h2>
+      <p>{{ user.username }}</p>
+    </section>
+
+    <form *ngIf="editMode" [formGroup]="userForm">
+      <mat-form-field>
+        <mat-label>اسم المستخدم *</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="userForm.get('name').hasError('required')">
+          اسم المستخدم مطلوب
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>الإسم المميز *</mat-label>
+        <input
+          matInput
+          placeholder="مثال: orchi123"
+          formControlName="username"
+        />
+        <mat-error *ngIf="userForm.get('username').hasError('required')">
+          الإسم المميز مطلوب
+        </mat-error>
+        <mat-error *ngIf="userForm.get('username').hasError('used')">
+          هذا الإسم مستخدم بالفعل
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-button
+        mat-raised-button
+        [disabled]="!userForm.valid"
+        (click)="updateUser()"
+      >
+        تعديل
+      </button>
+    </form>
+  </mat-card>
+
+  <input
+  style="display: none"
+  type="file" (change)="onFileChanged($event)"
+  #fileInput>
+</div>

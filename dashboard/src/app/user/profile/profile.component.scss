@@ -1,0 +1,74 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4rem;
+  .user-image {
+    position: relative;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 50%;
+    margin: 0 auto 2rem;
+
+    &:hover,
+    &:active,
+    &:focus {
+      .file-upload-overlay {
+        display: flex !important;
+      }
+    }
+
+    .file-upload-overlay {
+      position: absolute;
+      display: none !important;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background-color: rgba($color: #000000, $alpha: 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+
+      mat-icon {
+        font-size: 2rem;
+        width: initial;
+        height: initial;
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  mat-card {
+    background-color: #f9f9f9;
+    width: 225px;
+    text-align: center;
+    .menu-btn {
+      margin-left: auto;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+    }
+
+    p {
+      font-weight: bold;
+      color: rgba($color: #000000, $alpha: 0.4);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    margin-top: 4rem;
+  }
+}
