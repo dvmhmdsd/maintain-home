@@ -16,6 +16,7 @@ export default class UserService extends CoreService {
     this.login = this.login.bind(this);
     this.listRecords = this.listRecords.bind(this);
     this.getUserProfileData = this.getUserProfileData.bind(this);
+    this.updateProfileImage = this.updateProfileImage.bind(this);
   }
 
   async listRecords(req: Request, res: Response, next: any) {
@@ -78,12 +79,11 @@ export default class UserService extends CoreService {
         { new: true }
       );
 
-      
       if (!updatedRecord) {
         throw new ErrorHandler(404, "The Item you want to update is not found");
       }
-      let { username, name, type } = updatedRecord
-      res.json({ username, name, type });
+      let { username, name, type, _id, image } = updatedRecord;
+      res.json({ username, name, type, _id, image });
     } catch (error) {
       next(error);
     }
@@ -158,5 +158,22 @@ export default class UserService extends CoreService {
   logout(req: any, res: Response) {
     req.user = null;
     res.json({ success: true });
+  }
+
+  async updateProfileImage(req: any, res: Response, next: any) {
+    const { id } = req.params;
+    let usrImage = req.file.secure_url;
+
+    try {
+      let { username, name, type, _id, image } = await this._db.findByIdAndUpdate(
+        id,
+        { $set: { usrImage } },
+        { new: true }
+      );
+
+      res.json({ username, name, type, _id, image });
+    } catch (error) {
+      next(error);
+    }
   }
 }

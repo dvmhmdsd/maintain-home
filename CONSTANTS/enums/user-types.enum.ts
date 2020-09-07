@@ -1,4 +1,4 @@
 export enum UserTypes {
-  SUPER_ADMIN = "Super Admin",
+  SUPER_ADMIN = "Super",
   ADMIN = "Admin",
 }

@@ -2,6 +2,7 @@ import express from "express";
 import verifyToken from "../../helpers/token/verify-token.helper";
 import authorizeSuperAdmin from "../../helpers/auth/super-auth.helper";
 import UserService from "../../business-logic-layer/user/user.service";
+import { parser } from "../../config/cloudinary";
 const server = express.Router();
 
 const userService = new UserService();
@@ -12,6 +13,7 @@ server.get("/:id", verifyToken, userService.getUserProfileData);
 server.post("/new", verifyToken, authorizeSuperAdmin, userService.createRecord);
 server.post("/login", userService.login);
 server.put("/:id", verifyToken, userService.updateRecord);
+server.put("/:id/changeUserImage", verifyToken, parser.single("userImage"), userService.updateProfileImage);
 server.delete(
   "/:id",
   verifyToken,

@@ -31,7 +31,7 @@
 
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>النوع</th>
-        <td mat-cell *matCellDef="let row">{{ row.type === "Super" ? "مدير بكامل الصلاحيات" : "مدير عادي" }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.type === "Super" ? "مالك" : "مدير عادي" }}</td>
       </ng-container>
 
       <ng-container matColumnDef="image">
@@ -51,7 +51,7 @@
             mat-raised-button
             color="primary"
             (click)="openDialog('edit', row)"
-            [disabled]="user.type !== userTypes.SUPER_ADMIN"
+            [disabled]="row.type === userTypes.SUPER_ADMIN"
           >
             <mat-icon>create</mat-icon>
           </button>
@@ -59,7 +59,7 @@
             mat-raised-button
             color="warn"
             (click)="openDialog('remove', row)"
-            [disabled]="user.type !== userTypes.SUPER_ADMIN"
+            [disabled]="row.type === userTypes.SUPER_ADMIN"
           >
             <mat-icon>delete_forever</mat-icon>
           </button>

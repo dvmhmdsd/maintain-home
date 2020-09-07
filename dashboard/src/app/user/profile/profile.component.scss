@@ -72,3 +72,12 @@
     margin-top: 4rem;
   }
 }
+
+button.mat-raised-button {
+  background-color: rgba($color: #1e2129, $alpha: 0.93);
+  color: #fff;
+
+  &:hover {
+    background-color: #1e2129;
+  }
+}

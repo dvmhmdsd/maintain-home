@@ -27,6 +27,10 @@ export class UsersService {
     return this.http.put(`${this.baseUrl}/${userId}`, userData);
   }
 
+  updateUserImage(userId: string, fromData: FormData) {
+    return this.http.put(`${this.baseUrl}/${userId}/changeUserImage`, fromData);
+  }
+
   deleteUser(userId: string) {
     return this.http.delete(`${this.baseUrl}/${userId}`);
   }

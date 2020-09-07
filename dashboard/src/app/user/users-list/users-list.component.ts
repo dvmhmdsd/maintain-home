@@ -102,7 +102,7 @@ export class DialogRemove {
 
   userForm?: FormGroup;
   userTypes = [
-    { text: 'مدير بكامل الصلاحيات', value: 'Super' },
+    { text: 'مالك', value: 'Super' },
     { text: 'مدير عادي', value: 'Admin' },
   ];
   constructor(
@@ -146,7 +146,7 @@ export class DialogEdit {
   user: IUser;
 
   userForm?: FormGroup;
-  userTypes = [{ text: 'مدير بكامل الصلاحيات', value: 'Super' }];
+  userTypes = [{ text: 'مالك', value: 'Super' }];
   constructor(
     private events?: Events,
     @Inject(UsersService) public usersService?: UsersService,
