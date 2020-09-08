@@ -9,7 +9,7 @@ import {
   handleError,
 } from "../../helpers/error/error-handler.helper";
 
-export default class UserService extends CoreService {
+export default class UserService extends CoreService<IUser> {
   constructor() {
     super();
     this.initialize(User, "User");

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 import { ErrorHandler } from "../helpers/error/error-handler.helper";
 
-export default class CoreService {
+export default class CoreService<T> {
   protected _db: any;
   protected _name: string;
 
@@ -21,7 +21,7 @@ export default class CoreService {
 
   async listRecords(req: Request, res: Response, next: any) {
     try {
-      const records = await this._db.find({});
+      const records: T[] = await this._db.find({});
       res.json(records);
     } catch (error) {
       next(error);
@@ -30,7 +30,7 @@ export default class CoreService {
 
   async createRecord(req: Request, res: Response, next: any) {
     try {
-      const newRecord = await this._db.create({
+      const newRecord: T = await this._db.create({
         ...req.body,
       });
       res.json(newRecord);
@@ -43,7 +43,7 @@ export default class CoreService {
     const { id } = req.params;
 
     try {
-      const updatedRecord = await this._db.findByIdAndUpdate(
+      const updatedRecord: T = await this._db.findByIdAndUpdate(
         id,
         { ...req.body },
         { new: true }
@@ -62,9 +62,9 @@ export default class CoreService {
     const { id } = req.params;
 
     try {
-      const bookToBeDeleted = await this._db.findByIdAndRemove(id);
+      const itemToBeDeleted: T = await this._db.findByIdAndRemove(id);
 
-      if (!bookToBeDeleted) {
+      if (!itemToBeDeleted) {
         throw new ErrorHandler(404, "The Item you want to delete is not found");
       }
       res.json({
