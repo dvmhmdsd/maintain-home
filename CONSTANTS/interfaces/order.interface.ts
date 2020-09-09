@@ -7,5 +7,6 @@ export interface IOrder {
   device: string,
   model: string,
   damage: string,
-  time: string
+  time: string,
+  orderNumber: string,
 }

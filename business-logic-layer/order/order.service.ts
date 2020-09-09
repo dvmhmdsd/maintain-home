@@ -1,8 +1,9 @@
-import { Request, Response } from 'express';
-import { validationResult } from 'express-validator/check';
+import { Request, Response } from "express";
+import { validationResult } from "express-validator/check";
 import CoreService from "../core.service";
 import { IOrder } from "../../CONSTANTS/interfaces/order.interface";
 import Order from "../../data-access-layer/order/order.model";
+import { sendEmailToClient, sendEmailsToAllAdmins } from "../../helpers/email/email.helper";
 
 export default class OrderService extends CoreService<IOrder> {
   constructor() {
@@ -11,6 +12,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   async createRecord(req: Request, res: Response, next: any) {
+    let { name, email, phone, gps, device, model, damage, time } = req.body;
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -18,12 +20,45 @@ export default class OrderService extends CoreService<IOrder> {
         return;
       }
 
-      const newRecord: IOrder = await this._db.create({
-        ...req.body,
+      let orderNumber = await this.createOrderNumber();
+
+      const order = new Order({
+        name,
+        email,
+        phone,
+        gps,
+        device,
+        model,
+        damage,
+        time,
+        orderNumber,
       });
-      res.json(newRecord);
+
+      let newOrder: IOrder = await this._db.create(order);
+      res.json(newOrder);
+
+      sendEmailToClient(name, {
+        orderNumber
+      });
+      sendEmailsToAllAdmins(newOrder)
     } catch (error) {
-      next(error)
+      next(error);
     }
+  }
+
+  /**
+   * Returns string like this: "orch201" as "20" is the current year and "1" is the order number
+   */
+  private async createOrderNumber() {
+    let lastAddedOrder: IOrder = await this._db
+        .find({})
+        .sort({ createdAt: -1 })[0],
+      currentYear = new Date().getFullYear().toString().substr(2);
+    if (!lastAddedOrder) {
+      return `orch${currentYear}1`;
+    }
+
+    let lastAddedOrderNumber = +lastAddedOrder.orderNumber.substr(-1);
+    return `orch${currentYear}${lastAddedOrderNumber + 1}`;
   }
 }
