@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private events: Events
   ) {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])),
       password: new FormControl('', Validators.required),
     });
   }
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     let loginVM = new LoginVM();
 
     if (this.loginForm.valid) {
-      loginVM.username = this.loginForm.get('username').value;
+      loginVM.email = this.loginForm.get('email').value;
       loginVM.password = this.loginForm.get('password').value;
       this.openDialog('يتم تسجيل دخولك الآن ...');
       this.usersService.login(loginVM).subscribe(

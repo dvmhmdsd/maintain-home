@@ -1,6 +1,6 @@
 export class UserVM {
   password?: string;
-  username: string;
+  email: string;
   image?: string;
   name: string;
   type?: string;

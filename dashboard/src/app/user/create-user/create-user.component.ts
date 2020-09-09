@@ -29,7 +29,7 @@ export class CreateUserComponent implements OnInit {
   ) {
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])),
       password: new FormControl(
         '',
         Validators.compose([Validators.required, Validators.minLength(8)])
@@ -64,7 +64,7 @@ export class CreateUserComponent implements OnInit {
     if (this.userForm.valid) {
       userData = {
         name: this.userForm.get('name').value,
-        username: this.userForm.get('username').value,
+        email: this.userForm.get('email').value,
         type: this.userForm.get('type').value,
         password: this.userForm.get('password').value,
       };
@@ -82,7 +82,7 @@ export class CreateUserComponent implements OnInit {
         (err) => {
           this.closeDialog();
           if (err.status === 400) {
-            this.userForm.controls['username'].setErrors({ used: true });
+            this.userForm.controls['email'].setErrors({ used: true });
           } else {
             this.openDialog('حدث خطأ أثناء ‘نشاء مدير، من فضلك حاول مرة أخري');
           }

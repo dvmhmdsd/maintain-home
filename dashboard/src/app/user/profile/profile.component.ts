@@ -21,10 +21,10 @@ export class ProfileComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])),
     });
     this.userForm.get('name').setValue(this.user.name);
-    this.userForm.get('username').setValue(this.user.username);
+    this.userForm.get('email').setValue(this.user.email);
   }
 
   ngOnInit(): void {}
@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
     if (this.userForm.valid) {
       userData = {
         name: this.userForm.get('name').value,
-        username: this.userForm.get('username').value,
+        email: this.userForm.get('email').value,
       };
     }
 

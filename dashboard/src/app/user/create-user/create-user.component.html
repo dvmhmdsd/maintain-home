@@ -14,13 +14,16 @@
         <input
           matInput
           placeholder="مثال: orchi123"
-          formControlName="username"
+          formControlName="email"
         />
-        <mat-error *ngIf="userForm.get('username').hasError('required')">
+        <mat-error *ngIf="userForm.get('email').hasError('required')">
           الإسم المميز مطلوب
         </mat-error>
-        <mat-error *ngIf="userForm.get('username').hasError('used')">
+        <mat-error *ngIf="userForm.get('email').hasError('used')">
           هذا الإسم مستخدم بالفعل
+        </mat-error>
+        <mat-error *ngIf="userForm.get('email').hasError('pattern')">
+          هذا البريد الإلكتروني غير صالح
         </mat-error>
       </mat-form-field>
       <mat-form-field>

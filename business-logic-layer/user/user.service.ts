@@ -6,7 +6,6 @@ import User from "../../data-access-layer/user/user.model";
 import { IUser } from "../../CONSTANTS/interfaces/user.interface";
 import {
   ErrorHandler,
-  handleError,
 } from "../../helpers/error/error-handler.helper";
 
 export default class UserService extends CoreService<IUser> {
@@ -21,7 +20,7 @@ export default class UserService extends CoreService<IUser> {
 
   async listRecords(req: Request, res: Response, next: any) {
     try {
-      const records = await this._db.find({}, "name type username image");
+      const records = await this._db.find({}, "name type email image");
       res.json(records);
     } catch (error) {
       next(error);
@@ -33,7 +32,7 @@ export default class UserService extends CoreService<IUser> {
     try {
       const user: IUser = await this._db.findById(
         id,
-        "name username image type"
+        "name email image type"
       );
       if (!user) {
         throw new ErrorHandler(404, "User is not found");
@@ -45,12 +44,12 @@ export default class UserService extends CoreService<IUser> {
   }
 
   async createRecord(req: Request, res: Response, next: any) {
-    const { username, name, password, image, type } = req.body;
-    await this.checkUserExistence(username, res, next);
+    const { email, name, password, image, type } = req.body;
+    await this.checkUserExistence(email, res, next);
     try {
       const hash = await this.createHash(password);
       const user = new User({
-        username,
+        email,
         name,
         password: hash,
         image,
@@ -62,7 +61,7 @@ export default class UserService extends CoreService<IUser> {
         name: newUser.name,
         type: newUser.type,
         image: newUser.image,
-        username: newUser.username,
+        email: newUser.email,
       });
     } catch (error) {
       next(error);
@@ -82,19 +81,19 @@ export default class UserService extends CoreService<IUser> {
       if (!updatedRecord) {
         throw new ErrorHandler(404, "The Item you want to update is not found");
       }
-      let { username, name, type, _id, image } = updatedRecord;
-      res.json({ username, name, type, _id, image });
+      let { email, name, type, _id, image } = updatedRecord;
+      res.json({ email, name, type, _id, image });
     } catch (error) {
       next(error);
     }
   }
 
-  private async checkUserExistence(username: string, res: Response, next: any) {
+  private async checkUserExistence(email: string, res: Response, next: any) {
     try {
-      const users = await this._db.find({ username });
+      const users = await this._db.find({ email });
       console.log(users);
       if (users && users.length > 0) {
-        throw new ErrorHandler(400, "The username is already used.");
+        throw new ErrorHandler(400, "The email is already used.");
       }
     } catch (error) {
       next(error);
@@ -121,16 +120,16 @@ export default class UserService extends CoreService<IUser> {
   }
 
   async login(req: Request, res: Response, next: any) {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
       const user: IUser = await this._db.findOne(
-        { username },
-        "_id name username image type password"
+        { email },
+        "_id name email image type password"
       );
 
       if (!user) {
-        throw new ErrorHandler(401, "The username is incorrect !");
+        throw new ErrorHandler(401, "The email is incorrect !");
       }
 
       let result = await this.isPasswordsMatches(user.password, password);
@@ -144,7 +143,7 @@ export default class UserService extends CoreService<IUser> {
         name: user.name,
         type: user.type,
         image: user.image,
-        username: user.username,
+        email: user.email,
       };
       res.json({
         token,
@@ -165,13 +164,13 @@ export default class UserService extends CoreService<IUser> {
     let usrImage = req.file.secure_url;
 
     try {
-      let { username, name, type, _id, image } = await this._db.findByIdAndUpdate(
+      let { email, name, type, _id, image } = await this._db.findByIdAndUpdate(
         id,
         { $set: { usrImage } },
         { new: true }
       );
 
-      res.json({ username, name, type, _id, image });
+      res.json({ email, name, type, _id, image });
     } catch (error) {
       next(error);
     }

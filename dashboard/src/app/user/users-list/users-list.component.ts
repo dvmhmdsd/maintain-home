@@ -155,11 +155,11 @@ export class DialogEdit {
   ) {
     this.userForm = new FormGroup({
       name: new FormControl(data.name, Validators.required),
-      username: new FormControl(data.username, Validators.required),
+      email: new FormControl(data.email, Validators.compose([Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])),
       type: new FormControl(data.type),
     });
     this.userForm.get('name').setValue(data.user.name);
-    this.userForm.get('username').setValue(data.user.username);
+    this.userForm.get('email').setValue(data.user.email);
     this.userForm.get('type').setValue(data.user.type);
   }
   removeUser() {}
@@ -169,7 +169,7 @@ export class DialogEdit {
     if (this.userForm.valid) {
       userData = {
         name: this.userForm.get('name').value,
-        username: this.userForm.get('username').value,
+        email: this.userForm.get('email').value,
         type: this.userForm.get('type').value,
       };
 
@@ -186,7 +186,7 @@ export class DialogEdit {
         },
         (err) => {
           if (err.status === 400) {
-            this.userForm.controls['username'].setErrors({ used: true });
+            this.userForm.controls['email'].setErrors({ used: true });
           } else {
             this.success = false;
             this.loading = false;

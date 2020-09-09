@@ -28,7 +28,7 @@
 
     <section *ngIf="!editMode && !isLoading && !isFailed" class="user-data">
       <h2>{{ user.name }}</h2>
-      <p>{{ user.username }}</p>
+      <p>{{ user.email }}</p>
     </section>
 
     <section *ngIf="isLoading" class="loading-msg">جاري تحديث البيانات</section>
@@ -46,17 +46,20 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>الإسم المميز *</mat-label>
+        <mat-label>البريد الإلكتروني *</mat-label>
         <input
           matInput
           placeholder="مثال: orchi123"
-          formControlName="username"
+          formControlName="email"
         />
-        <mat-error *ngIf="userForm.get('username').hasError('required')">
-          الإسم المميز مطلوب
+        <mat-error *ngIf="userForm.get('email').hasError('required')">
+          البريد الإلكتروني مطلوب
         </mat-error>
-        <mat-error *ngIf="userForm.get('username').hasError('used')">
-          هذا الإسم مستخدم بالفعل
+        <mat-error *ngIf="userForm.get('email').hasError('used')">
+          هذا البريد مستخدم بالفعل
+        </mat-error>
+        <mat-error *ngIf="userForm.get('email').hasError('pattern')">
+          هذا البريد الإلكتروني غير صالح
         </mat-error>
       </mat-form-field>
 

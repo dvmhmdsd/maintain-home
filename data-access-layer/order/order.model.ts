@@ -20,8 +20,8 @@ const OrderSchema = new Schema({
     type: String,
   },
   gps: {
-    required: [true, "المكان علي الخريطة مطلوب "],
-    type: String,
+    longitude: String,
+    latitude: String
   },
   device: {
     type: Schema.Types.ObjectId,
