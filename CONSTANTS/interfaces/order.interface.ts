@@ -5,8 +5,12 @@ export interface IOrder {
   name: string;
   email: string;
   phone: string;
-  gps: string;
-  device: string;
+  gps: any;
+  location: string;
+  device: {
+    _id?: string;
+    name: string;
+  };
   model: string;
   damage: string;
   time: string;

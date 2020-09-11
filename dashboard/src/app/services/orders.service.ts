@@ -17,7 +17,7 @@ export class OrdersService {
   }
 
   getOrderById(orderId: string) {
-    return this.http.get(`${this.baseUrl}/list/${orderId}`);
+    return this.http.get(`${this.baseUrl}/${orderId}`);
   }
 
   updateOrder(orderId: string, data: EditOrderVM) {

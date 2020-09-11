@@ -1,0 +1,93 @@
+<div class="order-container mat-elevation-z8">
+  <h1>تفاصيل أمر الشغل</h1>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <mat-card *ngIf="!loading && order">
+    <mat-tab-group>
+      <mat-tab label="بيانات العميل">
+        <mat-list>
+          <mat-list-item>
+            <strong>إسم العميل: </strong>
+            {{ order.name }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>البريد الإلكتروني: </strong>
+            {{ order.email }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>رقم الهاتف: </strong>
+            {{ order.phone }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>المكان: </strong>
+            {{ order.location }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>خريطة المكان: </strong>
+            <a
+              target="_blank"
+              href="https://maps.google.com/maps?q={{ order.gps.latitude }},{{
+                order.gps.longitude
+              }}&hl=es;z=14"
+            >
+              https://maps.google.com/maps?q={{ order.gps.latitude }},{{
+                order.gps.longitude
+              }}&hl=es;z=14</a
+            >
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+      <mat-tab label="بيانات الطلب">
+        <mat-list>
+          <mat-list-item>
+            <strong>الجهاز: </strong>
+            {{ order.device.name }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>الموديل: </strong>
+            {{ order.model }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>الضرر: </strong>
+            {{ order.damage }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>طريقة الدفع: </strong>
+            <span *ngIf="order.paymentType === 'card'"
+              ><mat-icon>credit_card</mat-icon> كارت الدفع</span
+            >
+            <span *ngIf="order.paymentType === 'cash'"
+              ><mat-icon>payments</mat-icon> نقدًا</span
+            >
+          </mat-list-item>
+          <mat-list-item>
+            <strong>الحالة: </strong>
+            <span
+              *ngIf="
+                selectedStatus !== orderStatuses.PENDING
+              "
+              >{{ selectedStatus }}</span
+            >
+            <mat-select
+              *ngIf="
+                selectedStatus === orderStatuses.PENDING
+              "
+              [(ngModel)]="selectedStatus"
+              (selectionChange)="statusChanged($event)"
+            >
+              <mat-option [value]="orderStatuses.PENDING" disabled>{{
+                orderStatuses.PENDING
+              }}</mat-option>
+              <mat-option [value]="orderStatuses.CLOSED">{{
+                orderStatuses.CLOSED
+              }}</mat-option>
+              <mat-option [value]="orderStatuses.COMPLETED">{{
+                orderStatuses.COMPLETED
+              }}</mat-option>
+            </mat-select>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

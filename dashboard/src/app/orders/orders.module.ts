@@ -15,14 +15,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
-  declarations: [OrdersComponent],
+  declarations: [OrdersComponent, OrderDetailsComponent],
   imports: [
     CommonModule,
     OrdersRoutingModule,
     MatIconModule,
     MatDialogModule,
+    MatListModule,
     MatGridListModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -33,6 +37,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
+    MatTabsModule,
     MatMenuModule,
   ],
 })

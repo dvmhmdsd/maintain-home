@@ -32,7 +32,7 @@ export default class OrderService extends CoreService<IOrder> {
   async getById(req: Request, res: Response, next: any) {
     let { id } = req.params;
     try {
-      const order: IOrder = await this._db.findById(id);
+      const order: IOrder = await this._db.findById(id).populate("device")
       res.json(order);
     } catch (error) {
       next(error);
