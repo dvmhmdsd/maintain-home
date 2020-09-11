@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { validationResult } from "express-validator/check";
+import { validationResult } from "express-validator";
 import CoreService from "../core.service";
 import { IOrder } from "../../CONSTANTS/interfaces/order.interface";
 import Order from "../../data-access-layer/order/order.model";
@@ -90,7 +90,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   private getCompleteUrl(req: Request) {
-    return req.protocol + "://" + req.get("host") + req.originalUrl;
+    return req.protocol + "://" + req.get("host");
   }
 
   /**

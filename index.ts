@@ -9,6 +9,7 @@ import {
   userController,
 } from "./controllers";
 import { handleError } from "./helpers/error/error-handler.helper";
+import { setSendGridKey } from "./config/mailer";
 
 class App {
   private app = express();
@@ -20,6 +21,8 @@ class App {
 
   constructor() {
     dotenv.config();
+    // I set the api key here because it is not defined in mailer.ts
+    setSendGridKey(process.env.SENDGRID_API_KEY)
     this.setupDbConnection();
     this.init();
   }

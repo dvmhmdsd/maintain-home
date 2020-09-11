@@ -19,7 +19,6 @@ const handleError = (
   res?: Response
 ) => {
   const { statusCode = 500, message } = err;
-  console.log(err)
   res.status(statusCode).json({
     msg: message,
   });
