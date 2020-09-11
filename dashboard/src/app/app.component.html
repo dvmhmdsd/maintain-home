@@ -23,25 +23,55 @@
     </header>
     <mat-nav-list>
       <span *ngFor="let nav of navList">
-        <a
-          mat-list-item
-          *ngIf="!nav.superOnly"
-          [routerLink]="nav.path"
-          routerLinkActive="link-active"
-        >
-          <mat-icon>{{ nav.icon }}</mat-icon>
-          {{ nav.label }}
-        </a>
-        <a
-          mat-list-item
-          *ngIf="nav.superOnly && user && user.type === userTypes.SUPER_ADMIN"
-          (click)="mobileQuery.matches && toggleSideNav()"
-          [routerLink]="nav.path"
-          routerLinkActive="link-active"
-        >
-          <mat-icon>{{ nav.icon }}</mat-icon>
-          {{ nav.label }}
-        </a>
+        <span *ngIf="!nav.children">
+          <a
+            mat-list-item
+            *ngIf="!nav.superOnly"
+            [routerLink]="nav.path"
+            routerLinkActive="link-active"
+          >
+            <mat-icon>{{ nav.icon }}</mat-icon>
+            {{ nav.label }}
+          </a>
+          <a
+            mat-list-item
+            *ngIf="nav.superOnly"
+            [routerLink]="nav.path"
+            routerLinkActive="link-active"
+          >
+            <mat-icon>{{ nav.icon }}</mat-icon>
+            {{ nav.label }}
+          </a>
+        </span>
+
+        <span *ngIf="nav.children">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{ nav.icon }}</mat-icon>
+                    {{ nav.label }}
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <span *ngFor="let child of nav.children">
+                <mat-list-item routerLink="{{ child.path }}" *ngIf="child.superOnly">
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{ child.icon }}</mat-icon>
+                    {{ child.label }}
+                  </div>
+                </mat-list-item>
+                <mat-list-item routerLink="{{ child.path }}" *ngIf="!child.superOnly">
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{ child.icon }}</mat-icon>
+                    {{ child.label }}
+                  </div>
+                </mat-list-item>
+              </span>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </span>
       </span>
     </mat-nav-list>
   </mat-sidenav>

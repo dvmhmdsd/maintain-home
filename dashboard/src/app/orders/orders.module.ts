@@ -18,9 +18,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
+import { DevicesComponent } from './devices/devices.component';
+import { CreateDevicesComponent } from './create-devices/create-devices.component';
 
 @NgModule({
-  declarations: [OrdersComponent, OrderDetailsComponent],
+  declarations: [OrdersComponent, OrderDetailsComponent, DevicesComponent, CreateDevicesComponent],
   imports: [
     CommonModule,
     OrdersRoutingModule,

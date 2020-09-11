@@ -1,7 +1,13 @@
 import { UserTypes } from './../../../CONSTANTS/enums/user-types.enum';
 import { IUser } from './../../../CONSTANTS/interfaces/user.interface';
 import { AuthenticationService } from './services/account/authentication.service';
-import { Component, ChangeDetectorRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ChangeDetectorRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Events } from './services/events.service';
 import { Router, NavigationEnd } from '@angular/router';
@@ -12,7 +18,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild("sideNav") sideNav: any;
+  @ViewChild('sideNav') sideNav: any;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   user: IUser;
@@ -21,13 +27,49 @@ export class AppComponent implements OnInit, OnDestroy {
   showLayout: boolean;
 
   navList = [
-    { path: '/home', label: 'الصفحة الرئيسية', icon: 'dashboard' },
-    { path: '/user/list', label: 'قائمة المديرين', icon: 'supervisor_account', superOnly: true },
-    { path: '/user/new', label: 'إضافة مدير جديد', icon: 'create', superOnly: true },
-    { path: '/orders', label: 'أوامر الشغل', icon: 'home_repair_service'},
+    { path: '/home', label: 'الصفحة الرئيسية', icon: 'dashboard', superOnly: false },
+    {
+      label: 'الإدارة',
+      icon: 'admin_panel_settings',
+      children: [
+        {
+          path: '/user/list',
+          label: 'قائمة المديرين',
+          icon: 'supervisor_account',
+          superOnly: true,
+        },
+        {
+          path: '/user/new',
+          label: 'إضافة مدير جديد',
+          icon: 'create',
+          superOnly: true,
+        },
+      ],
+    },
+    {
+      label: 'أوامر الشغل',
+      icon: 'admin_panel_settings',
+      children: [
+        {
+          path: '/orders',
+          label: 'قائمة أوامر الشغل',
+          icon: 'list',
+        },
+        {
+          path: '/orders/devices',
+          label: 'قائمة الأجهزة',
+          icon: 'home_repair_service',
+        },
+        {
+          path: '/orders/create-order',
+          label: 'إنشاء جهاز جديد',
+          icon: 'widgets',
+        },
+      ],
+    },
   ];
 
-  userTypes = UserTypes
+  userTypes = UserTypes;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -57,16 +99,15 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = JSON.parse(localStorage.getItem('user'));
 
-    this.router.events.forEach(event => {
+    this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url == "/home") {
-          this.user = JSON.parse(localStorage.getItem("user"));
+        if (event.url == '/home') {
+          this.user = JSON.parse(localStorage.getItem('user'));
         }
       }
-    })
-
+    });
   }
 
   ngOnDestroy(): void {
