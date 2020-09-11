@@ -1,5 +1,4 @@
 import { UserVM } from './../viewmodels/user.viewmodel';
-import { LoginVM } from './../viewmodels/login.viewmodel';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -13,10 +12,6 @@ export class UsersService {
 
   getUsers() {
     return this.http.get(`${this.baseUrl}/list`)
-  }
-
-  login(loginData: LoginVM) {
-    return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
   register(registrationData: UserVM) {

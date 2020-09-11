@@ -35,8 +35,9 @@ export class UsersListComponent implements AfterViewInit {
     public dialog: MatDialog,
     private events: Events
   ) {}
+
   ngAfterViewInit(): void {
-    this.listUsers()
+    this.listUsers();
   }
 
   listUsers() {
@@ -67,7 +68,7 @@ export class UsersListComponent implements AfterViewInit {
       // }
       // this.data.splice(itemToBeReplacedPosition, 1, res);
       // this.data = this.data
-      this.listUsers()
+      this.listUsers();
     });
   }
 
@@ -155,7 +156,15 @@ export class DialogEdit {
   ) {
     this.userForm = new FormGroup({
       name: new FormControl(data.name, Validators.required),
-      email: new FormControl(data.email, Validators.compose([Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])),
+      email: new FormControl(
+        data.email,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          ),
+        ])
+      ),
       type: new FormControl(data.type),
     });
     this.userForm.get('name').setValue(data.user.name);

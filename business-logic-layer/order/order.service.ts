@@ -7,6 +7,7 @@ import {
   sendEmailToClient,
   sendEmailsToAllAdmins,
 } from "../../helpers/email/email.helper";
+import { ErrorHandler } from "../../helpers/error/error-handler.helper";
 
 export default class OrderService extends CoreService<IOrder> {
   constructor() {
@@ -19,7 +20,9 @@ export default class OrderService extends CoreService<IOrder> {
 
   async listRecords(req: Request, res: Response, next: any) {
     try {
-      const records: IOrder[] = await this._db.find({}).sort({ createdAt: -1 });
+      const records: IOrder[] = await this._db
+        .find({}, "orderNumber name status createdAt _id")
+        .sort({ createdAt: -1 });
       res.json(records);
     } catch (error) {
       next(error);
@@ -79,11 +82,38 @@ export default class OrderService extends CoreService<IOrder> {
         name,
         orderNumber,
       });
-      sendEmailsToAllAdmins({
+      sendEmailsToAllAdmins(
+        {
+          name,
+          orderNumber,
+          orderLink: `${this.getCompleteUrl(req)}/orders/${newOrder._id}`,
+        },
+        "order"
+      );
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async updateRecord(req: Request, res: Response, next: any) {
+    const { id } = req.params;
+
+    try {
+      const updatedRecord: IOrder = await this._db.findByIdAndUpdate(
+        id,
+        { ...req.body },
+        { new: true }
+      );
+
+      if (!updatedRecord) {
+        throw new ErrorHandler(404, "The Item you want to update is not found");
+      }
+      res.json(updatedRecord);
+      let { name, email, orderNumber } = updatedRecord;
+      sendEmailToClient(email, {
         name,
         orderNumber,
-        orderLink: `${this.getCompleteUrl(req)}/orders/${newOrder._id}`,
-      }, "order");
+      }, true);
     } catch (error) {
       next(error);
     }

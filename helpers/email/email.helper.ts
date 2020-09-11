@@ -17,7 +17,7 @@ const sendEmail = async (
 
   sgMail.send(msg, false, (error, result) => {
     if (error) {
-      handleError({statusCode: 500, message: error.message})
+      handleError({ statusCode: 500, message: error.message });
     }
   });
 };
@@ -27,8 +27,15 @@ const getAllAdmins = async () => {
   return users;
 };
 
-const sendEmailToClient = async (clientEmail: string, emailData: any) => {
-  sendEmail(clientEmail, emailData, templates.client_order);
+const sendEmailToClient = async (
+  clientEmail: string,
+  emailData: any,
+  isEmailForUpdate?: boolean
+) => {
+  let emailTemplate = isEmailForUpdate
+    ? templates.client_order_updated
+    : templates.client_order_created;
+  sendEmail(clientEmail, emailData, emailTemplate);
 };
 
 const sendEmailsToAllAdmins = async (emailData: any, emailType: string) => {

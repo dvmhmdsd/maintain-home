@@ -1,0 +1,93 @@
+/* Structure */
+.list-container {
+  position: relative;
+  min-height: 200px;
+  padding: 3rem 3rem;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.list-table-container {
+  position: relative;
+  max-height: 400px;
+  overflow: auto;
+
+  div.no-users-img {
+    text-align: center;
+    margin-top: 5rem;
+    font-weight: bold;
+    img {
+      width: 220px;
+    }
+  }
+}
+
+table {
+  width: 100%;
+
+  th {
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding-right: 16px;
+  }
+
+  td {
+    padding: 0 1rem;
+    min-width: 100px;
+  }
+
+  tr {
+    div {
+      padding: 1rem 0 !important;
+    }
+  }
+
+  mat-select {
+    width: 60px
+  }
+}
+
+@media (max-width: 600px) {
+  table {
+    font-size: 1rem;
+  }
+}
+
+.list-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 100px;
+}
+
+.mat-column-created {
+  max-width: 224px;
+}

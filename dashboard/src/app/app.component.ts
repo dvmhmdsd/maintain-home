@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     { path: '/home', label: 'الصفحة الرئيسية', icon: 'dashboard' },
     { path: '/user/list', label: 'قائمة المديرين', icon: 'supervisor_account', superOnly: true },
     { path: '/user/new', label: 'إضافة مدير جديد', icon: 'create', superOnly: true },
+    { path: '/orders', label: 'أوامر الشغل', icon: 'home_repair_service'},
   ];
 
   userTypes = UserTypes

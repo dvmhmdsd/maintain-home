@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       loginVM.email = this.loginForm.get('email').value;
       loginVM.password = this.loginForm.get('password').value;
       this.openDialog('يتم تسجيل دخولك الآن ...');
-      this.usersService.login(loginVM).subscribe(
+      this.authService.login(loginVM).subscribe(
         (res: any) => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));

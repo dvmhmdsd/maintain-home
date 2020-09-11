@@ -45,6 +45,10 @@ const OrderSchema = new Schema(
       required: [true, "الوقت المقترح مطلوب"],
       type: String,
     },
+    status: {
+      type: String,
+      default: "قيد العمل"
+    }
   },
   { timestamps: true }
 );
