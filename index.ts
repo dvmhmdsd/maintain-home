@@ -3,13 +3,19 @@ import cors from "cors";
 import path from "path";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { userController } from "./controllers";
+import {
+  deviceController,
+  orderController,
+  userController,
+} from "./controllers";
 import { handleError } from "./helpers/error/error-handler.helper";
 
 class App {
   private app = express();
   private endpoints = [
     { endpointUrl: "/api/users", controller: userController },
+    { endpointUrl: "/api/orders", controller: orderController },
+    { endpointUrl: "/api/devices", controller: deviceController },
   ];
 
   constructor() {

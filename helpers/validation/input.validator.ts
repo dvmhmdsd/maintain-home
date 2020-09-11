@@ -1,4 +1,4 @@
-import { body } from "express-validator/check";
+import { body } from "express-validator";
 
 export const validateInput = (method: string) => {
   switch (method) {
@@ -8,6 +8,7 @@ export const validateInput = (method: string) => {
         body("email").exists().isEmail().trim().escape(),
         body("phone").exists().trim().escape(),
         body("gps.*").exists().trim().escape(),
+        body("location").exists().trim().escape(),
         body("device").exists().trim().escape(),
         body("model").exists().trim().escape(),
         body("damage").exists().trim().escape(),

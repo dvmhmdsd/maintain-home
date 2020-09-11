@@ -9,4 +9,5 @@ export interface IOrder {
   damage: string,
   time: string,
   orderNumber: string,
+  paymentType: string,
 }

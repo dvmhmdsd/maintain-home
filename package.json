@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.5",
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.7",
     "@types/jsonwebtoken": "^8.5.0",

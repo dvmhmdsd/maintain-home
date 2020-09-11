@@ -65,6 +65,7 @@ export class ProfileComponent implements OnInit {
       this.isLoading = true;
       this.userService.updateUserData(userId, userData).subscribe(
         (res: IUser) => {
+          this.editMode = false;
           this.isLoading = false;
           this.isFailed = false;
           this.updateUserWithResponse(res);

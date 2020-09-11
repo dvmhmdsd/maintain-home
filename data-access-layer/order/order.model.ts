@@ -33,6 +33,10 @@ const OrderSchema = new Schema(
       required: [true, "الموديل مطلوب"],
       type: String,
     },
+    paymentType: {
+      required: true,
+      type: String
+    },
     damage: {
       required: [true, "العطل مطلوب"],
       type: String,

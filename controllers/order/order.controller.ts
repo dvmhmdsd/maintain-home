@@ -8,6 +8,7 @@ const server = express.Router();
 const orderService = new OrderService();
 
 server.get("/list", verifyToken, orderService.listRecords);
+server.get("/:id", verifyToken, orderService.getById);
 server.post("/new", validateInput("createOrder"), orderService.createRecord);
 server.put("/:id", verifyToken, orderService.updateRecord);
 server.delete(
