@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import {
   complaintController,
   deviceController,
+  feedbackController,
   orderController,
   userController,
 } from "./controllers";
@@ -19,6 +20,7 @@ class App {
     { endpointUrl: "/api/orders", controller: orderController },
     { endpointUrl: "/api/devices", controller: deviceController },
     { endpointUrl: "/api/complaints", controller: complaintController },
+    { endpointUrl: "/api/feedbacks", controller: feedbackController },
   ];
 
   constructor() {
