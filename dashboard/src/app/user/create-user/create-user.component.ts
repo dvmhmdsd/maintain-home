@@ -48,7 +48,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog(msg: string) {
-    this.dialog.open(DialogData, {
+    this.dialog.open(UserDialogData, {
       data: {
         msg,
       },
@@ -96,6 +96,6 @@ export class CreateUserComponent implements OnInit {
   selector: 'dialog-data',
   templateUrl: './dialog-data.html',
 })
-export class DialogData {
+export class UserDialogData {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

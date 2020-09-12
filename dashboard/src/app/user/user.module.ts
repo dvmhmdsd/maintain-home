@@ -6,7 +6,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { LoginComponent, DialogData } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { CreateUserComponent } from './create-user/create-user.component';
+import { CreateUserComponent, UserDialogData } from './create-user/create-user.component';
 import {
   UsersListComponent,
   DialogRemove,
@@ -25,7 +25,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  entryComponents: [DialogData, DialogRemove, DialogEdit],
+  entryComponents: [DialogData, DialogRemove, DialogEdit, UserDialogData],
   declarations: [
     UserComponent,
     LoginComponent,
@@ -33,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
     CreateUserComponent,
     UsersListComponent,
     DialogData,
+    UserDialogData,
     DialogRemove,
     DialogEdit,
   ],
