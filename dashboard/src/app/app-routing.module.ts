@@ -18,7 +18,8 @@ const routes: Routes = [
     redirectTo: 'user/login',
     pathMatch: "full"
   },
-  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) }
+  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
+  { path: 'complaints', loadChildren: () => import('./complaints/complaints.module').then(m => m.ComplaintsModule) }
 ];
 
 @NgModule({
