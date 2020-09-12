@@ -7,6 +7,7 @@ import {
   complaintController,
   deviceController,
   feedbackController,
+  lookupsController,
   orderController,
   userController,
 } from "./controllers";
@@ -21,6 +22,7 @@ class App {
     { endpointUrl: "/api/devices", controller: deviceController },
     { endpointUrl: "/api/complaints", controller: complaintController },
     { endpointUrl: "/api/feedbacks", controller: feedbackController },
+    { endpointUrl: "/api/lookups", controller: lookupsController },
   ];
 
   constructor() {
