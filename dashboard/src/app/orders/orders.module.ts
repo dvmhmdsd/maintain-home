@@ -19,10 +19,10 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { DevicesComponent } from './devices/devices.component';
-import { CreateDevicesComponent } from './create-devices/create-devices.component';
+import { CreateDevicesComponent, DialogData } from './create-devices/create-devices.component';
 
 @NgModule({
-  declarations: [OrdersComponent, OrderDetailsComponent, DevicesComponent, CreateDevicesComponent],
+  declarations: [OrdersComponent, OrderDetailsComponent, DevicesComponent, CreateDevicesComponent, DialogData],
   imports: [
     CommonModule,
     OrdersRoutingModule,

@@ -1,1 +1,24 @@
-<p>create-devices works!</p>
+<section class="create-form-container">
+  <h2>أضف جهازًا جديدًا</h2>
+  <mat-card>
+    <form [formGroup]="deviceForm">
+      <mat-form-field>
+        <mat-label>اسم الجهاز *</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="deviceForm.get('name').hasError('required')">
+          اسم الجهاز مطلوب
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-button
+        mat-raised-button
+        [disabled]="!deviceForm.valid"
+        (click)="createDevice()"
+      >
+        إضافة
+      </button>
+    </form>
+  </mat-card>
+</section>

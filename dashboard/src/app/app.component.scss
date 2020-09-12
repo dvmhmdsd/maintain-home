@@ -54,7 +54,11 @@ mat-expansion-panel {
   box-shadow: none !important;
 
   mat-panel-title {
-    color: #fff
+    color: #fff;
+    div {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 

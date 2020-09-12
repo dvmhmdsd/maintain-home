@@ -1,1 +1,49 @@
-<p>devices works!</p>
+<div class="list-container mat-elevation-z8">
+  <header class="list-header" *ngIf="!isLoadingResults">
+    <h2>قائمة الأجهزة</h2>
+    <a routerLink="/orders/create-device" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>
+      إنشاء جهاز جديد
+    </a>
+  </header>
+  <div class="list-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="list-rate-limit-reached" *ngIf="isFailed">
+      حدث خطأ أثناء محاولة جلب الأجهزة، من فضلك قم بإعادة تحميل الصفحة
+      أو قم بالاتصال بالدعم
+    </div>
+  </div>
+  <div class="list-table-container">
+    <div *ngIf="data.length < 1 && !isLoadingResults" class="no-users-img">
+      <img src="assets/imgs/empty.png" alt="empty documents" />
+      <h3>لا أجهزة حتي الآن، قم <a routerLink="/orders/create-device">بإضافة جهاز</a></h3>
+    </div>
+    <table
+      *ngIf="data.length > 0"
+      mat-table
+      [dataSource]="data"
+      class="list-table"
+    >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>اسم الجهاز</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>الإجراء</th>
+        <td mat-cell *matCellDef="let row">
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteDevice(row._id)"
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

@@ -48,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
     },
     {
       label: 'أوامر الشغل',
-      icon: 'admin_panel_settings',
+      icon: 'featured_play_list',
       children: [
         {
           path: '/orders',
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
           icon: 'home_repair_service',
         },
         {
-          path: '/orders/create-order',
+          path: '/orders/create-device',
           label: 'إنشاء جهاز جديد',
           icon: 'widgets',
         },

@@ -10,17 +10,17 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>الإسم المميز *</mat-label>
+        <mat-label>البريد الإلكتروني *</mat-label>
         <input
           matInput
-          placeholder="مثال: orchi123"
+          placeholder="مثال: test@example.com"
           formControlName="email"
         />
         <mat-error *ngIf="userForm.get('email').hasError('required')">
-          الإسم المميز مطلوب
+          البريد الإلكتروني مطلوب
         </mat-error>
         <mat-error *ngIf="userForm.get('email').hasError('used')">
-          هذا الإسم مستخدم بالفعل
+          هذا البريد مستخدم بالفعل
         </mat-error>
         <mat-error *ngIf="userForm.get('email').hasError('pattern')">
           هذا البريد الإلكتروني غير صالح

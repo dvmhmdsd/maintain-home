@@ -59,15 +59,6 @@ export class UsersListComponent implements AfterViewInit {
     this.user = JSON.parse(localStorage.getItem('user'));
 
     this.events.subscribe('userUpdated', (res) => {
-      // let itemToBeReplacedPosition;
-      // for (let [index, item] of this.data.entries()) {
-      //   if (res._id === item._id) {
-      //     itemToBeReplacedPosition = index;
-      //     break;
-      //   }
-      // }
-      // this.data.splice(itemToBeReplacedPosition, 1, res);
-      // this.data = this.data
       this.listUsers();
     });
   }
