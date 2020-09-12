@@ -30,7 +30,7 @@ const OrderSchema = new Schema(
       ref: "Device",
     },
     model: {
-      required: [true, "الموديل مطلوب"],
+      required: true,
       type: String,
     },
     paymentType: {
@@ -38,11 +38,11 @@ const OrderSchema = new Schema(
       type: String
     },
     damage: {
-      required: [true, "العطل مطلوب"],
+      required: true,
       type: String,
     },
     time: {
-      required: [true, "الوقت المقترح مطلوب"],
+      required: true,
       type: String,
     },
     status: {

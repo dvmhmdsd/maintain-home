@@ -30,9 +30,9 @@ const getAllAdmins = async () => {
 const sendEmailToClient = async (
   clientEmail: string,
   emailData: any,
-  isEmailForUpdate?: boolean
+  isEmailForOrderUpdate?: boolean
 ) => {
-  let emailTemplate = isEmailForUpdate
+  let emailTemplate = isEmailForOrderUpdate
     ? templates.client_order_updated
     : templates.client_order_created;
   sendEmail(clientEmail, emailData, emailTemplate);

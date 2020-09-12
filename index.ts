@@ -4,6 +4,7 @@ import path from "path";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {
+  complaintController,
   deviceController,
   orderController,
   userController,
@@ -17,6 +18,7 @@ class App {
     { endpointUrl: "/api/users", controller: userController },
     { endpointUrl: "/api/orders", controller: orderController },
     { endpointUrl: "/api/devices", controller: deviceController },
+    { endpointUrl: "/api/complaints", controller: complaintController },
   ];
 
   constructor() {
