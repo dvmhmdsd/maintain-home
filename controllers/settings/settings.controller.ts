@@ -1,5 +1,5 @@
-import { SettingsService } from "./../../business-logic-layer/settings/settings.service";
 import express from "express";
+import { SettingsService } from "./../../business-logic-layer/settings/settings.service";
 import verifyToken from "../../helpers/token/verify-token.helper";
 import { parser } from "../../config/cloudinary";
 
@@ -11,13 +11,14 @@ server.get("/video", settingsService.getVideo);
 server.post(
   "/images",
   verifyToken,
-  parser.array("images"),
-  settingsService.uploadAssets
+  parser.single("image"),
+  settingsService.addImage
 );
 server.post(
   "/video",
   verifyToken,
-  settingsService.uploadAssets
+  settingsService.uploadVideo
 );
+server.delete("/images/application/:publicId", settingsService.deleteImage)
 
 export default server;
