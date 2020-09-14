@@ -1,7 +1,7 @@
 import { UserVM } from './../viewmodels/user.viewmodel';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,12 @@ export class UsersService {
   }
 
   updateUserImage(userId: string, fromData: FormData) {
+    const headerDict = {
+      'Content-Type': 'multipart/form-data',
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
     return this.http.put(`${this.baseUrl}/${userId}/changeUserImage`, fromData);
   }
 

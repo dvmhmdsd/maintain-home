@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {
   complaintController,
@@ -9,10 +8,12 @@ import {
   feedbackController,
   lookupsController,
   orderController,
+  settingsController,
   userController,
 } from "./controllers";
 import { handleError } from "./helpers/error/error-handler.helper";
-import { setSendGridKey } from "./config/mailer";
+
+// const fileUpload = require('express-fileupload');
 
 class App {
   private app = express();
@@ -23,12 +24,10 @@ class App {
     { endpointUrl: "/api/complaints", controller: complaintController },
     { endpointUrl: "/api/feedbacks", controller: feedbackController },
     { endpointUrl: "/api/lookups", controller: lookupsController },
+    { endpointUrl: "/api/assets", controller: settingsController },
   ];
 
   constructor() {
-    dotenv.config();
-    // I set the api key here because it is not defined in mailer.ts
-    setSendGridKey(process.env.SENDGRID_API_KEY)
     this.setupDbConnection();
     this.init();
   }
@@ -36,6 +35,16 @@ class App {
   private init() {
     this.app.use(express.json());
     this.app.use(cors());
+    this.app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'x-www-form-urlencoded, Origin, X-Requested-With, Content-Type, Accept, Authorization, *');
+      if (req.method === 'OPTIONS'){
+          res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE, OPTIONS');
+          res.setHeader('Access-Control-Allow-Credentials', "true");
+          return res.status(200).json({});
+      }
+      next();
+  });
 
     if (process.env.NODE_ENV === "production") {
       this.app.use(express.static(path.join(__dirname, "public")));

@@ -93,6 +93,10 @@ export class AppComponent implements OnInit, OnDestroy {
       this.showLayout = true;
       this.isDrawerOpened = this.mobileQuery.matches ? false : true;
     });
+    this.events.subscribe("userImageChanged", (value) => {
+      console.log(value)
+      this.user = value
+    })
     this.events.subscribe('unAuthorizedUser', (val) => {
       console.log(val);
       if (val) {

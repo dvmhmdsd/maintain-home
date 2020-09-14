@@ -15,8 +15,8 @@
       </button>
     </mat-menu>
     <section class="user-image">
-      <!-- <img [src]="!!user ? user.image : 'assets/imgs/avatar.png'" alt="" /> -->
-      <img src="assets/imgs/avatar.png" alt="" />
+      <img [src]="!!user && user.image" alt="" />
+      <!-- <img src="assets/imgs/avatar.png" alt="" /> -->
       <section
         *ngIf="editMode && !isLoading"
         class="file-upload-overlay"
@@ -70,7 +70,7 @@
         [disabled]="!userForm.valid"
         (click)="updateUser()"
       >
-        تعديل
+        حفظ
       </button>
     </form>
   </mat-card>

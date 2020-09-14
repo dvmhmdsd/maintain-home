@@ -4,6 +4,7 @@ import deviceController from "./order/device.controller";
 import complaintController from "./complaint/complaint.controller";
 import feedbackController from "./feedback/feedback.controller";
 import lookupsController from "./lookups.controller";
+import settingsController from "./settings/settings.controller";
 
 export {
   userController,
@@ -12,4 +13,5 @@ export {
   complaintController,
   feedbackController,
   lookupsController,
+  settingsController,
 };

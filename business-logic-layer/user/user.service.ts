@@ -166,11 +166,11 @@ export default class UserService extends CoreService<IUser> {
     try {
       let { email, name, type, _id, image } = await this._db.findByIdAndUpdate(
         id,
-        { $set: { usrImage } },
+        { $set: { image: usrImage } },
         { new: true }
       );
 
-      res.json({ email, name, type, _id, image });
+      res.json({ email, name, type, _id, image: usrImage });
     } catch (error) {
       next(error);
     }

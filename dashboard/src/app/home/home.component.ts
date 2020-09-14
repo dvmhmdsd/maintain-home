@@ -9,11 +9,14 @@ import { LookupsService } from './../services/lookups.service';
 export class HomeComponent implements OnInit {
   ordersCount: number;
   complaintsCount: number;
+  isLoading: boolean;
   constructor(private lookups: LookupsService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.lookups.get().subscribe(
       (res: any) => {
+        this.isLoading = false;
         this.ordersCount = res.orders;
         this.complaintsCount = res.complaints;
       },

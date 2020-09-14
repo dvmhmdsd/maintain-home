@@ -1,3 +1,4 @@
+import { Events } from './../../services/events.service';
 import { UsersService } from './../../services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
   isFailed: boolean;
   isLoading: boolean;
 
-  constructor(private userService: UsersService) {
+  constructor(private userService: UsersService, private events: Events) {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
       (res: IUser) => {
         this.isLoading = false;
         this.updateUserWithResponse(res);
+        this.events.publish("userImageChanged", res)
       },
       (err) => {
         this.isLoading = false;
