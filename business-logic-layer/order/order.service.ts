@@ -21,7 +21,7 @@ export default class OrderService extends CoreService<IOrder> {
   async listRecords(req: Request, res: Response, next: any) {
     try {
       const records: IOrder[] = await this._db
-        .find({}, "orderNumber name status createdAt _id")
+        .find({}, "orderNumber name status createdAt _id phone")
         .sort({ createdAt: -1 });
       res.json(records);
     } catch (error) {
@@ -118,26 +118,6 @@ export default class OrderService extends CoreService<IOrder> {
         },
         true
       );
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async search(req: Request, res: Response, next: any) {
-    let { orderNumber, name, phone } = req.body,
-      searchResults: any;
-
-    try {
-      if (orderNumber) {
-        searchResults = await this._db.find({ orderNumber });
-      } else if (name) {
-        searchResults = await this._db.find({ name });
-      } else if (phone) {
-        searchResults = await this._db.find({ phone });
-      } else {
-        searchResults = [];
-      }
-      res.json(searchResults);
     } catch (error) {
       next(error);
     }

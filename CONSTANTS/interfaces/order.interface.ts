@@ -5,6 +5,7 @@ export interface IOrder {
   name: string;
   email: string;
   phone: string;
+  whatsapp: string;
   gps: any;
   location: string;
   device: {

@@ -9,7 +9,6 @@ const orderService = new OrderService();
 server.get("/list", verifyToken, orderService.listRecords);
 server.get("/:id", verifyToken, orderService.getById);
 server.post("/new", validateOrderInput(), orderService.createRecord);
-server.post("/search", orderService.search);
 server.put("/:id", verifyToken, orderService.updateRecord);
 server.delete(
   "/:id",

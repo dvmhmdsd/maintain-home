@@ -39,6 +39,7 @@ table {
     font-weight: bold;
     font-size: 1.3rem;
     padding-right: 16px;
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   td {
@@ -90,4 +91,11 @@ table {
 
 .mat-column-created {
   max-width: 224px;
+}
+
+mat-form-field {
+  mat-icon {
+    position: relative;
+    bottom: -5px;
+  }
 }
