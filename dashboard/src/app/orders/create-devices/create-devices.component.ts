@@ -43,8 +43,9 @@ export class CreateDevicesComponent implements OnInit {
 
   createDevice() {
     let deviceName = this.deviceForm.get('name').value;
+    let deviceArabicName = this.deviceForm.get('arabicName').value;
     this.openDialog('يتم إنشاء جهاز الآن ...');
-    this.devicesService.createDevice({ name: deviceName }).subscribe(
+    this.devicesService.createDevice({ name: deviceName, arabicName: deviceArabicName }).subscribe(
       () => {
         this.closeDialog();
         this.openDialog('لقد تم إنشاء الجهاز');
