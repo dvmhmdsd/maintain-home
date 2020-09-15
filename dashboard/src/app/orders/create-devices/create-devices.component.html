@@ -3,9 +3,17 @@
   <mat-card>
     <form [formGroup]="deviceForm">
       <mat-form-field>
-        <mat-label>اسم الجهاز *</mat-label>
+        <mat-label>اسم الجهاز بالإنجليزية*</mat-label>
         <input matInput formControlName="name" />
         <mat-error *ngIf="deviceForm.get('name').hasError('required')">
+          اسم الجهاز مطلوب
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>اسم الجهاز بالعربية*</mat-label>
+        <input matInput formControlName="arabicName" />
+        <mat-error *ngIf="deviceForm.get('arabicName').hasError('required')">
           اسم الجهاز مطلوب
         </mat-error>
       </mat-form-field>

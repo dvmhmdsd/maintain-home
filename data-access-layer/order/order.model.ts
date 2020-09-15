@@ -5,19 +5,19 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema(
   {
     name: {
-      required: [true, "الإسم مطلوب"],
+      required: true,
       type: String,
     },
     email: {
-      required: [true, "البريد الإلكتروني مطلوب"],
+      required: true,
       type: String,
     },
     phone: {
-      required: [true, "رقم الهاتف مطلوب"],
+      required: true,
       type: String,
     },
     location: {
-      required: [true, "المكان مطلوب"],
+      required: true,
       type: String,
     },
     gps: {

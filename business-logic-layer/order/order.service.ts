@@ -32,7 +32,7 @@ export default class OrderService extends CoreService<IOrder> {
   async getById(req: Request, res: Response, next: any) {
     let { id } = req.params;
     try {
-      const order: IOrder = await this._db.findById(id).populate("device")
+      const order: IOrder = await this._db.findById(id).populate("device");
       res.json(order);
     } catch (error) {
       next(error);
@@ -110,10 +110,34 @@ export default class OrderService extends CoreService<IOrder> {
       }
       res.json(updatedRecord);
       let { name, email, orderNumber } = updatedRecord;
-      sendEmailToClient(email, {
-        name,
-        orderNumber,
-      }, true);
+      sendEmailToClient(
+        email,
+        {
+          name,
+          orderNumber,
+        },
+        true
+      );
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async search(req: Request, res: Response, next: any) {
+    let { orderNumber, name, phone } = req.body,
+      searchResults: any;
+
+    try {
+      if (orderNumber) {
+        searchResults = await this._db.find({ orderNumber });
+      } else if (name) {
+        searchResults = await this._db.find({ name });
+      } else if (phone) {
+        searchResults = await this._db.find({ phone });
+      } else {
+        searchResults = [];
+      }
+      res.json(searchResults);
     } catch (error) {
       next(error);
     }

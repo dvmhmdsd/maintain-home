@@ -10,7 +10,7 @@ import { IDevice } from './../../../../../CONSTANTS/interfaces/device.interface'
 export class DevicesComponent implements OnInit {
   isLoadingResults = true;
   isFailed: boolean;
-  displayedColumns: string[] = ['name', '_id'];
+  displayedColumns: string[] = ['name', 'arabicName', '_id'];
   data: IDevice[] = [];
 
   constructor(private devicesService: DevicesService) {}

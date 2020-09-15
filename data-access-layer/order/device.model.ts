@@ -6,6 +6,9 @@ const DeviceSchema = new Schema({
   name: {
     type: String
   },
+  arabicName: {
+    type: String
+  }
 });
 
 const Device = mongoose.model("Device", DeviceSchema);

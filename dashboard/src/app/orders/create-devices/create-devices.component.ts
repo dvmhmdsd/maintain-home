@@ -23,6 +23,7 @@ export class CreateDevicesComponent implements OnInit {
   ) {
     this.deviceForm = new FormGroup({
       name: new FormControl('', Validators.required),
+      arabicName: new FormControl('', Validators.required),
     });
   }
 
