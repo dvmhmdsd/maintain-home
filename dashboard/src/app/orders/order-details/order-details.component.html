@@ -19,6 +19,10 @@
             {{ order.phone }}
           </mat-list-item>
           <mat-list-item>
+            <strong>رقم الواتساب: </strong>
+            {{ order.whatsapp }}
+          </mat-list-item>
+          <mat-list-item>
             <strong>المكان: </strong>
             {{ order.location }}
           </mat-list-item>
@@ -41,7 +45,7 @@
         <mat-list>
           <mat-list-item>
             <strong>الجهاز: </strong>
-            {{ order.device.name }}
+            {{ order.device ? order.device.name : "" }}
           </mat-list-item>
           <mat-list-item>
             <strong>الموديل: </strong>

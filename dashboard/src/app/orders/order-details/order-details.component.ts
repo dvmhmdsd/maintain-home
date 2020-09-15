@@ -35,6 +35,7 @@ export class OrderDetailsComponent implements OnInit {
         this.loading = false;
         this.order = res;
         this.selectedStatus = res.status;
+        console.log(this.order)
       },
       () => {
         this.loading = false;

@@ -16,6 +16,10 @@ const OrderSchema = new Schema(
       required: true,
       type: String,
     },
+    whatsapp: {
+      required: true,
+      type: String,
+    },
     location: {
       required: true,
       type: String,
