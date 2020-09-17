@@ -7,19 +7,27 @@
   .lookups {
     width: 100%;
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     text-align: center;
     margin-bottom: 2rem;
-    box-shadow: 1px 2px 4px #ccc;
+    margin-top: 1rem;
 
     & > div {
       display: inline-block;
-      width: 50%;
-      border-right: 1px solid #999;
+      padding: 0.5rem 3rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+      background-color: #1e2129;
+      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+        0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+      border-radius: 12px;
     }
 
     h2 {
       font-size: 1.3rem;
       font-weight: lighter;
+      margin-top: 0;
     }
     p {
       font-size: 1.5rem;
@@ -29,7 +37,7 @@
 
   h2 {
     margin-top: 2rem;
-    font-size: 1.7rem
+    font-size: 1.7rem;
   }
 
   img {
@@ -41,6 +49,6 @@
 
 @media (max-width: 600) {
   img {
-    max-width: 100%
+    max-width: 100%;
   }
 }
