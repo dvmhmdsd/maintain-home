@@ -14,6 +14,14 @@
         تعديل
       </button>
     </mat-menu>
+    <button
+      class="menu-btn"
+      mat-icon-button
+      *ngIf="editMode"
+      (click)="toggleEditMode()"
+    >
+      cancel
+    </button>
     <section class="user-image">
       <img [src]="!!user && user.image" alt="" />
       <!-- <img src="assets/imgs/avatar.png" alt="" /> -->
