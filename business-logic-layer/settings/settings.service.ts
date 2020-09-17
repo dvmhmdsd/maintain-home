@@ -1,3 +1,4 @@
+import { ISettings } from "./../../CONSTANTS/interfaces/settings.interface";
 import { Request, Response } from "express";
 import { Readable } from "stream";
 import Settings from "../../data-access-layer/settings/settings.model";
@@ -42,9 +43,7 @@ export class SettingsService {
               await this._db.create({ video: video.secure_url });
             }
             res.json({ video: video.secure_url });
-          } else (
-            res.sendStatus(500)
-          )
+          } else res.sendStatus(500);
         }
       );
       streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);

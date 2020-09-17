@@ -1,4 +1,4 @@
 export interface ISettings {
-  video: string;
+  videoUrl: string;
   images: string[];
 }
