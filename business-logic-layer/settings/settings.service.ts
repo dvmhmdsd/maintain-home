@@ -1,13 +1,12 @@
-import { ISettings } from "./../../CONSTANTS/interfaces/settings.interface";
 import { Request, Response } from "express";
-import { Readable } from "stream";
+import multer from "multer";
+// @ts-ignore
+import streamifier from "streamifier";
 import Settings from "../../data-access-layer/settings/settings.model";
 import { ErrorHandler } from "../../helpers/error/error-handler.helper";
 
-const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const cloudinary = require("cloudinary").v2;
-const streamifier = require("streamifier");
 
 export class SettingsService {
   private _db = Settings;
@@ -27,14 +26,14 @@ export class SettingsService {
         api_secret: process.env.CLOUDINARY_API_SECRET,
       });
 
-      let cld_upload_stream = cloudinary.uploader.upload_stream(
+      const cldUploadStream = cloudinary.uploader.upload_stream(
         { folder: "application", resource_type: "video" },
         async (err: any, video: any) => {
           if (err) {
-            new ErrorHandler(err.http_code, err.message);
+            throw new ErrorHandler(err.http_code, err.message);
           }
           if (video) {
-            let updatedRecord = await this._db.findOneAndUpdate(
+            const updatedRecord = await this._db.findOneAndUpdate(
               {},
               { $set: { videoUrl: video.secure_url } },
               { new: true }
@@ -46,13 +45,13 @@ export class SettingsService {
           } else res.sendStatus(500);
         }
       );
-      streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+      streamifier.createReadStream(req.file.buffer).pipe(cldUploadStream);
     });
   }
 
   async getImages(req: Request, res: Response, next: any) {
     try {
-      let images = await this._db.findOne({}, "images");
+      const images = await this._db.findOne({}, "images");
       res.json(images);
     } catch (error) {
       next(error);
@@ -61,13 +60,13 @@ export class SettingsService {
 
   async addImage(req: any, res: Response, next: any) {
     try {
-      let { public_id, secure_url } = req.file;
-      let imageObject = {
+      const { public_id, secure_url } = req.file;
+      const imageObject = {
         _id: public_id,
         url: secure_url,
       };
 
-      let updatedRecord = await this._db.findOneAndUpdate(
+      const updatedRecord = await this._db.findOneAndUpdate(
         {},
         { $push: { images: imageObject } }
       );
@@ -81,7 +80,7 @@ export class SettingsService {
   }
 
   async deleteImage(req: Request, res: Response, next: any) {
-    let { publicId } = req.params;
+    const { publicId } = req.params;
 
     try {
       await cloudinary.uploader.destroy(`application/${publicId}`);
@@ -97,7 +96,7 @@ export class SettingsService {
 
   async getVideo(req: Request, res: Response, next: any) {
     try {
-      let video = await Settings.findOne({}, "videoUrl");
+      const video = await Settings.findOne({}, "videoUrl");
       res.json(video);
     } catch (error) {
       next(error);

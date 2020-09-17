@@ -30,7 +30,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   async getById(req: Request, res: Response, next: any) {
-    let { id } = req.params;
+    const { id } = req.params;
     try {
       const order: IOrder = await this._db.findById(id).populate("device");
       res.json(order);
@@ -40,7 +40,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   async createRecord(req: Request, res: Response, next: any) {
-    let {
+    const {
       name,
       email,
       phone,
@@ -60,7 +60,7 @@ export default class OrderService extends CoreService<IOrder> {
         return;
       }
 
-      let orderNumber = await this.createOrderNumber();
+      const orderNumber = await this.createOrderNumber();
 
       const order = new Order({
         name,
@@ -77,7 +77,7 @@ export default class OrderService extends CoreService<IOrder> {
         paymentType,
       });
 
-      let newOrder: IOrder = await this._db.create(order);
+      const newOrder: IOrder = await this._db.create(order);
       res.json(newOrder);
 
       sendEmailToClient(email, {
@@ -111,7 +111,7 @@ export default class OrderService extends CoreService<IOrder> {
         throw new ErrorHandler(404, "The Item you want to update is not found");
       }
       res.json(updatedRecord);
-      let { name, email, orderNumber } = updatedRecord;
+      const { name, email, orderNumber } = updatedRecord;
       sendEmailToClient(
         email,
         {
@@ -133,16 +133,16 @@ export default class OrderService extends CoreService<IOrder> {
    * Returns string like this: "orch201" as "20" is the current year and "1" is the order number
    */
   private async createOrderNumber() {
-    let lastAddedOrder: IOrder = await this._db
-        .findOne({})
-        .sort({ createdAt: -1 }),
-      currentYear = new Date().getFullYear().toString().substr(2);
+    const lastAddedOrder: IOrder = await this._db
+      .findOne({})
+      .sort({ createdAt: -1 });
+    const currentYear = new Date().getFullYear().toString().substr(2);
 
     if (!lastAddedOrder) {
       return `orch${currentYear}1`;
     }
 
-    let lastAddedOrderNumber = +lastAddedOrder.orderNumber.substr(-1);
+    const lastAddedOrderNumber = +lastAddedOrder.orderNumber.substr(-1);
     return `orch${currentYear}${lastAddedOrderNumber + 1}`;
   }
 }

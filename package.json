@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix && npm run copy-files",
-    "build": "tsc && nodemon",
-    "postbuild": "cd dist/ && nodemon && cd ..",
+    "build": "tsc && cd dashboard && ng build --prod && cd ..",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "start:dev": "concurrently \"nodemon\" \"cd dashboard/ && ng serve -o\" && cd ..",
     "back-start:dev": "npm run build",
-    "copy-files": "copyfiles -e ./tsconfig.json -e ./tslint.json ./*.js ./*.json .env dist/"
+    "copy-files": "copyfiles -e ./tsconfig.json -e ./tslint.json -e ./nodemon.json ./*.js ./*.json .env dist/"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,md}": [

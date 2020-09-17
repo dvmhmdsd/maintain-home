@@ -17,7 +17,7 @@ export default class ComplaintService extends CoreService<IComplaint> {
         ...req.body,
       });
       res.json(newRecord);
-      let { orderNumber, body } = newRecord;
+      const { orderNumber, body } = newRecord;
       sendEmailsToAllAdmins(
         {
           orderNumber,

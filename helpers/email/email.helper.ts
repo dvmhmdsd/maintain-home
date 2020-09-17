@@ -23,7 +23,7 @@ const sendEmail = async (
 };
 
 const getAllAdmins = async () => {
-  let users: any = await User.find({});
+  const users: any = await User.find({});
   return users;
 };
 
@@ -32,16 +32,16 @@ const sendEmailToClient = async (
   emailData: any,
   isEmailForOrderUpdate?: boolean
 ) => {
-  let emailTemplate = isEmailForOrderUpdate
+  const emailTemplate = isEmailForOrderUpdate
     ? templates.client_order_updated
     : templates.client_order_created;
   sendEmail(clientEmail, emailData, emailTemplate);
 };
 
 const sendEmailsToAllAdmins = async (emailData: any, emailType: string) => {
-  let admins = await getAllAdmins();
+  const admins = await getAllAdmins();
   admins.forEach((admin: IUser) => {
-    let emailTemplate =
+    const emailTemplate =
       emailType === "order" ? templates.admin_order : templates.complaint;
     sendEmail(admin.email, emailData, emailTemplate);
   });

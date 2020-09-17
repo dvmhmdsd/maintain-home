@@ -55,7 +55,7 @@ export default class UserService extends CoreService<IUser> {
         image,
         type,
       });
-      let newUser: IUser = await this._db.create(user);
+      const newUser: IUser = await this._db.create(user);
       res.json({
         _id: newUser._id,
         name: newUser.name,
@@ -81,7 +81,7 @@ export default class UserService extends CoreService<IUser> {
       if (!updatedRecord) {
         throw new ErrorHandler(404, "The Item you want to update is not found");
       }
-      let { email, name, type, _id, image } = updatedRecord;
+      const { email, name, type, _id, image } = updatedRecord;
       res.json({ email, name, type, _id, image });
     } catch (error) {
       next(error);
@@ -105,7 +105,7 @@ export default class UserService extends CoreService<IUser> {
   }
 
   private async isPasswordsMatches(hash: string, password: string) {
-    let result = await bcrypt.compare(password, hash);
+    const result = await bcrypt.compare(password, hash);
     if (result) {
       return true;
     } else {
@@ -132,13 +132,13 @@ export default class UserService extends CoreService<IUser> {
         throw new ErrorHandler(401, "The email is incorrect !");
       }
 
-      let result = await this.isPasswordsMatches(user.password, password);
+      const result = await this.isPasswordsMatches(user.password, password);
       if (!result) {
         throw new ErrorHandler(401, "Password is incorrect");
       }
 
       const token = this.createToken(user);
-      let userObj: IUser = {
+      const userObj: IUser = {
         _id: user._id,
         name: user.name,
         type: user.type,
@@ -161,10 +161,10 @@ export default class UserService extends CoreService<IUser> {
 
   async updateProfileImage(req: any, res: Response, next: any) {
     const { id } = req.params;
-    let usrImage = req.file.secure_url;
+    const usrImage = req.file.secure_url;
 
     try {
-      let { email, name, type, _id, image } = await this._db.findByIdAndUpdate(
+      const { email, name, type, _id, image } = await this._db.findByIdAndUpdate(
         id,
         { $set: { image: usrImage } },
         { new: true }
