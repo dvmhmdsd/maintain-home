@@ -21,6 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     MatListModule,
     MatButtonModule,
     MatExpansionModule,
+    SettingsModule,
   ],
   providers: [
     {

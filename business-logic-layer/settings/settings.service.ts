@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
+import { Readable } from "stream";
 import Settings from "../../data-access-layer/settings/settings.model";
+import { ErrorHandler } from "../../helpers/error/error-handler.helper";
 
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
 
 export class SettingsService {
   private _db = Settings;
@@ -17,21 +20,34 @@ export class SettingsService {
 
   uploadVideo(req: any, res: Response, next: any) {
     upload.single("video")(req, res, () => {
-      console.log(req.file);
       cloudinary.config({
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
         api_key: process.env.CLOUDINARY_API_KEY,
         api_secret: process.env.CLOUDINARY_API_SECRET,
       });
-      const path = req.file.path;
 
-      cloudinary.uploader.upload(
-        path,
-        { resource_type: "video" },
-        (image: any) => {
-          console.log(image);
+      let cld_upload_stream = cloudinary.uploader.upload_stream(
+        { folder: "application", resource_type: "video" },
+        async (err: any, video: any) => {
+          if (err) {
+            new ErrorHandler(err.http_code, err.message);
+          }
+          if (video) {
+            let updatedRecord = await this._db.findOneAndUpdate(
+              {},
+              { $set: { videoUrl: video.secure_url } },
+              { new: true }
+            );
+            if (!updatedRecord) {
+              await this._db.create({ video: video.secure_url });
+            }
+            res.json({ video: video.secure_url });
+          } else (
+            res.sendStatus(500)
+          )
         }
       );
+      streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
     });
   }
 
@@ -74,7 +90,7 @@ export class SettingsService {
         {},
         { $pull: { images: { _id: `application/${publicId}` } } }
       );
-      res.sendStatus(200);
+      res.json({ success: true });
     } catch (error) {
       next(error);
     }
@@ -82,7 +98,7 @@ export class SettingsService {
 
   async getVideo(req: Request, res: Response, next: any) {
     try {
-      let video = await Settings.findOne({}, "video");
+      let video = await Settings.findOne({}, "videoUrl");
       res.json(video);
     } catch (error) {
       next(error);

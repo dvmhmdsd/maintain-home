@@ -78,3 +78,12 @@ mat-expansion-panel {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+.mat-tab-body {
+  padding: 2rem;
+}
+
+.mat-tab-body-content {
+  overflow: hidden !important;
+}

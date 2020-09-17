@@ -68,6 +68,7 @@ export class AppComponent implements OnInit, OnDestroy {
       ],
     },
     { path: '/complaints', label: 'الشكاوي', icon: 'sms', superOnly: false },
+    { path: '/settings', label: 'إعدادات الموقع الرئيسي', icon: 'settings', superOnly: false },
   ];
 
   userTypes = UserTypes;

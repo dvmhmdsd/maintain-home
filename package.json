@@ -39,7 +39,8 @@
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^2.2.1",
     "pm2": "^4.2.3",
-    "prettier": "^2.0.2"
+    "prettier": "^2.0.2",
+    "streamifier": "^0.1.1"
   },
   "husky": {
     "hooks": {

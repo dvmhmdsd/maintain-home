@@ -1,0 +1,77 @@
+<div class="settings-container">
+  <h1>إعدادات الموقع الرئيسي</h1>
+  <mat-card>
+    <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="الصور">
+        <div class="settings-loading-container">
+          <mat-spinner *ngIf="isImageLoading"></mat-spinner>
+        </div>
+        <div *ngIf="!isImageLoading" class="tab-container">
+          <section class="images-list">
+            <div *ngFor="let image of images" class="image-container">
+              <img [src]="image.url" class="image-item" alt="" />
+              <button
+                *ngIf="image._id"
+                mat-icon-button
+                (click)="removeImage($event, image._id)"
+              >
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+          </section>
+          <div class="file-uploader-container">
+            <button mat-mini-fab (click)="imageInput.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input
+              type="file"
+              class="file-input"
+              name="image"
+              #imageInput
+              (change)="onImageFileChanged($event)"
+            />
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="الفيديو" class="video-tab">
+        <div class="settings-loading-container">
+          <mat-spinner *ngIf="isVideoUploading || isVideoLoading" diameter="50"></mat-spinner>
+        </div>
+        <div *ngIf="!isVideoUploading" class="video-tab-container">
+          <div *ngIf="!videoUrl && !isVideoLoading" class="file-uploader-container">
+            <section class="upload-tip">
+              <button mat-mini-fab (click)="videoInput.click()">
+                <mat-icon>cloud_upload</mat-icon>
+              </button>
+              <p>إختر فيديو من الجهاز</p>
+            </section>
+            <input
+              type="file"
+              class="file-input"
+              name="video"
+              #videoInput
+              (change)="onVideoFileChanged($event)"
+            />
+          </div>
+          <section *ngIf="videoUrl && !isVideoLoading" class="video-container">
+            <video controls>
+              <source [src]="videoUrl">
+            </video>
+            <section>
+              <button mat-mini-fab (click)="videoInput.click()" title="استبدال الفيديو بفيديو آخر">
+                <mat-icon>cached</mat-icon>
+              </button>
+              <input
+              type="file"
+              class="file-input"
+              name="video"
+              #videoInput
+              (change)="onVideoFileChanged($event)"
+            />
+            </section>
+          </section>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

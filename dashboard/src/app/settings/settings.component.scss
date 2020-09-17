@@ -1,0 +1,97 @@
+.settings-container {
+  padding: 2rem;
+
+  h1 {
+    margin-bottom: 3rem;
+  }
+
+  .settings-loading-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-card {
+    padding: 0;
+
+    .tab-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .images-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      text-align: right;
+      margin-left: 2rem;
+
+      .image-container {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        margin: 0.3rem;
+        .image-item {
+          width: 100%;
+          height: 100%;
+        }
+
+        button {
+          position: absolute;
+          background-color: rgba($color: #000000, $alpha: 0.5);
+          color: #fff;
+          right: 0;
+        }
+      }
+    }
+
+  }
+}
+
+
+.file-uploader-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  display: inline-block;
+
+  button {
+    background-color: #1e2129;
+  }
+}
+
+.file-input {
+  display: none;
+}
+
+
+.video-tab-container {
+  text-align: center;
+    button {
+      background-color: #1e2129;
+    }
+
+  .upload-tip {
+    p {
+      margin-top: 2rem;
+    }
+  }
+
+  .video-container {
+    video {
+      width: 20%;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 669px) {
+  .image-container {
+    width: 160px !important;
+    margin: 0 0 1rem !important;
+  }
+  .video-container {
+    video {
+      width: 100% !important;
+    }
+  }
+}
