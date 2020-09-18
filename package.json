@@ -8,7 +8,7 @@
     "build": "tsc && cd dashboard && ng build --prod && cd ..",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "start:dash": "concurrently \"nodemon\" \"cd dashboard/ && ng serve -o\" && cd ..",
-    "start:front": "concurrently \"nodemon\" \"cd dashboard/ && ng serve -o\" && cd ..",
+    "start:front": "concurrently \"nodemon\" \"cd front/ && ng serve -o\" && cd ..",
     "back-start:dev": "npm run build",
     "copy-files": "copyfiles -e ./tsconfig.json -e ./tslint.json -e ./nodemon.json ./*.js ./*.json .env dist/"
   },
