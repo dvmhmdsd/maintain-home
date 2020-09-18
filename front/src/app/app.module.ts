@@ -25,6 +25,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+      defaultLanguage: navigator.language || window.navigator['userLanguage']
     }),
   ],
   providers: [],
