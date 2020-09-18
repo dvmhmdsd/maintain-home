@@ -7,7 +7,11 @@ const FeedbackSchema = new Schema({
     type: Number,
     required: true,
   },
-  clientName: {
+  name: {
+    type: String,
+    required: true,
+  },
+  arabicName: {
     type: String,
     required: true,
   },

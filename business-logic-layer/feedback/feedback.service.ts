@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import CoreService from "../core.service";
 import Feedback from "../../data-access-layer/feedback/feedback.model";
-import { IFeedback } from './../../CONSTANTS/interfaces/feedback.interface';
+import { IFeedback } from "./../../CONSTANTS/interfaces/feedback.interface";
 
 export default class FeedbackService extends CoreService<IFeedback> {
   constructor() {
@@ -12,7 +12,7 @@ export default class FeedbackService extends CoreService<IFeedback> {
 
   async listRecords(req: Request, res: Response, next: any) {
     try {
-      const records: IFeedback[] = await this._db.find({rate: 5});
+      const records: IFeedback[] = await this._db.find({ rate: { $gte: 3 } });
       res.json(records);
     } catch (error) {
       next(error);

@@ -1,4 +1,5 @@
 export interface IFeedback {
   rate: number;
-  clientName: string;
+  name: string;
+  arabicName: string;
 }
