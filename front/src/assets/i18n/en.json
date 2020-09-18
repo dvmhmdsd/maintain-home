@@ -27,5 +27,12 @@
   "time": "Suggested Time",
   "visit_pay_hint": "I agree to pay 120 L.E on visit",
   "satisfied": "Satisfied",
-  "unsatisfied": "Unsatisfied"
+  "unsatisfied": "Unsatisfied",
+  "order_created": "Order created successfully",
+  "order_error": "An error occurred while creating the order, please try again or contact support",
+  "complaint_created": "Your complaint sent successfully, we will contact you within 24 work hours",
+  "complaint_error": "An error occurred while sending your complaint, please try again or contact support",
+  "copy": "Copyright",
+  "by": "By",
+  "mohamed": "Mohamed Saad"
 }

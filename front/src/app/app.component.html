@@ -1,0 +1,100 @@
+<mat-sidenav-container class="maintain-sidenav-container">
+  <mat-sidenav #sideNav mode="over" [opened]="false">
+    <header class="sidenav-header">
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sideNav.toggle()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </header>
+    <mat-nav-list role="list">
+      <mat-list-item
+        *ngFor="let route of routes"
+        role="listitem"
+        class="toolbar-btn"
+        routerLink="{{ route.path }}"
+      >
+        {{ route.label | translate }}
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <button
+          class="toolbar-btn"
+          *ngIf="currentLanguage === 'en'"
+          mat-button
+          (click)="toggleLanguage()"
+        >
+          عربي
+        </button>
+        <button
+          class="toolbar-btn"
+          *ngIf="currentLanguage === 'ar'"
+          mat-button
+          (click)="toggleLanguage()"
+        >
+          English
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        *ngIf="mobileQuery.matches"
+        mat-icon-button
+        class="toolbar-btn"
+        aria-label="button that toggle side menu"
+        (click)="sideNav.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 routerLink="/">
+        <img src="assets/imgs/logo.png" alt="" />
+      </h1>
+      <span class="spacer"></span>
+      <mat-nav-list
+        *ngIf="!mobileQuery.matches"
+        role="list"
+        class="horizontal-list"
+      >
+        <mat-list-item
+          *ngFor="let route of routes"
+          role="listitem"
+          class="toolbar-btn"
+          routerLink="{{ route.path }}"
+          routerLinkActive="btn-active"
+        >
+          {{ route.label | translate }}
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <button
+            class="toolbar-btn"
+            *ngIf="currentLanguage === 'en'"
+            mat-button
+            (click)="toggleLanguage()"
+          >
+            عربي
+          </button>
+          <button
+            class="toolbar-btn"
+            *ngIf="currentLanguage === 'ar'"
+            mat-button
+            (click)="toggleLanguage()"
+          >
+            English
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <footer>
+      <p>
+        {{ "copy" | translate }} &copy; 2020 <br /><a
+          mat-button
+          href="https://dvmhmdsd.me"
+          >{{ "mohamed" | translate }}</a
+        >
+      </p>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
