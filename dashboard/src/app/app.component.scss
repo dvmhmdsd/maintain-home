@@ -72,9 +72,14 @@ mat-expansion-panel {
 }
 
 h1.maintain-app-name {
-  margin: 0.222rem;
+  margin: 0 0.222rem;
   margin-bottom: 0;
   font-size: 1.4rem;
+  width: 59%;
+  height: 37px;
+  img {
+    max-width: 100%;
+  }
 }
 
 .maintain-sidenav-container {
