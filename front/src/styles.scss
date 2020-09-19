@@ -1,4 +1,6 @@
 @import "theme/variables.scss";
+@import "~video.js/dist/video-js.css";
+@import "@videojs/themes/dist/sea/index.css";
 
 html,
 body {
@@ -63,11 +65,39 @@ body {
   }
 }
 
-h2, p {
+h2,
+p {
   line-height: 1.5;
   word-spacing: 0.16rem;
 }
 
 p + p {
   margin-top: 2rem;
+}
+
+section.home-section {
+  padding: 80px 2rem;
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.loading {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+
+.video-js {
+  .vjs-big-play-button {
+    background-color: $mainColor;
+    border: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    line-height: 1.6em;
+  }
 }

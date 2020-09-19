@@ -15,15 +15,17 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { IntroComponent } from './home/intro/intro.component';
 import { OwlModule } from 'ngx-owl-carousel';
+import { VideoComponent } from './home/video/video.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, IntroComponent],
+  declarations: [AppComponent, HomeComponent, IntroComponent, VideoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,7 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    OwlModule
+    OwlModule,
+    MatProgressSpinnerModule
   ],
   providers: [LanguageHandlerService, SettingsService],
   bootstrap: [AppComponent],

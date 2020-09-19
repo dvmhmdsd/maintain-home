@@ -1,0 +1,14 @@
+<section class="video-section home-section">
+  <h2>{{ "know_more" | translate }}</h2>
+  <p *ngIf="!videoUrl" class="loading">
+    <mat-spinner></mat-spinner>
+  </p>
+  <video
+    #target
+    class="video-js"
+    controls
+    muted
+    playsinline
+    preload="none"
+  ></video>
+</section>
