@@ -1,3 +1,5 @@
+@import "theme/variables.scss";
+
 html,
 body {
   height: 100%;
@@ -6,4 +8,66 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.owl-carousel {
+  position: static;
+  .owl-dots {
+    position: absolute;
+    bottom: 1rem;
+    margin: 0 auto;
+    left: 48%;
+    z-index: 9;
+    .owl-dot.active {
+      outline: none;
+      span {
+        background-color: $scColor;
+        width: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 669px) {
+  .owl-stage {
+    width: 800px;
+    .owl-item {
+      width: 375px;
+    }
+  }
+  .owl-dots {
+    position: absolute;
+    bottom: 1rem;
+    margin: 0 auto;
+    left: 42% !important;
+    z-index: 9;
+  }
+}
+
+h2, p {
+  line-height: 1.5;
+  word-spacing: 0.16rem;
+}
+
+p + p {
+  margin-top: 2rem;
 }

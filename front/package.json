@@ -23,6 +23,9 @@
     "@angular/router": "~10.0.14",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "jquery": "^3.5.1",
+    "ngx-owl-carousel": "^2.0.7",
+    "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

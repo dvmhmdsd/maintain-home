@@ -1,3 +1,4 @@
+import { SettingsService } from './services/settings.service';
 import { LanguageHandlerService } from './services/language-handler.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,13 +15,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { IntroComponent } from './home/intro/intro.component';
+import { OwlModule } from 'ngx-owl-carousel';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, IntroComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,8 +41,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
+    OwlModule
   ],
-  providers: [LanguageHandlerService],
+  providers: [LanguageHandlerService, SettingsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

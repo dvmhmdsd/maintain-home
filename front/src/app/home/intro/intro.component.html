@@ -1,0 +1,20 @@
+<p *ngIf="!images" class="loading">Loading ...</p>
+<section *ngIf="images" class="intro-section">
+  <owl-carousel
+    [options]="carouselOptions"
+    [items]="images"
+    [carouselClasses]="['owl-theme', 'sliding']"
+    dir=ltr
+  >
+    <div class="image-item" *ngFor="let image of images; let i = index">
+      <div>
+        <img src="{{ image }}" />
+      </div>
+    </div>
+  </owl-carousel>
+  <div class="overlay"></div>
+  <section class="intro-content">
+    <h2>{{ "vision" | translate }}</h2>
+    <button mat-raised-button>{{ "create_order" | translate }}</button>
+  </section>
+</section>

@@ -1,0 +1,58 @@
+@import "../../../theme/variables.scss";
+.loading {
+  text-align: center;
+}
+.intro-section {
+  position: relative;
+  .image-item {
+    height: 80vh;
+    img {
+      max-width: 100%;
+      height: fit-content;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: $mainColor, $alpha: 0.8);
+    z-index: 1;
+  }
+
+  .intro-content {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    h2 {
+      width: 40%;
+      font-size: 1rem;
+    }
+    button {
+      width: 40%;
+      font-size: 1.2rem;
+      background-color: $scColor;
+    }
+  }
+}
+
+@media (max-width: 669px) {
+  .intro-content {
+    h2 {
+      width: 90% !important;
+    }
+    button {
+      width: 90% !important;
+    }
+  }
+}

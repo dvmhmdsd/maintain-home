@@ -47,9 +47,11 @@
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 routerLink="/">
-        <img src="assets/imgs/logo.png" alt="" />
-      </h1>
+      <div class="image-container">
+        <h1 routerLink="/">
+          <img src="assets/imgs/logo.png" alt="" />
+        </h1>
+      </div>
       <span class="spacer"></span>
       <mat-nav-list
         *ngIf="!mobileQuery.matches"
