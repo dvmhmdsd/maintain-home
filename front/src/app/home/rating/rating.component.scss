@@ -1,0 +1,67 @@
+@import "../../../theme/variables.scss";
+
+.rating-section {
+  text-align: center;
+  padding: 60px 3rem;
+  .rate {
+    display: flex;
+    .rating-summery {
+      margin-bottom: 2rem;
+      width: 45%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .ratings-list {
+      width: 45%;
+
+      .rate-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .rate-person {
+          width: 59px;
+          height: 59px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 0.6rem;
+          img {
+            max-width: 100%;
+          }
+        }
+
+        .rate-body {
+          p {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+  .mat-list-item {
+    font-size: 1.4rem;
+    color: $mainColor;
+
+    span {
+      margin: 0 0.4rem;
+    }
+  }
+}
+
+@media (max-width: 670px) {
+  .rate {
+    flex-direction: column;
+    & > * {
+      width: 100% !important;
+      display: block !important;
+    }
+    .rating-summery {
+      display: flex !important;
+      justify-content: center !important;
+    }
+
+    .ratings-list {
+      text-align: center;
+    }
+  }
+}

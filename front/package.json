@@ -25,14 +25,14 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "@types/video.js": "^7.3.11",
     "@videojs/themes": "^1.0.0",
-    "video.js": "^7.8.4",
-    "angular-star-rating": "4.0.0-beta.1",
-    "css-star-rating": "1.2.4",
+    "angular-responsive-carousel": "^1.5.11",
     "jquery": "^3.5.1",
     "ngx-owl-carousel": "^2.0.7",
+    "ngx-stars": "^1.4.3",
     "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "video.js": "^7.8.4",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

@@ -1,0 +1,68 @@
+<section class="home-section rating-section">
+  <h2>{{ "rating" | translate }}</h2>
+  <div class="rate">
+    <div class="rating-summery">
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <span>({{ feedbackCounts["5"] }})</span>
+          <ngx-stars
+            [readonly]="true"
+            [size]="2"
+            [initialStars]="5"
+            [color]="'gold'"
+          ></ngx-stars>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>({{ feedbackCounts["4"] }})</span>
+          <ngx-stars
+            [readonly]="true"
+            [size]="2"
+            [initialStars]="4"
+            [color]="'gold'"
+          ></ngx-stars>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>({{ feedbackCounts["3"] }})</span>
+          <ngx-stars
+            [readonly]="true"
+            [size]="2"
+            [initialStars]="3"
+            [color]="'gold'"
+          ></ngx-stars>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <carousel
+      class="ratings-list"
+      [cellWidth]="'100%'"
+      [cellsToShow]="mobileQuery.matches ? 1 : 2"
+      [autoplay]="true"
+      [arrows]="false"
+      [loop]="true"
+      [autoplayInterval]="2000"
+    >
+      <div
+        class="carousel-cell rate-item"
+        *ngFor="let feedback of feedbacks; let i = index"
+      >
+        <section class="rate-person">
+          <img
+            src="assets/imgs/avatar.png"
+            alt="the person who gave the feedback"
+          />
+        </section>
+        <section class="rate-body">
+          <p>
+            {{ currentLanguage === "en" ? feedback.name : feedback.arabicName }}
+          </p>
+          <ngx-stars
+            [readonly]="true"
+            [size]="1"
+            [initialStars]="feedback.rate"
+            [color]="'gold'"
+          ></ngx-stars>
+        </section>
+      </div>
+    </carousel>
+  </div>
+</section>

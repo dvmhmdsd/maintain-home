@@ -10,6 +10,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 100%;
+  color: $mainColor
 }
 
 ::-webkit-scrollbar {
@@ -49,6 +50,24 @@ body {
   }
 }
 
+.ratings-list {
+  position: relative;
+  .owl-dots {
+    position: absolute;
+    bottom: -2rem;
+    margin: 2rem auto;
+    left: 30%;
+    z-index: 9;
+    .owl-dot.active {
+      outline: none;
+      span {
+        background-color: $mainColor;
+        width: 24px;
+      }
+    }
+  }
+}
+
 @media (max-width: 669px) {
   .owl-stage {
     width: 800px;
@@ -62,6 +81,12 @@ body {
     margin: 0 auto;
     left: 42% !important;
     z-index: 9;
+  }
+
+  .ratings-list {
+    .owl-dots {
+      display: none !important;
+    }
   }
 }
 
@@ -80,7 +105,7 @@ section.home-section {
   h2 {
     font-size: 2rem;
     font-weight: 900;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
   }
 }
 
@@ -98,6 +123,8 @@ section.home-section {
   display: flex;
   justify-content: center;
   padding: 2rem;
+  height: 100%;
+  align-items: center;
 }
 
 

@@ -15,20 +15,32 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { IntroComponent } from './home/intro/intro.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { VideoComponent } from './home/video/video.component';
 import { OurServicesComponent } from './home/our-services/our-services.component';
+import { RatingComponent } from './home/rating/rating.component';
+import { NgxStarsModule } from 'ngx-stars';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, IntroComponent, VideoComponent, OurServicesComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    IntroComponent,
+    VideoComponent,
+    OurServicesComponent,
+    RatingComponent,
+  ],
   imports: [
     BrowserModule,
+    NgxStarsModule,
+    IvyCarouselModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -45,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSidenavModule,
     MatIconModule,
     OwlModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [LanguageHandlerService, SettingsService],
   bootstrap: [AppComponent],
