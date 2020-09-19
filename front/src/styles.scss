@@ -76,10 +76,20 @@ p + p {
 }
 
 section.home-section {
-  padding: 80px 2rem;
+  padding: 80px 5rem;
   h2 {
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-weight: 900;
     margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 669px){
+  section.home-section {
+    h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
   }
 }
 

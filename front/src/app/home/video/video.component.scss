@@ -20,3 +20,14 @@
     }
   }
 }
+
+@media (max-width: 669px) {
+  .video-section {
+    &.home-section {
+      padding: 2rem !important;
+    }
+    .video-js {
+      width: 100%;
+    }
+  }
+}

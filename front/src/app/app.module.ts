@@ -19,13 +19,14 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { IntroComponent } from './home/intro/intro.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { VideoComponent } from './home/video/video.component';
+import { OurServicesComponent } from './home/our-services/our-services.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, IntroComponent, VideoComponent],
+  declarations: [AppComponent, HomeComponent, IntroComponent, VideoComponent, OurServicesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,9 @@
+<section class="home-section services-section">
+  <h2>{{ "our_services" | translate }}</h2>
+  <section class="services-list">
+    <article *ngFor="let service of services" class="services-item">
+      <mat-icon>{{ service.icon }}</mat-icon>
+      <p>{{ service.name | translate }}</p>
+    </article>
+  </section>
+</section>
