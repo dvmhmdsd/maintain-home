@@ -28,6 +28,7 @@
     "angular-responsive-carousel": "^1.5.11",
     "jquery": "^3.5.1",
     "ngx-owl-carousel": "^2.0.7",
+    "ngx-owl-carousel-o": "2.0.3",
     "ngx-stars": "^1.4.3",
     "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.5",

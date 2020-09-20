@@ -23,6 +23,7 @@ import { OurServicesComponent } from './home/our-services/our-services.component
 import { RatingComponent } from './home/rating/rating.component';
 import { NgxStarsModule } from 'ngx-stars';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IvyCarouselModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CarouselModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
