@@ -10,7 +10,8 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 100%;
-  color: $mainColor
+  color: $mainColor;
+  font-size: 1.1rem;
 }
 
 ::-webkit-scrollbar {

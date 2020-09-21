@@ -24,6 +24,7 @@ import { RatingComponent } from './home/rating/rating.component';
 import { NgxStarsModule } from 'ngx-stars';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MatCardModule } from '@angular/material/card';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     BrowserAnimationsModule,
     CarouselModule,
+    MatCardModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

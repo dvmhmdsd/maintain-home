@@ -13,16 +13,8 @@ export default class FeedbackService extends CoreService<IFeedback> {
   async listRecords(req: Request, res: Response, next: any) {
     try {
       const records: IFeedback[] = await this._db.find({ rate: { $gte: 3 } });
-      let fullRate = await this._db.find({ rate: 5 });
-      let subFullRate = await this._db.find({ rate: 4 });
-      let threeRate = await this._db.find({ rate: 3 });
       res.json({
-        records,
-        counts: {
-          5: fullRate.length,
-          4: subFullRate.length,
-          3: threeRate.length,
-        },
+        records
       });
     } catch (error) {
       next(error);

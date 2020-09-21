@@ -12,11 +12,6 @@ export class HomeComponent implements OnInit {
   images: string[];
   video: string;
   feedbacks: IFeedback[];
-  feedbacksCounts: {
-    5: number;
-    4: number;
-    3: number;
-  };
 
   constructor(
     private settingsService: SettingsService,
@@ -39,7 +34,6 @@ export class HomeComponent implements OnInit {
     this.feedbacksService.getFeedbacks().subscribe(
       (res: any) => {
         this.feedbacks = res.records;
-        this.feedbacksCounts = res.counts;
       },
       () => {
         this.feedbacks = null;
