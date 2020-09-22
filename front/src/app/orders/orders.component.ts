@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OrdersService } from './../services/orders.service';
 import { OrderVM } from './order.viewmodel';
 import { LanguageHandlerService } from './../services/language-handler.service';
@@ -5,7 +6,7 @@ import { DevicesService } from './../services/devices.service';
 import { IDevice } from './../../../../CONSTANTS/interfaces/device.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -20,13 +21,15 @@ export class OrdersComponent implements OnInit {
   devicesList: IDevice[];
   currentLanguage: string;
   isLoading: boolean;
+  hint: any;
 
   constructor(
     private _snackBar: MatSnackBar,
     private translate: TranslateService,
     private deviceService: DevicesService,
     private languageService: LanguageHandlerService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -113,6 +116,9 @@ export class OrdersComponent implements OnInit {
       () => {
         this.closeSnackBar();
         this.openSnackBar(this.translate.instant('order_created'), 2000);
+        setTimeout(() => {
+          this.router.navigate(['/'])
+        })
       },
       () => {
         this.closeSnackBar();

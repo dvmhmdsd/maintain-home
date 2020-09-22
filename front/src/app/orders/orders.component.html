@@ -198,7 +198,9 @@
             </mat-list-item>
             <mat-list-item role="listitem">
               <section class="form-group">
-                <mat-label>{{ "paymentType" | translate }}: </mat-label>
+                <mat-label style="margin-bottom: 1rem; display: inline-block"
+                  >{{ "paymentType" | translate }}:
+                </mat-label>
                 <mat-radio-group formControlName="paymentType">
                   <mat-radio-button class="radio-margin" value="cash">
                     <span>{{ "cash" | translate }}</span>
@@ -211,7 +213,9 @@
             </mat-list-item>
             <mat-list-item role="listitem">
               <section class="form-group">
-                <mat-label>{{ "time" | translate }}: </mat-label>
+                <mat-label style="margin-bottom: 1rem; display: inline-block"
+                  >{{ "time" | translate }}:
+                </mat-label>
                 <mat-radio-group formControlName="time">
                   <mat-radio-button class="radio-margin" value="صباحًا">
                     <span>{{ "am" | translate }}</span>
@@ -252,7 +256,11 @@
             <button
               mat-raised-button
               (click)="createOrder()"
-              [disabled]="ordersFormOne.invalid || ordersFormTwo.invalid"
+              [disabled]="
+                ordersFormOne.invalid ||
+                ordersFormTwo.invalid ||
+                !this.ordersFormTwo.get('hint').value
+              "
             >
               {{ "create" | translate }}
             </button>
