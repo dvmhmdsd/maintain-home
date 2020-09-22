@@ -11,6 +11,7 @@
         *ngFor="let route of routes"
         role="listitem"
         class="toolbar-btn"
+        (click)="sideNav.close()"
         routerLink="{{ route.path }}"
       >
         {{ route.label | translate }}
@@ -21,7 +22,7 @@
           class="toolbar-btn"
           *ngIf="currentLanguage === 'en'"
           mat-button
-          (click)="toggleLanguage()"
+          (click)="toggleLanguage(); sideNav.close()"
         >
           عربي
         </button>
@@ -29,7 +30,7 @@
           class="toolbar-btn"
           *ngIf="currentLanguage === 'ar'"
           mat-button
-          (click)="toggleLanguage()"
+          (click)="toggleLanguage(); sideNav.close()"
         >
           English
         </button>
@@ -62,7 +63,7 @@
           *ngFor="let route of routes"
           role="listitem"
           class="toolbar-btn"
-          [routerLinkActiveOptions]="{exact: true}"
+          [routerLinkActiveOptions]="{ exact: true }"
           routerLink="{{ route.path }}"
           routerLinkActive="btn-active"
         >
