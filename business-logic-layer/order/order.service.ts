@@ -117,6 +117,7 @@ export default class OrderService extends CoreService<IOrder> {
         {
           name,
           orderNumber,
+          feedbackLink: this.getCompleteUrl(req) + "/feedback",
         },
         true
       );

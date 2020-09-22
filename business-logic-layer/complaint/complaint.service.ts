@@ -21,7 +21,7 @@ export default class ComplaintService extends CoreService<IComplaint> {
       sendEmailsToAllAdmins(
         {
           orderNumber,
-          body,
+          complaintBody: body,
         },
         "complaint"
       );
