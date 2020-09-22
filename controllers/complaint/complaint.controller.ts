@@ -8,7 +8,7 @@ const server = express.Router();
 const complaintService = new ComplaintService();
 
 server.get("/list", verifyToken, complaintService.listRecords);
-server.post("/new", verifyToken, validateComplaintInput(), complaintService.createRecord);
+server.post("/new", validateComplaintInput(), complaintService.createRecord);
 server.delete("/:id", verifyToken, complaintService.deleteRecord);
 
 export default server;

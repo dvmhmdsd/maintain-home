@@ -1,0 +1,39 @@
+@import "../../theme/variables.scss";
+
+mat-card {
+  width: 40%;
+  margin: 2rem auto;
+  min-height: 32rem;
+  padding: 2rem;
+  background-color: #304352;
+
+  .complaint-hint {
+    font-size: 1rem;
+    color: rgba($color: #fff, $alpha: 0.8);
+  }
+
+  .form-group {
+    margin: 2rem 0;
+    mat-form-field {
+      width: 100%;
+    }
+
+    mat-label {
+      font-size: 1.2rem;
+    }
+  }
+
+  .complaint-submit {
+    background-color: $scColor;
+  }
+}
+
+@media (max-width: 700px) {
+  mat-card {
+    width: 80%;
+  }
+}
+
+.error-message {
+  color: #f44336;
+}

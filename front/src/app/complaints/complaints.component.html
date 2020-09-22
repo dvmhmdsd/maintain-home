@@ -1,0 +1,48 @@
+<section class="complaints-container">
+  <mat-card>
+    <h1>{{ "create_complaints" | translate }}</h1>
+    <p class="complaint-hint">{{ "complaint_hint" | translate }}</p>
+    <form [formGroup]="complaintsForm">
+      <section class="form-group">
+        <mat-form-field>
+          <mat-label>{{ "orderNumber" | translate }}</mat-label>
+          <input matInput formControlName="orderNumber" required />
+        </mat-form-field>
+        <div
+          class="error-message"
+          *ngIf="
+            complaintsForm.get('orderNumber').hasError('required') &&
+            complaintsForm.get('orderNumber').touched
+          "
+        >
+          {{ "orderNumberIsRequired" | translate }}
+        </div>
+      </section>
+
+      <section class="form-group">
+        <mat-form-field>
+          <mat-label>{{ "complaint_body" | translate }} *</mat-label>
+          <textarea matInput rows="5" formControlName="body"></textarea>
+        </mat-form-field>
+        <div
+          class="error-message"
+          *ngIf="
+            complaintsForm.get('body').hasError('required') &&
+            complaintsForm.get('body').touched
+          "
+        >
+          {{ "complaintBodyIsRequired" | translate }}
+        </div>
+      </section>
+
+      <button
+        mat-raised-button
+        class="complaint-submit"
+        (click)="sendComplaint()"
+        [disabled]="complaintsForm.invalid"
+      >
+        {{ "complaint_submit" | translate }}
+      </button>
+    </form>
+  </mat-card>
+</section>

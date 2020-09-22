@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   routes = [
     { path: '/', label: 'home' },
     { path: '/orders', label: 'orders' },
+    { path: '/complaints', label: 'complaints' },
   ];
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
