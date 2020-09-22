@@ -1,4 +1,8 @@
-<mat-card>
+<p *ngIf="isLoading" class="loading">
+  <mat-spinner></mat-spinner>
+</p>
+
+<mat-card *ngIf="!isLoading">
   <div class="orders-page">
     <h1>{{ "create_order" | translate }}</h1>
 

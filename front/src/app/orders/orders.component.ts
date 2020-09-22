@@ -19,6 +19,7 @@ export class OrdersComponent implements OnInit {
   gps: { latitude: number; longitude: number };
   devicesList: IDevice[];
   currentLanguage: string;
+  isLoading: boolean;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -29,6 +30,7 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.ordersFormOne = new FormGroup({
       name: new FormControl(null, Validators.required),
       email: new FormControl(
@@ -61,6 +63,7 @@ export class OrdersComponent implements OnInit {
 
     this.deviceService.getDevices().subscribe((res: IDevice[]) => {
       this.devicesList = res;
+      this.isLoading = false
     });
   }
 
