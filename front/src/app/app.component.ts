@@ -9,7 +9,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class AppComponent implements OnInit {
   currentLanguage: string;
-  routes = [{ path: '/', label: 'home' }];
+  routes = [
+    { path: '/', label: 'home' },
+    { path: '/orders', label: 'orders' },
+  ];
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 

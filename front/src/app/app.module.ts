@@ -1,3 +1,4 @@
+import { DevicesService } from './../../../dashboard/src/app/services/devices.service';
 import { SettingsService } from './services/settings.service';
 import { LanguageHandlerService } from './services/language-handler.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,8 +23,6 @@ import { VideoComponent } from './home/video/video.component';
 import { OurServicesComponent } from './home/our-services/our-services.component';
 import { RatingComponent } from './home/rating/rating.component';
 import { NgxStarsModule } from 'ngx-stars';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MatCardModule } from '@angular/material/card';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -42,10 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     NgxStarsModule,
-    IvyCarouselModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CarouselModule,
     MatCardModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -63,7 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     OwlModule,
     MatProgressSpinnerModule,
   ],
-  providers: [LanguageHandlerService, SettingsService],
+  providers: [LanguageHandlerService, SettingsService, DevicesService, HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,44 @@
+@import "../../theme/variables.scss";
+
+mat-card {
+  width: 86%;
+  margin: 2rem auto;
+  background-color: rgba($color: $mainColor, $alpha: 0.8);
+  min-height: 32rem;
+  mat-vertical-stepper {
+    background-color: transparent;
+  }
+
+  mat-list {
+    mat-list-item {
+      width: 48%;
+      display: inline-block;
+      margin: 1rem 0 2rem;
+      .form-group {
+        width: 100%;
+        mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .checkbox {
+    margin: 2rem 0;
+  }
+}
+
+.error-message {
+  color: #f44336;
+}
+
+.radio-margin {
+  margin: 0 10px;
+}
+
+@media (max-width: 500px) {
+  mat-list {
+    mat-list-item {
+      width: 100% !important;
+    }
+  }
+}
