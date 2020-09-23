@@ -15,6 +15,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./complaints/complaints.module').then((m) => m.ComplaintsModule),
   },
+  { path: 'feedback', loadChildren: () => import('./feedback/feedback.module').then(m => m.FeedbackModule) },
 ];
 
 @NgModule({

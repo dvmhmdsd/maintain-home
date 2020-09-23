@@ -1,0 +1,32 @@
+h1 {
+  margin: 2rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.feedback-container {
+  min-height: 32rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+
+  button {
+    font-size: 3rem;
+
+    mat-icon {
+      font-size: 5.5rem;
+      width: 56px;
+      height: 55px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .feedback-container {
+    width: 80%;
+    margin: 0;
+  }
+}

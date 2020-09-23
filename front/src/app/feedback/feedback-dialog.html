@@ -1,0 +1,35 @@
+<p *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</p>
+
+<div *ngIf="!isLoading" style="padding: 2rem">
+  <h2>{{'rate_us' | translate}}</h2>
+  <form [formGroup]="feedbackForm">
+    <ngx-stars
+      [size]="2"
+      [color]="'gold'"
+      formControlName="rate"
+      (ratingOutput)="onRatingSet($event)"
+    ></ngx-stars>
+    <section class="form-group">
+      <mat-form-field>
+        <mat-label>{{ "name" | translate }}</mat-label>
+        <input matInput formControlName="name" required type="text" />
+      </mat-form-field>
+    </section>
+    <section class="form-group">
+      <mat-form-field>
+        <mat-label>{{ "arabic_name" | translate }}</mat-label>
+        <input matInput formControlName="arabicName" required type="text" />
+      </mat-form-field>
+    </section>
+
+    <button
+      mat-raised-button
+      (click)="sendFeedback()"
+      [disabled]="feedbackForm.invalid"
+    >
+      {{ "create" | translate }}
+    </button>
+  </form>
+</div>

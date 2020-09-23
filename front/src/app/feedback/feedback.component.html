@@ -1,0 +1,20 @@
+<h1>{{ "rate_us" | translate }}</h1>
+
+<section class="feedback-container">
+  <button
+    mat-icon-button
+    routerLink="/complaints"
+    matTooltip="{{ 'unsatisfied' | translate }}"
+    aria-label="button that displays sad emoji and redirects to complaints page of clicked"
+  >
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="{{ 'satisfied' | translate }}"
+    aria-label="button that displays happy emoji and shows feedback form of clicked"
+    (click)="openFeedbackDialog()"
+  >
+    <mat-icon>sentiment_satisfied_alt</mat-icon>
+  </button>
+</section>

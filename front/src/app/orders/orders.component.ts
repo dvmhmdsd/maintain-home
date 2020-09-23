@@ -6,7 +6,7 @@ import { DevicesService } from './../services/devices.service';
 import { IDevice } from './../../../../CONSTANTS/interfaces/device.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
