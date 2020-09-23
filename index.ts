@@ -35,7 +35,7 @@ class App {
   private init() {
     this.app.use(express.json());
     this.app.use(cors());
-   
+
     if (process.env.NODE_ENV === "production") {
       this.app.use(express.static(path.join(__dirname, "public")));
 
