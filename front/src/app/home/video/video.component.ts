@@ -21,14 +21,11 @@ export class VideoComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.videoUrl)
     this.options = {
       controls: true,
       sources: [{ src: this.videoUrl, type: 'video/mp4' }],
     };
-    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
-      console.log('onPlayerReady', this);
-    });
+    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {});
   }
 
   ngOnDestroy() {
