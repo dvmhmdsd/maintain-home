@@ -1,6 +1,7 @@
+.env
+
 node_modules
 front/node_modules
 dashboard/node_modules
 
 dist
-.env
