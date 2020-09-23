@@ -4,8 +4,17 @@
   height: 100%;
   color: $mainColor;
   background-color: #f0f0f0 !important;
+  mat-sidenav {
+    background-color: rgba($color: $mainColor, $alpha: 0.9);
+    mat-nav-list {
+      margin-top: 1.6rem;
+      mat-list-item {
+        padding: 1.4rem 0
+      }
+    }
+  }
   .sidenav-header {
-    display: flex
+    display: flex;
   }
 
   .btn-active {

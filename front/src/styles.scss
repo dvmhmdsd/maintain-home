@@ -1,6 +1,12 @@
 @import "theme/variables.scss";
 @import "~video.js/dist/video-js.css";
 @import "@videojs/themes/dist/sea/index.css";
+@import "~@angular/material/theming";
+
+$custom-typography: mat-typography-config(
+  $font-family: '"Tajawal", sans-serif;',
+);
+@include mat-core($custom-typography);
 
 html,
 body {
@@ -52,7 +58,7 @@ section.home-section {
   }
 }
 
-@media (max-width: 669px){
+@media (max-width: 669px) {
   section.home-section {
     padding: 80px 1rem;
     h2 {
@@ -71,7 +77,6 @@ section.home-section {
   align-items: center;
 }
 
-
 .video-js {
   .vjs-big-play-button {
     background-color: $mainColor;
@@ -85,4 +90,11 @@ section.home-section {
 
 .mat-toolbar-single-row {
   height: auto !important;
+}
+
+.mat-menu-panel {
+  background-color: whitesmoke !important;
+  .mat-menu-item {
+    color: $mainColor !important;
+  }
 }

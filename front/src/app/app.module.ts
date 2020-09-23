@@ -24,6 +24,7 @@ import { OurServicesComponent } from './home/our-services/our-services.component
 import { RatingComponent } from './home/rating/rating.component';
 import { NgxStarsModule } from 'ngx-stars';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     MatCardModule,
     HttpClientModule,
+    MatMenuModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -60,7 +62,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     OwlModule,
     MatProgressSpinnerModule,
   ],
-  providers: [LanguageHandlerService, SettingsService, DevicesService, HttpClientModule],
+  providers: [
+    LanguageHandlerService,
+    SettingsService,
+    DevicesService,
+    HttpClientModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

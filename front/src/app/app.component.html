@@ -18,22 +18,45 @@
       </mat-list-item>
 
       <mat-list-item role="listitem">
+        <a
+          class="toolbar-btn"
+          mat-icon-button
+          aria-label="button that redirects to our facebook page"
+          href="https://www.facebook.com/103420078163379"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <mat-icon>facebook</mat-icon>
+        </a>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
         <button
           class="toolbar-btn"
-          *ngIf="currentLanguage === 'en'"
-          mat-button
-          (click)="toggleLanguage(); sideNav.close()"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="button that shows a menu of languages on click"
         >
-          عربي
+          <mat-icon>settings</mat-icon>
         </button>
-        <button
-          class="toolbar-btn"
-          *ngIf="currentLanguage === 'ar'"
-          mat-button
-          (click)="toggleLanguage(); sideNav.close()"
-        >
-          English
-        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            class="toolbar-btn"
+            [disabled]="currentLanguage === 'ar'"
+            mat-menu-item
+            (click)="toggleLanguage()"
+          >
+            عربي
+          </button>
+          <button
+            class="toolbar-btn"
+            [disabled]="currentLanguage === 'en'"
+            mat-menu-item
+            (click)="toggleLanguage()"
+          >
+            English
+          </button>
+        </mat-menu>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
@@ -71,22 +94,45 @@
         </mat-list-item>
 
         <mat-list-item role="listitem">
+          <a
+            class="toolbar-btn"
+            mat-icon-button
+            aria-label="button that redirects to our facebook page"
+            href="https://www.facebook.com/103420078163379"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <mat-icon>facebook</mat-icon>
+          </a>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
           <button
             class="toolbar-btn"
-            *ngIf="currentLanguage === 'en'"
-            mat-button
-            (click)="toggleLanguage()"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="button that shows a menu of languages on click"
           >
-            عربي
+            <mat-icon>settings</mat-icon>
           </button>
-          <button
-            class="toolbar-btn"
-            *ngIf="currentLanguage === 'ar'"
-            mat-button
-            (click)="toggleLanguage()"
-          >
-            English
-          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              class="toolbar-btn"
+              [disabled]="currentLanguage === 'ar'"
+              mat-menu-item
+              (click)="toggleLanguage()"
+            >
+              عربي
+            </button>
+            <button
+              class="toolbar-btn"
+              [disabled]="currentLanguage === 'en'"
+              mat-menu-item
+              (click)="toggleLanguage()"
+            >
+              English
+            </button>
+          </mat-menu>
         </mat-list-item>
       </mat-nav-list>
     </mat-toolbar>
