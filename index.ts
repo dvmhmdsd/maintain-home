@@ -17,14 +17,14 @@ import { handleError } from "./helpers/error/error-handler.helper";
 
 class App {
   private app = express();
-  private endpoints = [
-    { endpointUrl: "/api/users", controller: userController },
-    { endpointUrl: "/api/orders", controller: orderController },
-    { endpointUrl: "/api/devices", controller: deviceController },
-    { endpointUrl: "/api/complaints", controller: complaintController },
-    { endpointUrl: "/api/feedbacks", controller: feedbackController },
-    { endpointUrl: "/api/lookups", controller: lookupsController },
-    { endpointUrl: "/api/assets", controller: settingsController },
+  private modules = [
+    { url: "/api/users", controller: userController },
+    { url: "/api/orders", controller: orderController },
+    { url: "/api/devices", controller: deviceController },
+    { url: "/api/complaints", controller: complaintController },
+    { url: "/api/feedbacks", controller: feedbackController },
+    { url: "/api/lookups", controller: lookupsController },
+    { url: "/api/assets", controller: settingsController },
   ];
 
   constructor() {
@@ -36,6 +36,10 @@ class App {
     this.app.use(express.json());
     this.app.use(cors());
 
+    this.registerControllers();
+    this.app.use((err: any, req: Request, res: Response, next: any) => {
+      handleError(err, res);
+    });
     if (process.env.NODE_ENV === "production") {
       this.app.use(express.static(path.join(__dirname, "public")));
 
@@ -45,10 +49,6 @@ class App {
       });
     }
 
-    this.registerControllers();
-    this.app.use((err: any, req: Request, res: Response, next: any) => {
-      handleError(err, res);
-    });
     // disable the X-Powered-By header instead of using helmet
     this.app.disable("x-powered-by");
   }
@@ -69,8 +69,8 @@ class App {
   }
 
   private registerControllers() {
-    this.endpoints.map((endpoint) =>
-      this.app.use(endpoint.endpointUrl, endpoint.controller)
+    this.modules.map((module) =>
+      this.app.use(module.url, module.controller)
     );
   }
 
