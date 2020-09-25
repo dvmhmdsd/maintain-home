@@ -34,7 +34,7 @@ export class RatingComponent implements OnInit {
 
     this.carouselOptions = {
       items: this.mobileQuery.matches ? 1 : 3,
-      dots: false,
+      dots: true,
       autoplay: true,
       autoplayTimeout: 3800,
       autoplayHoverPause: false,

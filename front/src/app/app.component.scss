@@ -84,15 +84,11 @@
       box-shadow: 1px 0 3px #000;
       h1 {
         max-width: 50%;
-        margin: 0 3rem;
+        margin: 0 auto;
         img {
           max-width: 100%;
         }
       }
-    }
-
-    .horizontal-list {
-      flex-direction: column;
     }
   }
 }
@@ -102,9 +98,11 @@
   z-index: 9;
   right: 0.3rem;
   bottom: 0;
+  text-align: center;
+  width: 10rem;
+  text-align: center;
   .create-order-fab {
-    margin-bottom: 3rem;
-    margin-right: 3rem;
+    margin: 0 auto 3rem;
   }
 
   .tip {
@@ -112,14 +110,14 @@
     color: #fff;
     padding: 0.3rem;
     border-radius: 4px;
+    display: inline-block;
   }
 }
 
 @media (max-width: 700px) {
   .order-fab-container {
     .create-order-fab {
-      margin-bottom: 2rem;
-      margin-right: 2rem;
+      margin: 0 auto 2rem 4rem;
     }
   }
 }

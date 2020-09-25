@@ -39,6 +39,11 @@
 @media (max-width: 669px) {
   .video-section {
     text-align: center;
+
+    .info-section {
+      width: auto;
+    }
+
     .section-content {
       display: block;
     }
