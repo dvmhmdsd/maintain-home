@@ -1,7 +1,7 @@
 <section class="video-section home-section">
   <h2>{{ "know_more" | translate }}</h2>
   <div class="section-content">
-    <section class="info-section">
+    <section class="info-section" [ngClass]="{'centered' : !videoUrl}">
       <h3>{{ "vision" | translate }}</h3>
       <p>{{ "mission" | translate }}</p>
     </section>
