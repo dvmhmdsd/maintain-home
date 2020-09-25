@@ -5,10 +5,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid #999;
+  width: 75%;
+
+  .section-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .info-section {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
 
   .video-js {
     height: 22rem;
-    width: 70%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +37,11 @@
 
 @media (max-width: 669px) {
   .video-section {
+    text-align: center;
+    .section-content {
+      display: block;
+    }
+
     &.home-section {
       padding: 2rem !important;
     }

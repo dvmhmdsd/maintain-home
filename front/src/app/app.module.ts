@@ -19,7 +19,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { IntroComponent } from './home/intro/intro.component';
 import { OwlModule } from 'ngx-owl-carousel';
-import { VideoComponent } from './home/video/video.component';
 import { OurServicesComponent } from './home/our-services/our-services.component';
 import { RatingComponent } from './home/rating/rating.component';
 import { NgxStarsModule } from 'ngx-stars';
@@ -28,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AboutComponent } from './home/about/about.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,9 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomeComponent,
     IntroComponent,
-    VideoComponent,
     OurServicesComponent,
     RatingComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
