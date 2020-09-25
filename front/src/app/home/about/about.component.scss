@@ -16,9 +16,12 @@
   }
 
   .info-section {
-    padding: 3rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .video-js {
