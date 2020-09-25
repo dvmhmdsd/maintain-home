@@ -27,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxStarsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatTooltipModule,
     MatCardModule,
     HttpClientModule,
     MatMenuModule,
@@ -63,7 +65,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     OwlModule,
     MatProgressSpinnerModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [
     LanguageHandlerService,

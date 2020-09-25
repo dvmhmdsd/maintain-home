@@ -146,7 +146,17 @@
         >
       </p>
     </footer>
-
-    
   </mat-sidenav-content>
 </mat-sidenav-container>
+<section class="order-fab-container">
+  <p class="tip" (click)="$event.srcElement.remove()">{{ "create_order" | translate }}</p>
+  <button
+    mat-fab
+    aria-label="button redirects to orders page to let the user create another order"
+    color="primary"
+    class="create-order-fab"
+    routerLink="/orders"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</section>
