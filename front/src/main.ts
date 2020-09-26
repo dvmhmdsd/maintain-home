@@ -6,6 +6,12 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./assets/scripts/sw.js").then(() => {
+      console.log("Service worker registered");
+    });
+  }
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
