@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint:ts": "tslint -c tslint.json -p tsconfig.json --fix && npm run copy-files",
-    "build:dev": "npm run lint:ts && tsc && cd dashboard && ng build --prod && cd .. && cd front && ng build --prod && cd ..",
+    "build:dev": "npm run lint:ts && tsc && cd dashboard && ng build --prod && cd ..",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "start:dash": "concurrently \"nodemon\" \"cd dashboard/ && ng serve -o\" && cd ..",
     "start:front": "concurrently \"nodemon\" \"cd front/ && ng serve -o\" && cd ..",
