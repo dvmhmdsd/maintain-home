@@ -2,6 +2,7 @@ import { SettingsService } from './../services/settings.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedbacksService } from '../services/feedbacks.service';
 import { IFeedback } from '../../../../CONSTANTS/interfaces/feedback.interface';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,12 @@ export class HomeComponent implements OnInit {
   images: string[];
   video: string;
   feedbacks: IFeedback[];
+  failMessage: string;
 
   constructor(
     private settingsService: SettingsService,
-    private feedbacksService: FeedbacksService
+    private feedbacksService: FeedbacksService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +30,7 @@ export class HomeComponent implements OnInit {
         });
       },
       () => {
-        window.location.reload();
+        this.failMessage = this.translate.instant('data_error')
       }
     );
 
