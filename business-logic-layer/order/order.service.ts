@@ -81,11 +81,17 @@ export default class OrderService extends CoreService<IOrder> {
         order.device = device;
       }
 
-      const newOrder: IOrder = await this._db.create(order);
+      const newOrder: IOrder = await this._db.create(order).populate('device');
       res.json(newOrder);
 
       sendEmailToClient(email, {
         name,
+        email,
+        phone,
+        whatsapp,
+        location,
+        device: newOrder.device,
+        damage,
         orderNumber,
       });
       sendEmailsToAllAdmins(
