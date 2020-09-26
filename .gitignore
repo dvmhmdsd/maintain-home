@@ -2,6 +2,7 @@
 
 node_modules
 front/node_modules
+front/dist
 dashboard/node_modules
 
 dist

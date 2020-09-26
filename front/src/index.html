@@ -45,5 +45,12 @@
     <noscript
       >Please enable JavaScript to continue using this application.</noscript
     >
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").then(() => {
+          console.log("Service worker registered");
+        });
+      }
+    </script>
   </body>
 </html>
