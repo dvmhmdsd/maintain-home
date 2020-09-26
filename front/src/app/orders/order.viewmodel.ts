@@ -4,6 +4,7 @@ export class OrderVM {
   phone: number;
   whatsapp: number;
   location: string;
+  customDevice: string;
   device: string;
   paymentType: string;
   model: string;

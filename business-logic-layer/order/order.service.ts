@@ -52,6 +52,7 @@ export default class OrderService extends CoreService<IOrder> {
       damage,
       time,
       paymentType,
+      customDevice
     } = req.body;
     try {
       const errors = validationResult(req);
@@ -61,21 +62,24 @@ export default class OrderService extends CoreService<IOrder> {
       }
 
       const orderNumber = await this.createOrderNumber();
-
-      const order = new Order({
+      const order: any = new Order({
         name,
         email,
         phone,
         whatsapp,
         gps,
         location,
-        device,
+        customDevice,
         model,
         damage,
         time,
         orderNumber,
         paymentType,
       });
+
+      if (device) {
+        order.device = device;
+      }
 
       const newOrder: IOrder = await this._db.create(order);
       res.json(newOrder);

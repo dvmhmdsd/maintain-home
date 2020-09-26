@@ -33,6 +33,9 @@ const OrderSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Device",
     },
+    customDevice: {
+      type: String
+    },
     model: {
       required: true,
       type: String,

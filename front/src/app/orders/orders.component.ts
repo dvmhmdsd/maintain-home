@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-orders',
@@ -21,7 +22,8 @@ export class OrdersComponent implements OnInit {
   devicesList: IDevice[];
   currentLanguage: string;
   isLoading: boolean;
-  hint: any;
+  hint: string;
+  otherOptionChosen: boolean;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -57,6 +59,7 @@ export class OrdersComponent implements OnInit {
       damage: new FormControl(null, Validators.required),
       time: new FormControl(null, Validators.required),
       hint: new FormControl(null, Validators.required),
+      customDevice: new FormControl(null),
     });
 
     this.currentLanguage = this.languageService.getLanguageKey();
@@ -66,6 +69,11 @@ export class OrdersComponent implements OnInit {
 
     this.deviceService.getDevices().subscribe((res: IDevice[]) => {
       this.devicesList = res;
+      this.devicesList.push({
+        _id: "other",
+        name: this.translate.instant('other'),
+        arabicName: this.translate.instant('other')
+      })
       this.isLoading = false
     });
   }
@@ -94,6 +102,14 @@ export class OrdersComponent implements OnInit {
     );
   }
 
+  handelDeviceChange(e: MatSelectChange) {
+    if (e.value === 'other') {
+      this.otherOptionChosen = true
+    } else {
+      this.otherOptionChosen = false
+    }
+  }
+
   createOrder() {
     if (this.ordersFormOne.invalid || this.ordersFormTwo.invalid) {
       return;
@@ -105,11 +121,16 @@ export class OrdersComponent implements OnInit {
     order.whatsapp = this.ordersFormOne.get('whatsapp').value;
     order.location = this.ordersFormOne.get('location').value;
     order.device = this.ordersFormTwo.get('device').value;
+    order.customDevice = this.ordersFormTwo.get('customDevice').value;
     order.paymentType = this.ordersFormTwo.get('paymentType').value;
     order.model = this.ordersFormTwo.get('model').value;
     order.damage = this.ordersFormTwo.get('damage').value;
     order.time = this.ordersFormTwo.get('time').value;
     order.gps = this.gps;
+
+    if (this.otherOptionChosen) {
+      delete order.device;
+    }
 
     this.openSnackBar(this.translate.instant('order_submitting'), null);
     this.ordersService.createOrder(order).subscribe(

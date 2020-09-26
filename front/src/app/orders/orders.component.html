@@ -150,7 +150,10 @@
               <section class="form-group">
                 <mat-form-field>
                   <mat-label>{{ "device" | translate }}</mat-label>
-                  <mat-select formControlName="device">
+                  <mat-select
+                    [formControlName]="otherOptionChosen ? 'custom' : 'device'"
+                    (selectionChange)="handelDeviceChange($event)"
+                  >
                     <mat-option
                       *ngFor="let device of devicesList"
                       [value]="device._id"
@@ -167,7 +170,40 @@
                   class="error-message"
                   *ngIf="
                     ordersFormTwo.get('device').hasError('required') &&
-                    ordersFormTwo.get('device').touched
+                    ordersFormTwo.get('device').touched &&
+                    !otherOptionChosen
+                  "
+                >
+                  {{ "deviceIsRequired" | translate }}
+                </div>
+              </section>
+            </mat-list-item>
+            <mat-list-item role="listitem" *ngIf="otherOptionChosen">
+              <section class="form-group">
+                <mat-form-field>
+                  <mat-label>{{ "device" | translate }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="customDevice"
+                    required
+                    type="text"
+                  />
+                  <button
+                    mat-button
+                    *ngIf="ordersFormTwo.get('customDevice').value"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="otherOptionChosen = false"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div
+                  class="error-message"
+                  *ngIf="
+                    ordersFormTwo.get('customDevice').hasError('required') &&
+                    ordersFormTwo.get('customDevice').touched
                   "
                 >
                   {{ "deviceIsRequired" | translate }}

@@ -11,7 +11,9 @@ export interface IOrder {
   device: {
     _id?: string;
     name: string;
+    arabicName: string;
   };
+  customDevice?: string
   model: string;
   damage: string;
   time: string;
