@@ -142,14 +142,19 @@
         {{ "copy" | translate }} &copy; 2020 <br /><a
           mat-button
           href="https://dvmhmdsd.me"
-          >{{ "mohamed" | translate }}</a
-        >
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ "mohamed" | translate }}
+          <mat-icon>open_in_new</mat-icon>
+        </a>
       </p>
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <section class="order-fab-container">
-  <p #fabTip class="tip" (click)="$event.srcElement.remove()">{{ "create_order" | translate }}</p>
+  <p #fabTip class="tip" (click)="$event.srcElement.remove()">
+    {{ "create_order" | translate }}
+  </p>
   <button
     mat-fab
     aria-label="button redirects to orders page to let the user create another order"
