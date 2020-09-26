@@ -35,7 +35,7 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoading = true
+    this.isLoading = true;
     this.ordersFormOne = new FormGroup({
       name: new FormControl(null, Validators.required),
       email: new FormControl(
@@ -47,8 +47,22 @@ export class OrdersComponent implements OnInit {
           ),
         ])
       ),
-      phone: new FormControl(null, Validators.required),
-      whatsapp: new FormControl(null, Validators.required),
+      phone: new FormControl(
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(11),
+          Validators.pattern(/^[0-9]*$/),
+        ])
+      ),
+      whatsapp: new FormControl(
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(11),
+          Validators.pattern(/^[0-9]*$/),
+        ])
+      ),
       location: new FormControl(null, Validators.required),
     });
 
@@ -70,11 +84,11 @@ export class OrdersComponent implements OnInit {
     this.deviceService.getDevices().subscribe((res: IDevice[]) => {
       this.devicesList = res;
       this.devicesList.push({
-        _id: "other",
+        _id: 'other',
         name: this.translate.instant('other'),
-        arabicName: this.translate.instant('other')
-      })
-      this.isLoading = false
+        arabicName: this.translate.instant('other'),
+      });
+      this.isLoading = false;
     });
   }
 
@@ -104,9 +118,9 @@ export class OrdersComponent implements OnInit {
 
   handelDeviceChange(e: MatSelectChange) {
     if (e.value === 'other') {
-      this.otherOptionChosen = true
+      this.otherOptionChosen = true;
     } else {
-      this.otherOptionChosen = false
+      this.otherOptionChosen = false;
     }
   }
 
@@ -128,18 +142,14 @@ export class OrdersComponent implements OnInit {
     order.time = this.ordersFormTwo.get('time').value;
     order.gps = this.gps;
 
-    if (this.otherOptionChosen) {
-      delete order.device;
-    }
-
     this.openSnackBar(this.translate.instant('order_submitting'), null);
     this.ordersService.createOrder(order).subscribe(
       () => {
         this.closeSnackBar();
         this.openSnackBar(this.translate.instant('order_created'), 2000);
         setTimeout(() => {
-          this.router.navigate(['/'])
-        })
+          this.router.navigate(['/']);
+        });
       },
       () => {
         this.closeSnackBar();

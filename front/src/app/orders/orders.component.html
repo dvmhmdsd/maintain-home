@@ -76,6 +76,24 @@
                 >
                   {{ "phoneIsRequired" | translate }}
                 </div>
+                <div
+                  class="error-message"
+                  *ngIf="
+                    ordersFormOne.get('phone').hasError('minlength') &&
+                    ordersFormOne.get('phone').touched
+                  "
+                >
+                  {{ "phoneMinLength" | translate }}
+                </div>
+                <div
+                  class="error-message"
+                  *ngIf="
+                    ordersFormOne.get('phone').hasError('pattern') &&
+                    ordersFormOne.get('phone').touched
+                  "
+                >
+                  {{ "phoneIsNotValid" | translate }}
+                </div>
               </section>
             </mat-list-item>
             <mat-list-item role="listitem">
@@ -97,6 +115,24 @@
                   "
                 >
                   {{ "whatsappIsRequired" | translate }}
+                </div>
+                <div
+                  class="error-message"
+                  *ngIf="
+                    ordersFormOne.get('whatsapp').hasError('minlength') &&
+                    ordersFormOne.get('whatsapp').touched
+                  "
+                >
+                  {{ "whatsappMinLength" | translate }}
+                </div>
+                <div
+                  class="error-message"
+                  *ngIf="
+                    ordersFormOne.get('whatsapp').hasError('pattern') &&
+                    ordersFormOne.get('whatsapp').touched
+                  "
+                >
+                  {{ "whatsappIsNotValid" | translate }}
                 </div>
               </section>
             </mat-list-item>
