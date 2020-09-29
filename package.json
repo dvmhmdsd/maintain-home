@@ -10,7 +10,6 @@
     "start:dash": "concurrently \"nodemon\" \"cd dashboard/ && ng serve -o\" && cd ..",
     "start:front": "concurrently \"nodemon\" \"cd front/ && ng serve -o\" && cd ..",
     "start:all": "concurrently \"npm run start:front\" \"cd dashboard/ && ng serve -o --port 4500\" && cd ..",
-    "back-start:dev": "npm run build",
     "copy-files": "copyfiles -e ./tsconfig.json -e ./tslint.json -e ./nodemon.json ./*.js ./*.json .env dist/",
     "install:front": "npm i && cd front/ && npm i && cd ..",
     "install:dash": "npm i && cd dashboard/ && npm i && cd ..",
@@ -18,7 +17,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,md}": [
-      "npm run prebuild",
+      "npm run lint:ts",
       "prettier --write"
     ]
   },
