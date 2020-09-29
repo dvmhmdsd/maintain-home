@@ -5,10 +5,10 @@ dotenv.config()
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const templates = {
-  client_order_created: "d-2fed8ecb1ef1422781e305dfdf97b50f",
-  client_order_updated: "d-6c774a55a65f40c0aae5c2635ff881cc",
-  admin_order: "d-37c9355260184f609c074515cbd5efa0",
-  complaint: "d-d8c2f380add241f6adff4401953e201a",
+  client_order_created: "d-5ff67f1523674ad492da0f7c044e627c",
+  client_order_updated: "d-92d6449bd4f740e8bc9560b65dc90e61",
+  admin_order: "d-1ca8d83609a848e7bc819ac8c33e8ea0",
+  complaint: "d-34083fa9067a4598839a8ec0938d413d",
 };
 
 export { sgMail, templates };

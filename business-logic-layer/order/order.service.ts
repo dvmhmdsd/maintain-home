@@ -141,7 +141,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   /**
-   * Returns string like this: "orch201" as "20" is the current year and "1" is the order number
+   * Returns string like this: "ORC201" as "20" is the current year and "1" is the order number
    */
   private async createOrderNumber() {
     const lastAddedOrder: IOrder = await this._db
@@ -150,10 +150,10 @@ export default class OrderService extends CoreService<IOrder> {
     const currentYear = new Date().getFullYear().toString().substr(2);
 
     if (!lastAddedOrder) {
-      return `orch${currentYear}1`;
+      return `ORC${currentYear}1`;
     }
 
     const lastAddedOrderNumber = +lastAddedOrder.orderNumber.substr(-1);
-    return `orch${currentYear}${lastAddedOrderNumber + 1}`;
+    return `ORC${currentYear}${lastAddedOrderNumber + 1}`;
   }
 }
