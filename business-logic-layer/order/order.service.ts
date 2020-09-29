@@ -8,6 +8,7 @@ import {
   sendEmailsToAllAdmins,
 } from "../../helpers/email/email.helper";
 import { ErrorHandler } from "../../helpers/error/error-handler.helper";
+import Device from "../../data-access-layer/order/device.model";
 
 export default class OrderService extends CoreService<IOrder> {
   constructor() {
@@ -81,16 +82,18 @@ export default class OrderService extends CoreService<IOrder> {
         order.device = device;
       }
 
-      const newOrder: IOrder = await this._db.create(order).populate('device');
+      const newOrder: IOrder = await order.save();
       res.json(newOrder);
 
+      const orderDevice: any = await Device.findById(newOrder.device);
+      
       sendEmailToClient(email, {
         name,
         email,
         phone,
         whatsapp,
         location,
-        device: newOrder.device,
+        device: orderDevice.arabicName,
         damage,
         orderNumber,
       });
