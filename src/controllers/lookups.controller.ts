@@ -1,10 +1,18 @@
 import express from "express";
-import verifyToken from "../helpers/token/verify-token.helper";
 import { LookupsService } from "../business-logic-layer/lookups.service";
 
-const server = express.Router();
-const lookupsService = new LookupsService();
+class LookupsController {
+  public server = express.Router();
+  private lookupsService = new LookupsService();
 
-server.get("/", lookupsService.getHomeLookups);
+  constructor() {
+    this.initRoutes();
+  }
 
-export default server;
+  private initRoutes() {
+    this.server.get("/", this.lookupsService.getHomeLookups);
+  }
+}
+
+const lookupsController = new LookupsController();
+export default lookupsController.server;

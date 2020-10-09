@@ -2,11 +2,20 @@ import express from "express";
 import verifyToken from "../../helpers/token/verify-token.helper";
 import DeviceService from "../../business-logic-layer/order/device.service";
 
-const server = express.Router();
-const deviceService = new DeviceService();
+class DeviceController {
+  public server = express.Router();
+  private deviceService = new DeviceService();
 
-server.get("/list", deviceService.listRecords);
-server.post("/new", verifyToken, deviceService.createRecord);
-server.delete("/:id", verifyToken, deviceService.deleteRecord);
+  constructor() {
+    this.initRoutes();
+  }
 
-export default server;
+  private initRoutes() {
+    this.server.get("/list", this.deviceService.listRecords);
+    this.server.post("/new", verifyToken, this.deviceService.createRecord);
+    this.server.delete("/:id", verifyToken, this.deviceService.deleteRecord);
+  }
+}
+
+const deviceController = new DeviceController();
+export default deviceController.server;

@@ -3,12 +3,25 @@ import verifyToken from "../../helpers/token/verify-token.helper";
 import ComplaintService from "../../business-logic-layer/complaint/complaint.service";
 import { validateComplaintInput } from "../../helpers/validation/complaint-input.validator";
 
-const server = express.Router();
+class ComplaintController {
+  public server = express.Router();
+  private complaintService = new ComplaintService();
 
-const complaintService = new ComplaintService();
+  constructor() {
+    this.initRoutes();
+  }
 
-server.get("/list", verifyToken, complaintService.listRecords);
-server.post("/new", validateComplaintInput(), complaintService.createRecord);
-server.delete("/:id", verifyToken, complaintService.deleteRecord);
+  private initRoutes() {
+    this.server.get("/list", verifyToken, this.complaintService.listRecords);
+    this.server.post(
+      "/new",
+      validateComplaintInput(),
+      this.complaintService.createRecord
+    );
+    this.server.delete("/:id", verifyToken, this.complaintService.deleteRecord);
+  }
+}
 
-export default server;
+const complaintController = new ComplaintController();
+
+export default complaintController.server;

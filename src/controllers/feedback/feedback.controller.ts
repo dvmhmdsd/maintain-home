@@ -2,11 +2,23 @@ import express from "express";
 import FeedbackService from "../../business-logic-layer/feedback/feedback.service";
 import { validateFeedbackInput } from "../../helpers/validation/feedback-input.validator";
 
-const server = express.Router();
+class FeedbackController {
+  public server = express.Router();
+  private feedbackService = new FeedbackService();
 
-const feedbackService = new FeedbackService();
+  constructor() {
+    this.initRoutes();
+  }
 
-server.get("/list", feedbackService.listRecords);
-server.post("/new", validateFeedbackInput(), feedbackService.createRecord);
+  private initRoutes() {
+    this.server.get("/list", this.feedbackService.listRecords);
+    this.server.post(
+      "/new",
+      validateFeedbackInput(),
+      this.feedbackService.createRecord
+    );
+  }
+}
 
-export default server;
+const feedbackController = new FeedbackController();
+export default feedbackController.server;
