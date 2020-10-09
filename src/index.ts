@@ -13,8 +13,6 @@ import {
 } from "./controllers";
 import { handleError } from "./helpers/error/error-handler.helper";
 
-// const fileUpload = require('express-fileupload');
-
 class App {
   private app = express();
   private modules = [
@@ -32,14 +30,12 @@ class App {
     this.init();
   }
 
-  private init() {
+  private initMiddleWares() {
     this.app.use(express.json());
     this.app.use(cors());
+  }
 
-    this.registerControllers();
-    this.app.use((err: any, req: Request, res: Response, next: any) => {
-      handleError(err, res);
-    });
+  private initProdMiddleWares() {
     if (process.env.NODE_ENV === "production") {
       this.app.use(express.static(path.join(__dirname, "public")));
 
@@ -48,7 +44,15 @@ class App {
         res.sendFile(path.join(__dirname, "public/index.html"));
       });
     }
+  }
 
+  private init() {
+    this.initMiddleWares();
+    this.registerControllers();
+    this.app.use((err: any, req: Request, res: Response, next: any) => {
+      handleError(err, res);
+    });
+    this.initProdMiddleWares();
     // disable the X-Powered-By header instead of using helmet
     this.app.disable("x-powered-by");
   }
