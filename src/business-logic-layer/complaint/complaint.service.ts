@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import CoreService from "../core.service";
 import Complaint from "../../data-access-layer/complaint/complaint.model";
-import { IComplaint } from "../../CONSTANTS/interfaces/Complaint.interface";
+import { IComplaint } from "../../../CONSTANTS/interfaces/Complaint.interface";
 import { sendEmailsToAllAdmins } from "../../helpers/email/email.helper";
 
 export default class ComplaintService extends CoreService<IComplaint> {

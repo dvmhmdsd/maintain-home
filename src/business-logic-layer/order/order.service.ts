@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import CoreService from "../core.service";
-import { IOrder } from "../../CONSTANTS/interfaces/order.interface";
+import { IOrder } from "../../../CONSTANTS/interfaces/order.interface";
 import Order from "../../data-access-layer/order/order.model";
 import {
   sendEmailToClient,

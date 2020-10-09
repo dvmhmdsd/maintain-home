@@ -1,7 +1,7 @@
 import { Response } from "express";
-import { IUser } from "../../CONSTANTS/interfaces/user.interface";
+import { IUser } from "../../../CONSTANTS/interfaces/user.interface";
 import { ErrorHandler } from "../error/error-handler.helper";
-import { UserTypes } from "../../CONSTANTS/enums/user-types.enum";
+import { UserTypes } from "../../../CONSTANTS/enums/user-types.enum";
 
 /**
  *

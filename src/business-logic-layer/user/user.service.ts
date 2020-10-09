@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import CoreService from "../core.service";
 import User from "../../data-access-layer/user/user.model";
-import { IUser } from "../../CONSTANTS/interfaces/user.interface";
+import { IUser } from "../../../CONSTANTS/interfaces/user.interface";
 import { ErrorHandler } from "../../helpers/error/error-handler.helper";
 
 export default class UserService extends CoreService<IUser> {

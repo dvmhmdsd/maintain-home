@@ -1,5 +1,5 @@
 import { sgMail, templates } from "../../config/mailer";
-import { IUser } from "../../CONSTANTS/interfaces/user.interface";
+import { IUser } from "../../../CONSTANTS/interfaces/user.interface";
 import User from "../../data-access-layer/user/user.model";
 import { handleError } from "../error/error-handler.helper";
 
