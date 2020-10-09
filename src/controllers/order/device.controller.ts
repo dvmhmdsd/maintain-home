@@ -1,8 +1,9 @@
 import express from "express";
 import verifyToken from "../../helpers/token/verify-token.helper";
 import DeviceService from "../../business-logic-layer/order/device.service";
+import { IController } from "../../../CONSTANTS/interfaces/controller.interface";
 
-class DeviceController {
+class DeviceController implements IController {
   public server = express.Router();
   private deviceService = new DeviceService();
 

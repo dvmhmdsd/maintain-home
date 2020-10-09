@@ -1,7 +1,8 @@
 import express from "express";
+import { IController } from "../../CONSTANTS/interfaces/controller.interface";
 import { LookupsService } from "../business-logic-layer/lookups.service";
 
-class LookupsController {
+class LookupsController implements IController {
   public server = express.Router();
   private lookupsService = new LookupsService();
 

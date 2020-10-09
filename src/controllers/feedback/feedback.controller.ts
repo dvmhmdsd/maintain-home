@@ -1,8 +1,9 @@
 import express from "express";
+import { IController } from "../../../CONSTANTS/interfaces/controller.interface";
 import FeedbackService from "../../business-logic-layer/feedback/feedback.service";
 import { validateFeedbackInput } from "../../helpers/validation/feedback-input.validator";
 
-class FeedbackController {
+class FeedbackController implements IController {
   public server = express.Router();
   private feedbackService = new FeedbackService();
 

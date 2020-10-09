@@ -2,8 +2,9 @@ import express from "express";
 import verifyToken from "../../helpers/token/verify-token.helper";
 import ComplaintService from "../../business-logic-layer/complaint/complaint.service";
 import { validateComplaintInput } from "../../helpers/validation/complaint-input.validator";
+import { IController } from "./../../../CONSTANTS/interfaces/controller.interface";
 
-class ComplaintController {
+class ComplaintController implements IController {
   public server = express.Router();
   private complaintService = new ComplaintService();
 

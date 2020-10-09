@@ -3,8 +3,9 @@ import verifyToken from "../../helpers/token/verify-token.helper";
 import authorizeSuperAdmin from "../../helpers/auth/super-auth.helper";
 import UserService from "../../business-logic-layer/user/user.service";
 import { parser } from "../../config/cloudinary";
+import { IController } from "../../../CONSTANTS/interfaces/controller.interface";
 
-class UserController {
+class UserController implements IController {
   public server = express.Router();
   private userService = new UserService();
 

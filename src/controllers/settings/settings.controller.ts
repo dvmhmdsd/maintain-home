@@ -1,9 +1,10 @@
 import express from "express";
+import { IController } from "../../../CONSTANTS/interfaces/controller.interface";
 import { parser } from "../../config/cloudinary";
 import verifyToken from "../../helpers/token/verify-token.helper";
 import { SettingsService } from "./../../business-logic-layer/settings/settings.service";
 
-class SettingsController {
+class SettingsController implements IController {
   public server = express.Router();
   private settingsService = new SettingsService();
 
