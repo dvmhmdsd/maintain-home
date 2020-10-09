@@ -4,9 +4,7 @@ import bcrypt from "bcrypt";
 import CoreService from "../core.service";
 import User from "../../data-access-layer/user/user.model";
 import { IUser } from "../../CONSTANTS/interfaces/user.interface";
-import {
-  ErrorHandler,
-} from "../../helpers/error/error-handler.helper";
+import { ErrorHandler } from "../../helpers/error/error-handler.helper";
 
 export default class UserService extends CoreService<IUser> {
   constructor() {
@@ -30,10 +28,7 @@ export default class UserService extends CoreService<IUser> {
   async getUserProfileData(req: Request, res: Response, next: any) {
     const { id } = req.params;
     try {
-      const user: IUser = await this._db.findById(
-        id,
-        "name email image type"
-      );
+      const user: IUser = await this._db.findById(id, "name email image type");
       if (!user) {
         throw new ErrorHandler(404, "User is not found");
       }
@@ -164,7 +159,13 @@ export default class UserService extends CoreService<IUser> {
     const usrImage = req.file.secure_url;
 
     try {
-      const { email, name, type, _id, image } = await this._db.findByIdAndUpdate(
+      const {
+        email,
+        name,
+        type,
+        _id,
+        image,
+      } = await this._db.findByIdAndUpdate(
         id,
         { $set: { image: usrImage } },
         { new: true }

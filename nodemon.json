@@ -2,5 +2,5 @@
   "watch": ["."],
   "ext": ".ts,.js",
   "ignore": ["dashboard", "front"],
-  "exec": "ts-node ./index.ts"
+  "exec": "ts-node ./src/index.ts"
 }

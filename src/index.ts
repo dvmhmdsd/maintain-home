@@ -69,9 +69,7 @@ class App {
   }
 
   private registerControllers() {
-    this.modules.map((module) =>
-      this.app.use(module.url, module.controller)
-    );
+    this.modules.map((module) => this.app.use(module.url, module.controller));
   }
 
   listen() {

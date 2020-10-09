@@ -1,5 +1,5 @@
-import { UserTypes } from './../../../../../CONSTANTS/enums/user-types.enum';
-import { IUser } from './../../../../../CONSTANTS/interfaces/user.interface';
+import { UserTypes } from './../../../../../src/CONSTANTS/enums/user-types.enum';
+import { IUser } from './../../../../../src/CONSTANTS/interfaces/user.interface';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginVM } from 'src/app/viewmodels/login.viewmodel';

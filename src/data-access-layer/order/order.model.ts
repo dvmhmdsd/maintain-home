@@ -34,7 +34,7 @@ const OrderSchema = new Schema(
       ref: "Device",
     },
     customDevice: {
-      type: String
+      type: String,
     },
     model: {
       required: true,
@@ -42,7 +42,7 @@ const OrderSchema = new Schema(
     },
     paymentType: {
       required: true,
-      type: String
+      type: String,
     },
     damage: {
       required: true,
@@ -54,8 +54,8 @@ const OrderSchema = new Schema(
     },
     status: {
       type: String,
-      default: "قيد العمل"
-    }
+      default: "قيد العمل",
+    },
   },
   { timestamps: true }
 );

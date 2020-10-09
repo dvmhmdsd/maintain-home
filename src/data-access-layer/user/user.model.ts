@@ -20,7 +20,7 @@ const userSchema = new Schema({
   },
   type: {
     type: String,
-    default: "Admin"
+    default: "Admin",
   },
 });
 

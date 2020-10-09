@@ -13,11 +13,14 @@ export interface IOrder {
     name: string;
     arabicName: string;
   };
-  customDevice?: string
+  customDevice?: string;
   model: string;
   damage: string;
   time: string;
   orderNumber: string;
   paymentType: string;
-  status?: OrderStatuses.CLOSED | OrderStatuses.COMPLETED | OrderStatuses.PENDING;
+  status?:
+    | OrderStatuses.CLOSED
+    | OrderStatuses.COMPLETED
+    | OrderStatuses.PENDING;
 }

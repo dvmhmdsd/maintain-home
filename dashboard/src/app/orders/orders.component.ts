@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { EditOrderVM } from './../viewmodels/edit-order.viewmodel';
 import { OrdersService } from './../services/orders.service';
-import { IOrder } from './../../../../CONSTANTS/interfaces/order.interface';
-import { OrderStatuses } from './../../../../CONSTANTS/enums/order-statuses.enum';
+import { IOrder } from './../../../../src/CONSTANTS/interfaces/order.interface';
+import { OrderStatuses } from './../../../../src/CONSTANTS/enums/order-statuses.enum';
 
 @Component({
   selector: 'app-orders',

@@ -3,7 +3,7 @@ import { OrdersService } from './../services/orders.service';
 import { OrderVM } from './order.viewmodel';
 import { LanguageHandlerService } from './../services/language-handler.service';
 import { DevicesService } from './../services/devices.service';
-import { IDevice } from './../../../../CONSTANTS/interfaces/device.interface';
+import { IDevice } from './../../../../src/CONSTANTS/interfaces/device.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

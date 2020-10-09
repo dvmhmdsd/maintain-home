@@ -14,11 +14,7 @@ server.post(
   parser.single("image"),
   settingsService.addImage
 );
-server.post(
-  "/video",
-  verifyToken,
-  settingsService.uploadVideo
-);
-server.delete("/images/application/:publicId", settingsService.deleteImage)
+server.post("/video", verifyToken, settingsService.uploadVideo);
+server.delete("/images/application/:publicId", settingsService.deleteImage);
 
 export default server;

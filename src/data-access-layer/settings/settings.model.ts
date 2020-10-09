@@ -9,7 +9,7 @@ const SettingsSchema = new Schema({
   images: [
     {
       _id: String,
-      url: String
+      url: String,
     },
   ],
 });

@@ -53,7 +53,7 @@ export default class OrderService extends CoreService<IOrder> {
       damage,
       time,
       paymentType,
-      customDevice
+      customDevice,
     } = req.body;
     try {
       const errors = validationResult(req);

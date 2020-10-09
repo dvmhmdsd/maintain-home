@@ -14,7 +14,7 @@ export default class FeedbackService extends CoreService<IFeedback> {
     try {
       const records: IFeedback[] = await this._db.find({ rate: { $gte: 3 } });
       res.json({
-        records
+        records,
       });
     } catch (error) {
       next(error);

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:ts": "tslint -c tslint.json -p tsconfig.json --fix && npm run copy-files",
-    "build:dash": "npm run lint:ts && tsc && cd dashboard && ng build --prod && cd ..",
+    "lint:ts": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build:dash": "npm run copy-files && npm run lint:ts && tsc && cd dashboard && ng build --prod && cd ..",
     "build:front": "cd front && ng build --prod && cd ..",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "start:dash": "concurrently \"nodemon\" \"cd dashboard/ && ng serve -o\" && cd ..",

@@ -13,7 +13,12 @@ server.get("/:id", verifyToken, userService.getUserProfileData);
 server.post("/new", verifyToken, authorizeSuperAdmin, userService.createRecord);
 server.post("/login", userService.login);
 server.put("/:id", verifyToken, userService.updateRecord);
-server.put("/:id/changeUserImage", verifyToken, parser.single("userImage"), userService.updateProfileImage);
+server.put(
+  "/:id/changeUserImage",
+  verifyToken,
+  parser.single("userImage"),
+  userService.updateProfileImage
+);
 server.delete(
   "/:id",
   verifyToken,

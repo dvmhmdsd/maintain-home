@@ -1,7 +1,7 @@
 import { ComplaintService } from './../services/complaint.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IComplaint } from './../../../../CONSTANTS/interfaces/complaint.interface';
+import { IComplaint } from './../../../../src/CONSTANTS/interfaces/complaint.interface';
 
 @Component({
   selector: 'app-complaints',
