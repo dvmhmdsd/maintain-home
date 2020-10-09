@@ -86,7 +86,7 @@ export default class OrderService extends CoreService<IOrder> {
       res.json(newOrder);
 
       const orderDevice: any = await Device.findById(newOrder.device);
-      
+
       sendEmailToClient(email, {
         name,
         email,
@@ -140,7 +140,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   private getCompleteUrl(req: Request) {
-    return req.protocol + "://" + req.get("host");
+    return "https://" + req.get("host");
   }
 
   /**
