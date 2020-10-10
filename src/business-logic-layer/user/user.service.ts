@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import CoreService from "../core.service";
@@ -16,7 +16,7 @@ export default class UserService extends CoreService<IUser> {
     this.updateProfileImage = this.updateProfileImage.bind(this);
   }
 
-  async listRecords(req: Request, res: Response, next: any) {
+  async listRecords(req: Request, res: Response, next: express.NextFunction) {
     try {
       const records = await this._db.find({}, "name type email image");
       res.json(records);
@@ -25,7 +25,11 @@ export default class UserService extends CoreService<IUser> {
     }
   }
 
-  async getUserProfileData(req: Request, res: Response, next: any) {
+  async getUserProfileData(
+    req: Request,
+    res: Response,
+    next: express.NextFunction
+  ) {
     const { id } = req.params;
     try {
       const user: IUser = await this._db.findById(id, "name email image type");
@@ -38,7 +42,7 @@ export default class UserService extends CoreService<IUser> {
     }
   }
 
-  async createRecord(req: Request, res: Response, next: any) {
+  async createRecord(req: Request, res: Response, next: express.NextFunction) {
     const { email, name, password, image, type } = req.body;
     await this.checkUserExistence(email, res, next);
     try {
@@ -63,7 +67,7 @@ export default class UserService extends CoreService<IUser> {
     }
   }
 
-  async updateRecord(req: Request, res: Response, next: any) {
+  async updateRecord(req: Request, res: Response, next: express.NextFunction) {
     const { id } = req.params;
 
     try {
@@ -83,7 +87,11 @@ export default class UserService extends CoreService<IUser> {
     }
   }
 
-  private async checkUserExistence(email: string, res: Response, next: any) {
+  private async checkUserExistence(
+    email: string,
+    res: Response,
+    next: express.NextFunction
+  ) {
     try {
       const users = await this._db.find({ email });
       console.log(users);
@@ -114,7 +122,7 @@ export default class UserService extends CoreService<IUser> {
     });
   }
 
-  async login(req: Request, res: Response, next: any) {
+  async login(req: Request, res: Response, next: express.NextFunction) {
     const { email, password } = req.body;
 
     try {
@@ -154,7 +162,11 @@ export default class UserService extends CoreService<IUser> {
     res.json({ success: true });
   }
 
-  async updateProfileImage(req: any, res: Response, next: any) {
+  async updateProfileImage(
+    req: any,
+    res: Response,
+    next: express.NextFunction
+  ) {
     const { id } = req.params;
     const usrImage = req.file.secure_url;
 

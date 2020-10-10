@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import CoreService from "../core.service";
 import { IOrder } from "../../../CONSTANTS/interfaces/order.interface";
@@ -19,7 +19,7 @@ export default class OrderService extends CoreService<IOrder> {
     this.getById = this.getById.bind(this);
   }
 
-  async listRecords(req: Request, res: Response, next: any) {
+  async listRecords(req: Request, res: Response, next: express.NextFunction) {
     try {
       const records: IOrder[] = await this._db
         .find({}, "orderNumber name status createdAt _id phone")
@@ -30,7 +30,7 @@ export default class OrderService extends CoreService<IOrder> {
     }
   }
 
-  async getById(req: Request, res: Response, next: any) {
+  async getById(req: Request, res: Response, next: express.NextFunction) {
     const { id } = req.params;
     try {
       const order: IOrder = await this._db.findById(id).populate("device");
@@ -40,7 +40,7 @@ export default class OrderService extends CoreService<IOrder> {
     }
   }
 
-  async createRecord(req: Request, res: Response, next: any) {
+  async createRecord(req: Request, res: Response, next: express.NextFunction) {
     const {
       name,
       email,
@@ -110,7 +110,7 @@ export default class OrderService extends CoreService<IOrder> {
     }
   }
 
-  async updateRecord(req: Request, res: Response, next: any) {
+  async updateRecord(req: Request, res: Response, next: express.NextFunction) {
     const { id } = req.params;
 
     try {

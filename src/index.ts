@@ -49,9 +49,11 @@ class App {
   private init() {
     this.initMiddleWares();
     this.registerControllers();
-    this.app.use((err: any, req: Request, res: Response, next: any) => {
-      handleError(err, res);
-    });
+    this.app.use(
+      (err: any, req: Request, res: Response, next: express.NextFunction) => {
+        handleError(err, res);
+      }
+    );
     this.initProdMiddleWares();
     // disable the X-Powered-By header instead of using helmet
     this.app.disable("x-powered-by");

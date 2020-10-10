@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import CoreService from "../core.service";
 import Complaint from "../../data-access-layer/complaint/complaint.model";
 import { IComplaint } from "../../../CONSTANTS/interfaces/Complaint.interface";
@@ -11,7 +11,7 @@ export default class ComplaintService extends CoreService<IComplaint> {
     this.createRecord = this.createRecord.bind(this);
   }
 
-  async createRecord(req: Request, res: Response, next: any) {
+  async createRecord(req: Request, res: Response, next: express.NextFunction) {
     try {
       const newRecord: IComplaint = await this._db.create({
         ...req.body,

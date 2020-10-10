@@ -24,5 +24,4 @@ class ComplaintController implements IController {
 }
 
 const complaintController = new ComplaintController();
-
 export default complaintController.server;

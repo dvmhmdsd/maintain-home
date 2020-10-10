@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import { ErrorHandler } from "../helpers/error/error-handler.helper";
 
@@ -19,7 +19,7 @@ export default class CoreService<T> {
     this._name = name;
   }
 
-  async listRecords(req: Request, res: Response, next: any) {
+  async listRecords(req: Request, res: Response, next: express.NextFunction) {
     try {
       const records: T[] = await this._db.find({});
       res.json(records);
@@ -28,7 +28,7 @@ export default class CoreService<T> {
     }
   }
 
-  async createRecord(req: Request, res: Response, next: any) {
+  async createRecord(req: Request, res: Response, next: express.NextFunction) {
     try {
       const newRecord: T = await this._db.create({
         ...req.body,
@@ -39,7 +39,7 @@ export default class CoreService<T> {
     }
   }
 
-  async updateRecord(req: Request, res: Response, next: any) {
+  async updateRecord(req: Request, res: Response, next: express.NextFunction) {
     const { id } = req.params;
 
     try {
@@ -58,7 +58,7 @@ export default class CoreService<T> {
     }
   }
 
-  async deleteRecord(req: Request, res: Response, next: any) {
+  async deleteRecord(req: Request, res: Response, next: express.NextFunction) {
     const { id } = req.params;
 
     try {

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import multer from "multer";
 // @ts-ignore
 import streamifier from "streamifier";
@@ -18,7 +18,7 @@ export class SettingsService {
     this.getVideo = this.getVideo.bind(this);
   }
 
-  uploadVideo(req: any, res: Response, next: any) {
+  uploadVideo(req: any, res: Response, next: express.NextFunction) {
     upload.single("video")(req, res, () => {
       cloudinary.config({
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -49,7 +49,7 @@ export class SettingsService {
     });
   }
 
-  async getImages(req: Request, res: Response, next: any) {
+  async getImages(req: Request, res: Response, next: express.NextFunction) {
     try {
       const images = await this._db.findOne({}, "images");
       res.json(images);
@@ -79,7 +79,7 @@ export class SettingsService {
     }
   }
 
-  async deleteImage(req: Request, res: Response, next: any) {
+  async deleteImage(req: Request, res: Response, next: express.NextFunction) {
     const { publicId } = req.params;
 
     try {
@@ -94,7 +94,7 @@ export class SettingsService {
     }
   }
 
-  async getVideo(req: Request, res: Response, next: any) {
+  async getVideo(req: Request, res: Response, next: express.NextFunction) {
     try {
       const video = await Settings.findOne({}, "videoUrl");
       res.json(video);
