@@ -1,5 +1,5 @@
 export interface IComplaint {
-    _id?: string;
-    orderNumber: string;
-    body: string;
+  _id?: string;
+  orderNumber: string;
+  body: string;
 }

@@ -1,11 +1,11 @@
 <div class="list-container mat-elevation-z8">
   <header class="list-header" *ngIf="!isLoadingResults">
-    <h2>قائمة أوامر الشغل</h2>
+    <h2>الشكاوي</h2>
   </header>
   <div class="list-loading-shade" *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     <div class="list-rate-limit-reached" *ngIf="isFailed">
-      حدث خطأ أثناء محاولة جلب أوامر الشغل، من فضلك قم بإعادة تحميل الصفحة أو قم
+      حدث خطأ أثناء محاولة جلب الشكاوي، من فضلك قم بإعادة تحميل الصفحة أو قم
       بالاتصال بالدعم
     </div>
   </div>

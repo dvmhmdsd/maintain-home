@@ -1,5 +1,4 @@
 import { EditOrderVM } from './../viewmodels/edit-order.viewmodel';
-import { IOrder } from './../../../../CONSTANTS/interfaces/order.interface';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
