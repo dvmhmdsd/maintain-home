@@ -12,6 +12,7 @@ import {
   userController,
 } from "./controllers";
 import { handleError } from "./helpers/error/error-handler.helper";
+import dotenv from "dotenv";
 
 class App {
   private app = express();
@@ -26,6 +27,7 @@ class App {
   ];
 
   constructor() {
+    dotenv.config();
     this.setupDbConnection();
     this.init();
   }
