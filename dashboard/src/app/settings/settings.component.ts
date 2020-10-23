@@ -26,7 +26,7 @@ export class SettingsComponent implements OnInit {
     this.isImageLoading = true;
     this.settingsService.getImages().subscribe(
       (res: ISettings) => {
-        this.images = res.images;
+        this.images = !!res ? res.images : [];
         this.isImageLoading = false;
       },
       (err) => {

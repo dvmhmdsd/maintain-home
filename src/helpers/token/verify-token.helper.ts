@@ -14,7 +14,7 @@ const verifyToken = (req: any, res: Response, next: any) => {
   jwt.verify(token as string, process.env.JWT_PASSWORD, (err, decoded: any) => {
     if (err)
       return res
-        .status(500)
+        .status(401)
         .json({ auth: false, message: "Failed to authenticate token." });
 
     // To use the user data in other places

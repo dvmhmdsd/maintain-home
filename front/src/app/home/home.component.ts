@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.settingsService.getImages().subscribe(
       (res: any) => {
-        this.images = res.images.map((image: any) => image.url);
+        this.images = res ? res.images.map((image: any) => image.url) : [];
         this.settingsService.getVideo().subscribe((res: any) => {
           this.video = res.videoUrl;
         });
