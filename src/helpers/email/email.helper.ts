@@ -15,7 +15,7 @@ const sendEmail = async (
     dynamic_template_data: emailData,
   };
 
-  sgMail.send(msg, false, (error, result) => {
+  sgMail.send(msg, false, (error) => {
     if (error) {
       handleError({ statusCode: 500, message: error.message });
     }
