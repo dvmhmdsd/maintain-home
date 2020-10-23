@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from './../services/settings.service';
-import { ISettings } from './../../../../src/CONSTANTS/interfaces/settings.interface';
+import { ISettings } from './../../../../CONSTANTS/interfaces/settings.interface';
 
 @Component({
   selector: 'app-settings',

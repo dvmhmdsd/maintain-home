@@ -1,7 +1,7 @@
 import { ComplaintService } from './../services/complaint.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IComplaint } from './../../../../src/CONSTANTS/interfaces/complaint.interface';
+import { IComplaint } from './../../../../CONSTANTS/interfaces/complaint.interface';
 
 @Component({
   selector: 'app-complaints',
@@ -58,5 +58,7 @@ export class DialogData {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data?: any,
-  ) {}
+  ) {
+    console.log(data)
+  }
 }

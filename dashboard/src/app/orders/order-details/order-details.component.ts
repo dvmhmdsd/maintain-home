@@ -1,8 +1,8 @@
 import { OrdersService } from './../../services/orders.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OrderStatuses } from '../../../../../src/CONSTANTS/enums/order-statuses.enum';
-import { IOrder } from './../../../../../src/CONSTANTS/interfaces/order.interface';
+import { OrderStatuses } from '../../../../../CONSTANTS/enums/order-statuses.enum';
+import { IOrder } from './../../../../../CONSTANTS/interfaces/order.interface';
 import { EditOrderVM } from 'src/app/viewmodels/edit-order.viewmodel';
 
 @Component({

@@ -1,5 +1,5 @@
-import { UserTypes } from './../../../src/CONSTANTS/enums/user-types.enum';
-import { IUser } from './../../../src/CONSTANTS/interfaces/user.interface';
+import { UserTypes } from './../../../CONSTANTS/enums/user-types.enum';
+import { IUser } from './../../../CONSTANTS/interfaces/user.interface';
 import { AuthenticationService } from './services/account/authentication.service';
 import {
   Component,

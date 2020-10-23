@@ -5,8 +5,8 @@ import {
   Inject,
   TemplateRef,
 } from '@angular/core';
-import { UserTypes } from './../../../../../src/CONSTANTS/enums/user-types.enum';
-import { IUser } from './../../../../../src/CONSTANTS/interfaces/user.interface';
+import { UserTypes } from './../../../../../CONSTANTS/enums/user-types.enum';
+import { IUser } from './../../../../../CONSTANTS/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 import {
   MatDialog,

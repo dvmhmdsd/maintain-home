@@ -1,7 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { IFeedback } from './../../../../../src/CONSTANTS/interfaces/feedback.interface';
+import { IFeedback } from './../../../../../CONSTANTS/interfaces/feedback.interface';
 import { LanguageHandlerService } from './../../services/language-handler.service';
 
 @Component({

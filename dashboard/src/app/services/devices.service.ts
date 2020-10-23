@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { IDevice } from './../../../../src/CONSTANTS/interfaces/device.interface';
+import { IDevice } from './../../../../CONSTANTS/interfaces/device.interface';
 
 @Injectable({
   providedIn: 'root'

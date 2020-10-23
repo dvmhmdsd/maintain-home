@@ -1,7 +1,7 @@
 import { SettingsService } from './../services/settings.service';
 import { Component, OnInit } from '@angular/core';
 import { FeedbacksService } from '../services/feedbacks.service';
-import { IFeedback } from '../../../../src/CONSTANTS/interfaces/feedback.interface';
+import { IFeedback } from '../../../../CONSTANTS/interfaces/feedback.interface';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

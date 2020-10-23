@@ -2,7 +2,7 @@ import { Events } from './../../services/events.service';
 import { UsersService } from './../../services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { IUser } from './../../../../../src/CONSTANTS/interfaces/user.interface';
+import { IUser } from './../../../../../CONSTANTS/interfaces/user.interface';
 import { UserVM } from 'src/app/viewmodels/user.viewmodel';
 
 @Component({
