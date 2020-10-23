@@ -36,18 +36,9 @@
       }
 
       &:hover {
-        background-color: $mainColor;
-        color: #fff;
+        box-shadow: 0 0 18px #ccc;
+        transform: scale(1.05);
         transition: all 0.3s ease-in;
-        mat-icon {
-          background-color: #fff;
-          color: $mainColor;
-          transform: scale(0.9);
-        }
-
-        p {
-          transform: scale(1.1);
-        }
       }
     }
   }

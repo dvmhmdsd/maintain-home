@@ -44,7 +44,7 @@ export class SettingsComponent implements OnInit {
       this.settingsService.getVideo().subscribe(
         (res: any) => {
           this.isVideoLoading = false;
-          this.videoUrl = res.videoUrl
+          this.videoUrl = res && res.videoUrl
         },
         () => {
           this.isVideoLoading = false;

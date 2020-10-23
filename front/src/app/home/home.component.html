@@ -7,7 +7,7 @@
   <app-about [videoUrl]="video"></app-about>
   <app-our-services></app-our-services>
   <app-rating
-    *ngIf="feedbacks"
+    *ngIf="feedbacks && feedbacks.length > 0"
     [feedbacks]="feedbacks"
   ></app-rating>
 </section>

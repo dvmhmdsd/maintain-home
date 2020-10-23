@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         this.images = res ? res.images.map((image: any) => image.url) : [];
         this.settingsService.getVideo().subscribe((res: any) => {
-          this.video = res.videoUrl;
+          this.video = !!res && res.videoUrl;
         });
       },
       () => {

@@ -23,7 +23,7 @@
       cancel
     </button>
     <section class="user-image">
-      <img [src]="!!user && user.image" alt="" />
+      <img [src]="user.image || 'assets/imgs/avatar.png'" alt="" />
       <!-- <img src="assets/imgs/avatar.png" alt="" /> -->
       <section
         *ngIf="editMode && !isLoading"
