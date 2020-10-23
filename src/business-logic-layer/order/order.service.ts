@@ -130,7 +130,7 @@ export default class OrderService extends CoreService<IOrder> {
         {
           name,
           orderNumber,
-          feedbackLink: this.getCompleteUrl(req) + "/feedback",
+          feedbackLink: "https://www.maintenhome.com/feedback",
         },
         true
       );
@@ -140,7 +140,7 @@ export default class OrderService extends CoreService<IOrder> {
   }
 
   private getCompleteUrl(req: Request) {
-    return "https://" + req.get("host");
+    return "https://maintain-home-orch.herokuapp.com";
   }
 
   /**
