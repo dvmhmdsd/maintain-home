@@ -17,7 +17,7 @@
       </div>
       <section class="sidenav-user">
         <a routerLink="/user/profile">
-          <img [src]="user.image || 'assets/imgs/avatar.png'" alt="" />
+          <img [src]="!!user ? user.image || 'assets/imgs/avatar.png' : 'assets/imgs/avatar.png'" alt="" />
         </a>
         <p>{{ !!user ? user.name : "Admin" }}</p>
       </section>
