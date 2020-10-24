@@ -1,6 +1,9 @@
 import multer from "multer";
 // @ts-ignore
 import cloudinaryStorage from "multer-storage-cloudinary";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const cloudinary = require("cloudinary");
 

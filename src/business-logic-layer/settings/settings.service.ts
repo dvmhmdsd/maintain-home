@@ -83,10 +83,10 @@ export class SettingsService {
     const { publicId } = req.params;
 
     try {
-      await cloudinary.uploader.destroy(`application/${publicId}`);
+      await cloudinary.uploader.destroy(`demo/${publicId}`);
       await this._db.findOneAndUpdate(
         {},
-        { $pull: { images: { _id: `application/${publicId}` } } }
+        { $pull: { images: { _id: `demo/${publicId}` } } }
       );
       res.json({ success: true });
     } catch (error) {

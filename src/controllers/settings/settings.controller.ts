@@ -23,7 +23,7 @@ class SettingsController implements IController {
     );
     this.server.post("/video", verifyToken, this.settingsService.uploadVideo);
     this.server.delete(
-      "/images/application/:publicId",
+      "/images/demo/:publicId",
       this.settingsService.deleteImage
     );
   }

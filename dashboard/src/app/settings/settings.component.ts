@@ -44,7 +44,7 @@ export class SettingsComponent implements OnInit {
       this.settingsService.getVideo().subscribe(
         (res: any) => {
           this.isVideoLoading = false;
-          this.videoUrl = res && res.videoUrl
+          this.videoUrl = res && res.videoUrl;
         },
         () => {
           this.isVideoLoading = false;
@@ -124,10 +124,10 @@ export class SettingsComponent implements OnInit {
         this.images = this.images.filter((image) => image._id !== id);
       },
       () => {
-        this.showRemoveBtn(event);
         alert(
           'حدث خطأ أثناء حذف الصورة، من فضلك حاول مرة أخري أو قم بالاتصال بالدعم'
         );
+        this.showRemoveBtn(event);
       }
     );
   }
