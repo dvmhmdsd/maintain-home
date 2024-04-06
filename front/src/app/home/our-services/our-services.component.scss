@@ -1,0 +1,55 @@
+@import "../../../theme/variables.scss";
+
+.services-section {
+  text-align: center;
+  .services-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 1.3rem;
+    .services-item {
+      width: 25%;
+      padding: 2rem 0.5rem;
+      background-color: #fff;
+      margin: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      transition: all 0.3s ease-in-out;
+      box-sizing: border-box;
+
+      mat-icon {
+        padding: 1.4rem;
+        font-size: 3.5rem;
+        width: 56px;
+        height: 55px;
+        background-color: $mainColor;
+        color: #fff;
+        border-radius: 50%;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      p {
+        margin-top: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        box-shadow: 0 0 18px #ccc;
+        transform: scale(1.05);
+        transition: all 0.3s ease-in;
+      }
+    }
+  }
+}
+
+@media (max-width: 669px) {
+  .services-section {
+    .services-list {
+      .services-item {
+        width: 100%;
+      }
+    }
+  }
+}

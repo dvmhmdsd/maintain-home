@@ -1,0 +1,96 @@
+<mat-sidenav-container class="maintain-sidenav-container">
+  <mat-sidenav
+    *ngIf="showLayout"
+    #sideNav
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches"
+    [opened]="mobileQuery.matches ? false : true"
+  >
+    <header class="sidenav-intro">
+      <div class="sidenav-header">
+        <h1 class="maintain-app-name">
+          <img src="assets/imgs/logo-white.png" alt="">
+        </h1>
+        <button mat-icon-button (click)="toggleSideNav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <section class="sidenav-user">
+        <a routerLink="/user/profile">
+          <img [src]="!!user ? user.image || 'assets/imgs/avatar.png' : 'assets/imgs/avatar.png'" alt="" />
+        </a>
+        <p>{{ !!user ? user.name : "Admin" }}</p>
+      </section>
+    </header>
+    <mat-nav-list>
+      <span *ngFor="let nav of navList">
+        <span *ngIf="!nav.children">
+          <a
+            mat-list-item
+            *ngIf="!nav.superOnly"
+            [routerLink]="nav.path"
+            routerLinkActive="link-active"
+          >
+            <mat-icon>{{ nav.icon }}</mat-icon>
+            {{ nav.label }}
+          </a>
+          <a
+            mat-list-item
+            *ngIf="nav.superOnly"
+            [routerLink]="nav.path"
+            routerLinkActive="link-active"
+          >
+            <mat-icon>{{ nav.icon }}</mat-icon>
+            {{ nav.label }}
+          </a>
+        </span>
+
+        <span *ngIf="nav.children">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{ nav.icon }}</mat-icon>
+                    {{ nav.label }}
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <span *ngFor="let child of nav.children">
+                <mat-list-item routerLink="{{ child.path }}" *ngIf="child.superOnly">
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{ child.icon }}</mat-icon>
+                    {{ child.label }}
+                  </div>
+                </mat-list-item>
+                <mat-list-item routerLink="{{ child.path }}" *ngIf="!child.superOnly">
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{ child.icon }}</mat-icon>
+                    {{ child.label }}
+                  </div>
+                </mat-list-item>
+              </span>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </span>
+      </span>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar *ngIf="showLayout" class="maintain-toolbar">
+      <button *ngIf="!isDrawerOpened" mat-icon-button (click)="toggleSideNav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a routerLink="/user/profile" mat-menu-item>الصفحة الشخصية</a>
+        <button mat-menu-item (click)="logout()">تسجيل الخروج</button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

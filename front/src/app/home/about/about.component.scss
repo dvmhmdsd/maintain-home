@@ -1,0 +1,66 @@
+@import "~video.js/dist/video-js.css";
+@import "../../../theme/variables.scss";
+
+.video-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid #999;
+  width: 75%;
+
+  .section-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .info-section {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .video-js {
+    height: 22rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+
+    .vjs-big-play-button {
+      background-color: $mainColor;
+    }
+  }
+}
+
+@media (max-width: 669px) {
+  .video-section {
+    text-align: center;
+
+    .info-section {
+      width: auto;
+    }
+
+    .section-content {
+      display: block;
+    }
+
+    &.home-section {
+      padding: 2rem !important;
+    }
+    .video-js {
+      width: 100%;
+    }
+  }
+}
+
+.centered {
+  text-align: center;
+  width: 100% !important;
+}

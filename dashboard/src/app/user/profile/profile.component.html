@@ -1,0 +1,92 @@
+<div class="profile-container">
+  <mat-card>
+    <button
+      class="menu-btn"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      *ngIf="!editMode"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-flat-button (click)="toggleEditMode()">
+        <mat-icon>edit</mat-icon>
+        تعديل
+      </button>
+    </mat-menu>
+    <button
+      class="menu-btn"
+      mat-icon-button
+      *ngIf="editMode"
+      (click)="toggleEditMode()"
+    >
+      cancel
+    </button>
+    <section class="user-image">
+      <img [src]="user.image || 'assets/imgs/avatar.png'" alt="" />
+      <!-- <img src="assets/imgs/avatar.png" alt="" /> -->
+      <section
+        *ngIf="editMode && !isLoading"
+        class="file-upload-overlay"
+        (click)="fileInput.click()"
+      >
+        <mat-icon>add</mat-icon>
+      </section>
+    </section>
+
+    <section *ngIf="!editMode && !isLoading && !isFailed" class="user-data">
+      <h2>{{ user.name }}</h2>
+      <p>{{ user.email }}</p>
+    </section>
+
+    <section *ngIf="isLoading" class="loading-msg">جاري تحديث البيانات</section>
+
+    <section *ngIf="isFailed" class="loading-msg">
+      حدث خطأ أثناء تحديث البيانات، من فضلك حاول مرة أخري أو قم بالإتصال بالدعم
+    </section>
+
+    <form *ngIf="editMode && !isLoading && !isFailed" [formGroup]="userForm">
+      <mat-form-field>
+        <mat-label>اسم المستخدم *</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="userForm.get('name').hasError('required')">
+          اسم المستخدم مطلوب
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>البريد الإلكتروني *</mat-label>
+        <input
+          matInput
+          placeholder="مثال: test@example.com"
+          formControlName="email"
+        />
+        <mat-error *ngIf="userForm.get('email').hasError('required')">
+          البريد الإلكتروني مطلوب
+        </mat-error>
+        <mat-error *ngIf="userForm.get('email').hasError('used')">
+          هذا البريد مستخدم بالفعل
+        </mat-error>
+        <mat-error *ngIf="userForm.get('email').hasError('pattern')">
+          هذا البريد الإلكتروني غير صالح
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-button
+        mat-raised-button
+        [disabled]="!userForm.valid"
+        (click)="updateUser()"
+      >
+        حفظ
+      </button>
+    </form>
+  </mat-card>
+
+  <input
+    style="display: none"
+    type="file"
+    (change)="onFileChanged($event)"
+    #fileInput
+  />
+</div>

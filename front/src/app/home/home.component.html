@@ -1,0 +1,13 @@
+<section *ngIf="!images || failMessage" class="loading">
+  <mat-spinner *ngIf="!images && !failMessage"></mat-spinner>
+  <h2 *ngIf="!images && failMessage">{{failMessage}}</h2>
+</section>
+<section *ngIf="images">
+  <app-intro *ngIf="images.length > 0" [images]="images"></app-intro>
+  <app-about [videoUrl]="video"></app-about>
+  <app-our-services></app-our-services>
+  <app-rating
+    *ngIf="feedbacks && feedbacks.length > 0"
+    [feedbacks]="feedbacks"
+  ></app-rating>
+</section>
